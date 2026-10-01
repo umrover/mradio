@@ -7,14 +7,14 @@ enum class NetworkRole : uint8_t {
 };
 
 // class for interfacing with 900 MHz radio module
-class MM8108 {
+class MM6108 {
 private:
     NetworkRole m_role{NetworkRole::STATION}; // radio role
     SPI_HandleTypeDef* m_hspi; // pointer to spi handle
 
 public:
     // default constructor
-    MM8108() = default;
+    MM6108() = default;
 
     // initialize member variables and module
     void init(NetworkRole role, SPI_HandleTypeDef* hspi);
