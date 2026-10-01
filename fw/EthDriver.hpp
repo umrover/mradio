@@ -1,5 +1,6 @@
 #include "RingBuffer.hpp"
 
+// class for interfacing with ethernet peripherals
 class EthDriver {
 private:
     RingBuffer* m_rx_buf; // buffer for received packets

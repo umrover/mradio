@@ -1,15 +1,18 @@
 #include <cstdint>
 
+// enum representing the radio role
 enum class NetworkRole : uint8_t {
     AP = 0,
     STATION = 1
 };
 
+// enum representing desired operating frequency
 enum class WifiFreq : uint8_t {
     WIFI_2_4_GHz = 0,
     WIFI_5_GHz = 1
 };
 
+// class for interfacing with IF573 wifi module
 class IF573 {
 private:
     NetworkRole m_role{NetworkRole::STATION}; // radio role

@@ -1,10 +1,12 @@
 #include <cstdint>
 
+// enum representing the radio role
 enum class NetworkRole : uint8_t {
     AP = 0,
     STATION = 1
 };
 
+// class for interfacing with 900 MHz radio module
 class MM8108 {
 private:
     NetworkRole m_role{NetworkRole::STATION}; // radio role
