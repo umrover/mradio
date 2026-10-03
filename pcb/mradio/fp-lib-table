@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "MDT420E01001") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/MDT420E01001.pretty") (options "") (descr ""))
+)
