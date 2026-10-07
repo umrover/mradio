@@ -3408,6 +3408,12 @@
 			(uuid "9e05ebcf-07b4-4608-a5ba-9a4f9af42860")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C6")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C6")
@@ -3487,6 +3493,12 @@
 			(uuid "f14a3ce3-2c0b-4635-94ee-661188a82a78")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C4")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C4")
@@ -3569,6 +3581,12 @@
 			(uuid "6c0302c7-1a95-4ca9-9c1b-ed11464229c1")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C9")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C9")
@@ -3648,6 +3666,12 @@
 			(uuid "d584d308-f0d5-43d8-898a-fb9ffacafcbe")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C2")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C2")
@@ -3727,6 +3751,12 @@
 			(uuid "3d54d4ce-b540-42ad-b6de-989b26ecebf9")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR02")
@@ -3926,6 +3956,12 @@
 			(uuid "966a62b0-7dde-49bd-8cb2-50d10e6d2de3")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C1")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C1")
@@ -4008,6 +4044,12 @@
 			(uuid "3cfb0c1b-47b2-4ea8-8c3f-883d5d25afeb")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "FB1")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "FB1")
@@ -4085,6 +4127,12 @@
 			(uuid "1cb09113-7647-4fba-8981-8cbe28658417")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR08")
@@ -4164,6 +4212,12 @@
 			(uuid "af1e7d9d-9ceb-4a67-b7a2-050f1bfc8b74")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C3")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C3")
@@ -4244,6 +4298,12 @@
 			(uuid "544584b2-38e1-4765-8b51-92a94219b9d3")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C7")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C7")
@@ -4324,6 +4384,12 @@
 			(uuid "dc73566e-c466-4e96-bd67-2305b0cc23a7")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C8")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C8")
@@ -4403,6 +4469,12 @@
 			(uuid "30ad42e6-ce08-492d-a324-3021be6dd557")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR01")
@@ -4497,6 +4569,12 @@
 			(uuid "cf31e8cf-e0f9-48de-9bac-aef701ed6a79")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "U1")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "U1")
@@ -4818,6 +4896,12 @@
 			(uuid "de649fbe-6ab5-4638-a367-4c1850399ece")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR05")
@@ -4901,6 +4985,12 @@
 			(uuid "2ef35db2-a20a-43c7-a604-d04522febd15")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "FB2")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "FB2")
@@ -4981,6 +5071,12 @@
 			(uuid "c83cf4dc-3e6b-4808-a973-5715f4d2906e")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "C5")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C5")
@@ -5060,6 +5156,12 @@
 			(uuid "db235272-0f7d-447a-bbbf-b4c7ebe5183a")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR06")
@@ -5140,6 +5242,12 @@
 			(uuid "130c726d-8a72-43af-afcb-aa83cefb9641")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR04")
@@ -5218,6 +5326,12 @@
 			(uuid "608606dc-0ef6-49a1-8d44-22d062ee6817")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR07")
@@ -5231,5 +5345,4 @@
 			(page "3")
 		)
 	)
-	(embedded_fonts no)
 )

@@ -2486,6 +2486,12 @@
 			(uuid "0b834e3e-9df4-4bee-93b9-be336736e426")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C8")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C8")
@@ -2568,6 +2574,12 @@
 			(uuid "f48bab58-5f72-4528-b8c9-3a2589637f9e")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "D1")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "D1")
@@ -2650,6 +2662,12 @@
 			(uuid "3a978d32-c463-4b77-8ee7-05f16d2d6be4")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R2")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R2")
@@ -2728,6 +2746,12 @@
 			(uuid "24eca38d-ad5b-46ca-b05d-221667a59af5")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR06")
@@ -2810,6 +2834,12 @@
 			(uuid "09e49b93-ec8e-43d6-91e5-e7a6686dba3a")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C1")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C1")
@@ -2892,6 +2922,12 @@
 			(uuid "4fcea1f9-b30f-496a-844d-2870048675d0")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R4")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R4")
@@ -2970,6 +3006,12 @@
 			(uuid "86eb4e9b-aea2-4702-923d-d0f7ba60242c")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR05")
@@ -3136,6 +3178,12 @@
 			(uuid "f356a49a-eecc-4014-902e-a1af5ecaf45a")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C5")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C5")
@@ -3214,6 +3262,12 @@
 			(uuid "e512b706-030e-4924-89f2-35e32af135f8")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR04")
@@ -3438,6 +3492,12 @@
 			(uuid "2c7b7396-807f-4d0d-a8f7-6fe77cbece78")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R5")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R5")
@@ -3520,6 +3580,12 @@
 			(uuid "c1e79c35-a12c-409c-b113-5eede9f8b089")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C9")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C9")
@@ -3602,6 +3668,12 @@
 			(uuid "540b8088-5f62-486f-9f9a-df1c54a13dc4")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C2")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C2")
@@ -3684,6 +3756,12 @@
 			(uuid "5fb195d6-8336-4ccd-bbc1-48af4fad9523")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C7")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C7")
@@ -3762,6 +3840,12 @@
 			(uuid "55063ef4-1c68-44b4-b510-e0c547049ae4")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR03")
@@ -3840,6 +3924,12 @@
 			(uuid "0928313d-7976-4179-80c8-e891fc1c2cce")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR07")
@@ -3922,6 +4012,12 @@
 			(uuid "36571dcc-ee0b-4fc6-9f41-c087edff4305")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R1")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R1")
@@ -4004,6 +4100,12 @@
 			(uuid "46de927b-e46c-4754-afcd-c81611bd6e8a")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C3")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C3")
@@ -4086,6 +4188,12 @@
 			(uuid "72fc3d78-32e0-473f-8026-89d5d38258d7")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R3")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R3")
@@ -4168,6 +4276,12 @@
 			(uuid "a96dce9a-c7c8-4876-870c-0e40ca6a242e")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C10")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C10")
@@ -4248,6 +4362,12 @@
 			(uuid "f0d34e19-c899-4fb1-ad31-a3d209df1169")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "L1")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "L1")
@@ -4330,6 +4450,12 @@
 			(uuid "049af0f0-c506-4137-84a0-e2b85e499634")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C6")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C6")
@@ -4515,6 +4641,12 @@
 			(uuid "67fce68d-aedf-43af-8300-f81a2561ea44")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR08")
@@ -4597,6 +4729,12 @@
 			(uuid "dbf36db5-bae5-4260-b366-b8742547d9f3")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "C4")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "C4")
@@ -4679,6 +4817,12 @@
 			(uuid "cd036905-b1f7-4de6-8cbd-ae39e503d3a8")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "R6")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "R6")
@@ -4841,6 +4985,12 @@
 			(uuid "0df2923a-9810-48db-9ffd-994587c3d992")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR012")
@@ -4854,5 +5004,4 @@
 			(page "2")
 		)
 	)
-	(embedded_fonts no)
 )
