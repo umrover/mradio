@@ -51,6 +51,7 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN EFP */
 
@@ -63,6 +64,14 @@ void Error_Handler(void);
 #define WM_WAKE_GPIO_Port GPIOE
 #define WM_BUSY_Pin GPIO_PIN_4
 #define WM_BUSY_GPIO_Port GPIOE
+#define M4_DBG1_Pin GPIO_PIN_7
+#define M4_DBG1_GPIO_Port GPIOF
+#define M4_DBG2_Pin GPIO_PIN_8
+#define M4_DBG2_GPIO_Port GPIOF
+#define STLINK_TX_Pin GPIO_PIN_14
+#define STLINK_TX_GPIO_Port GPIOB
+#define STLINK_RX_Pin GPIO_PIN_15
+#define STLINK_RX_GPIO_Port GPIOB
 #define SoS_LED1_Pin GPIO_PIN_15
 #define SoS_LED1_GPIO_Port GPIOD
 #define SoS_LED2_Pin GPIO_PIN_6
@@ -71,10 +80,6 @@ void Error_Handler(void);
 #define SoS_LED3_GPIO_Port GPIOG
 #define SoS_LED4_Pin GPIO_PIN_8
 #define SoS_LED4_GPIO_Port GPIOG
-#define M4_DBG1_Pin GPIO_PIN_9
-#define M4_DBG1_GPIO_Port GPIOA
-#define M4_DBG2_Pin GPIO_PIN_10
-#define M4_DBG2_GPIO_Port GPIOA
 #define WL_REG_ON_Pin GPIO_PIN_6
 #define WL_REG_ON_GPIO_Port GPIOD
 #define WL_DEV_WAKE_Pin GPIO_PIN_7
