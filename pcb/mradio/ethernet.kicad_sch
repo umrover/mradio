@@ -4093,11 +4093,7 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-<<<<<<< HEAD
 					(reference "#PWR024")
-=======
-					(reference "C9")
->>>>>>> db288c465be5c01c1a4ccbaa31ff75f8f10486dc
 					(unit 1)
 				)
 			)
@@ -4812,11 +4808,7 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-<<<<<<< HEAD
 					(reference "R5")
-=======
-					(reference "#PWR08")
->>>>>>> db288c465be5c01c1a4ccbaa31ff75f8f10486dc
 					(unit 1)
 				)
 			)
@@ -5306,207 +5298,13 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-<<<<<<< HEAD
-=======
 					(reference "C8")
 					(unit 1)
 				)
 			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
->>>>>>> db288c465be5c01c1a4ccbaa31ff75f8f10486dc
 					(reference "C8")
-					(unit 1)
-				)
-			)
-<<<<<<< HEAD
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "C8")
-=======
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 110.49 25.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8f4e3df7-52fb-4e60-975a-b8a96d2b56f2")
-		(property "Reference" "#PWR01"
-			(at 110.49 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 110.4901 21.59 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_DFN_QFN:Diodes_UDFN3810-9_TYPE_B"
-			(at 110.49 25.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 110.49 25.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 110.49 25.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "30ad42e6-ce08-492d-a324-3021be6dd557")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "symbols:DSC1121CI2-025.0000T")
-		(at 27.94 120.65 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "995480bf-19e8-4dd7-9666-15fd661b12a9")
-		(property "Reference" "U1"
-			(at 48.26 110.49 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Value" "DSC1121CI2-025.0000T"
-			(at 48.26 113.03 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Footprint" "DSC1121CI2-025.0000T:VDFN6_3P2X2P5_MCH"
-			(at 27.94 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Datasheet" "DSC1121CI2-025.0000T"
-			(at 27.94 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "ba13db8b-3238-457c-8b13-8f961a3d3f71")
-		)
-		(pin "2"
-			(uuid "a6e750be-181c-488d-b190-0e32c7f2a3ce")
-		)
-		(pin "6"
-			(uuid "b38fc1c3-542a-4b1f-89e8-e1ee0c57da5b")
-		)
-		(pin "1"
-			(uuid "94a7bf99-8c8a-4737-9969-333b64c0c7e4")
-		)
-		(pin "4"
-			(uuid "958e5cee-3195-412b-a6f6-088b4578241c")
-		)
-		(pin "5"
-			(uuid "cf31e8cf-e0f9-48de-9bac-aef701ed6a79")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "U1")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "U1")
->>>>>>> db288c465be5c01c1a4ccbaa31ff75f8f10486dc
 					(unit 1)
 				)
 			)
@@ -6250,12 +6048,6 @@
 			(uuid "f0579955-9ead-4eb4-8232-e3697a0f0910")
 		)
 		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C10")
@@ -6420,12 +6212,6 @@
 			(uuid "697dc16e-bd3c-4770-996b-7e33d0837cb0")
 		)
 		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "#PWR07")
-					(unit 1)
-				)
-			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR06")
@@ -6609,4 +6395,5 @@
 			(page "3")
 		)
 	)
+	(embedded_fonts no)
 )
