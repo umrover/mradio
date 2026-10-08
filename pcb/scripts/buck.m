@@ -3,7 +3,7 @@
 V_in = 12;	% Volts
 V_in_max = 12;	% Volts, max expected V_in, for clarity
 V_in_min = 12;	% Volts, min expected V_in, for clarity
-V_out = 5.3;	% Volts
+V_out = 5.5;	% Volts
 I_out = 1.5;	% Amps
 I_out_max = 2;	% Amps
 C_derate = 0.7;	% 70% of capacitance at 3.7V DC
