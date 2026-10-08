@@ -1797,6 +1797,12 @@
 			(uuid "9804dd4d-e442-4bbe-be24-159ce5d22500")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0102")
@@ -1875,6 +1881,12 @@
 			(uuid "57d87a5b-c257-4cf5-a34c-aa5bcef069d7")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0105")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0105")
@@ -1957,6 +1969,12 @@
 			(uuid "431bbd23-6248-4a25-80db-b22853ecc382")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C107")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C107")
@@ -2039,6 +2057,12 @@
 			(uuid "5cbb5fc8-5b3a-4845-bed2-942f288474bd")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C105")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C105")
@@ -2119,6 +2143,12 @@
 			(uuid "f7dfbc73-3fba-4299-b002-87287f625b1d")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "R101")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "R101")
@@ -2197,6 +2227,12 @@
 			(uuid "b382c356-b470-44cd-abdc-5231bdf19aea")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0101")
@@ -2275,6 +2311,12 @@
 			(uuid "0941390f-0085-43ee-b406-46c708f38ac3")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0106")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0106")
@@ -2353,6 +2395,12 @@
 			(uuid "2d238648-adfd-49f9-b234-de3b55c60806")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0103")
@@ -2444,6 +2492,12 @@
 			(uuid "5c87f413-c494-48ae-a193-a9e74a5172d2")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "D101")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "D101")
@@ -2526,6 +2580,12 @@
 			(uuid "4fcade5b-666a-4b43-b484-7f0291203e32")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C109")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C109")
@@ -2608,6 +2668,12 @@
 			(uuid "156c898c-d792-456a-b02b-f7ebc346d425")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C101")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C101")
@@ -2690,6 +2756,12 @@
 			(uuid "d34bd14f-083f-4a67-97bf-e332e253b63a")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C104")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C104")
@@ -2829,6 +2901,12 @@
 			(uuid "fdeccde2-dc28-4f45-86c7-14b97cfc1c70")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "U101")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "U101")
@@ -2911,6 +2989,12 @@
 			(uuid "f3b04c30-f32c-4d35-a485-7a3ce384bd60")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C108")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C108")
@@ -2993,6 +3077,12 @@
 			(uuid "9518047a-986e-4b69-94db-d8f1cf00a844")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C106")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C106")
@@ -3075,6 +3165,12 @@
 			(uuid "dafc6ed9-b30e-465e-a66f-d35f3127b396")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C102")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C102")
@@ -3157,6 +3253,12 @@
 			(uuid "c8725e4a-f814-4873-9bf5-577b73ff9b9e")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C110")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C110")
@@ -3239,6 +3341,12 @@
 			(uuid "a9295955-f7fd-4d73-872b-e818bcbb0ac2")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "C103")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C103")
@@ -3317,6 +3425,12 @@
 			(uuid "dd3835d8-eb47-4c61-af5e-443f9d839eca")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0104")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0104")
@@ -3395,6 +3509,12 @@
 			(uuid "b9522e8a-77aa-4074-b636-c34f636a7dbc")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#PWR0107")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0107")

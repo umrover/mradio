@@ -59,6 +59,11 @@
 					(page "5")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "9")
+				)
+			)
 		)
 	)
 	(sheet
@@ -103,6 +108,11 @@
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(page "3")
+				)
+			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "6")
 				)
 			)
 		)
@@ -151,6 +161,11 @@
 					(page "4")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "7")
+				)
+			)
 		)
 	)
 	(sheet
@@ -197,6 +212,11 @@
 					(page "1")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "8")
+				)
+			)
 		)
 	)
 	(sheet_instances
@@ -204,5 +224,4 @@
 			(page "2")
 		)
 	)
-	(embedded_fonts no)
 )
