@@ -2132,6 +2132,147 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.016 1.016)
+					)
+				)
+			)
+			(property "Value" "R_Small"
+				(at 1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_Small_0_1"
+				(rectangle
+					(start -0.762 1.778)
+					(end 0.762 -1.778)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 0.762)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 0.762)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Interface_Ethernet:DP83825I"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3276,13 +3417,19 @@
 		(uuid "0bffb362-a27e-4287-9cc8-ad21000b924a")
 	)
 	(junction
+		(at 97.79 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3a70da19-5047-473d-a1cc-96be8c130b01")
+	)
+	(junction
 		(at 111.76 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "40243e32-acc9-42f8-842f-3843f5153976")
 	)
 	(junction
-		(at 77.47 124.46)
+		(at 66.04 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4a868df3-ac24-412f-8d8f-1c126b7d84e8")
@@ -3369,7 +3516,17 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 147.32) (xy 77.47 154.94)
+			(xy 93.98 124.46) (xy 97.79 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "02e44d12-e449-4f18-927e-df17615f2a9b")
+	)
+	(wire
+		(pts
+			(xy 66.04 147.32) (xy 66.04 154.94)
 		)
 		(stroke
 			(width 0)
@@ -3436,6 +3593,16 @@
 			(type default)
 		)
 		(uuid "20a0aca5-e806-4391-92f0-f1afe0f5bf0b")
+	)
+	(wire
+		(pts
+			(xy 97.79 124.46) (xy 118.11 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "266b79b5-ec37-4224-9af1-352ea96def21")
 	)
 	(wire
 		(pts
@@ -3509,7 +3676,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 139.7) (xy 118.11 139.7)
+			(xy 73.66 139.7) (xy 118.11 139.7)
 		)
 		(stroke
 			(width 0)
@@ -3549,7 +3716,7 @@
 	)
 	(wire
 		(pts
-			(xy 67.31 139.7) (xy 69.85 139.7)
+			(xy 55.88 139.7) (xy 58.42 139.7)
 		)
 		(stroke
 			(width 0)
@@ -3559,7 +3726,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 124.46) (xy 82.55 124.46)
+			(xy 66.04 124.46) (xy 71.12 124.46)
 		)
 		(stroke
 			(width 0)
@@ -3579,7 +3746,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 124.46) (xy 77.47 132.08)
+			(xy 66.04 124.46) (xy 66.04 132.08)
 		)
 		(stroke
 			(width 0)
@@ -3599,7 +3766,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 121.92) (xy 77.47 124.46)
+			(xy 66.04 121.92) (xy 66.04 124.46)
 		)
 		(stroke
 			(width 0)
@@ -3748,7 +3915,7 @@
 		(uuid "b36c0aa5-e0ea-4274-a488-41c998d841a3")
 	)
 	(label "ETH_MDIO"
-		(at 118.11 124.46 180)
+		(at 93.98 124.46 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3875,7 +4042,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 82.55 129.54 0)
+		(at 71.12 129.54 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3885,7 +4052,7 @@
 		(dnp no)
 		(uuid "0d8d9474-de90-48b7-ba85-afb5b4dea210")
 		(property "Reference" "#PWR0304"
-			(at 82.55 135.89 0)
+			(at 71.12 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3896,7 +4063,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 85.344 132.588 0)
+			(at 73.914 132.588 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3906,7 +4073,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 82.55 129.54 0)
+			(at 71.12 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3917,7 +4084,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 82.55 129.54 0)
+			(at 71.12 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3928,7 +4095,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 82.55 129.54 0)
+			(at 71.12 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4495,7 +4662,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 82.55 127 0)
+		(at 71.12 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4506,7 +4673,7 @@
 		(fields_autoplaced yes)
 		(uuid "55abf2fe-38d9-41b8-97bf-b9bddbed6e75")
 		(property "Reference" "C301"
-			(at 85.09 125.7299 0)
+			(at 73.66 125.7299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4517,7 +4684,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 85.09 128.2699 0)
+			(at 73.66 128.2699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4528,7 +4695,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 82.55 127 0)
+			(at 71.12 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4539,7 +4706,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 82.55 127 0)
+			(at 71.12 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4550,7 +4717,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 82.55 137.16 0)
+			(at 71.12 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5082,6 +5249,87 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 97.79 121.92 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "68ac0dd8-34d4-44cd-a320-90a81ad6b137")
+		(property "Reference" "R1"
+			(at 99.568 121.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" ""
+			(at 100.33 123.1899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 97.79 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 97.79 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d9e89b82-8dc1-49ca-af53-92ac9fb86503")
+		)
+		(pin "2"
+			(uuid "4a4791bc-cba7-4620-a5bd-536b6e2f9793")
+		)
+		(instances
+			(project "ethernet"
+				(path "/e39299b5-7b36-4958-86c0-94842928a548"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 166.37 50.8 0)
 		(mirror x)
@@ -5247,7 +5495,7 @@
 	)
 	(symbol
 		(lib_id "power:+1V8")
-		(at 77.47 121.92 0)
+		(at 66.04 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5257,7 +5505,7 @@
 		(dnp no)
 		(uuid "8810514a-fb34-47e6-8bdd-bd664df4b4c4")
 		(property "Reference" "#PWR0302"
-			(at 77.47 125.73 0)
+			(at 66.04 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5268,7 +5516,7 @@
 			)
 		)
 		(property "Value" "+1V8"
-			(at 77.47 116.332 0)
+			(at 66.04 116.332 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5278,7 +5526,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 77.47 121.92 0)
+			(at 66.04 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5289,7 +5537,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 121.92 0)
+			(at 66.04 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5300,7 +5548,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+1V8\""
-			(at 77.47 121.92 0)
+			(at 66.04 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5324,7 +5572,7 @@
 	)
 	(symbol
 		(lib_id "power:+1V8")
-		(at 67.31 139.7 0)
+		(at 55.88 139.7 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5335,7 +5583,7 @@
 		(fields_autoplaced yes)
 		(uuid "886f4937-76ab-4cc2-b485-0bcb4e35239a")
 		(property "Reference" "#PWR0301"
-			(at 67.31 143.51 0)
+			(at 55.88 143.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5346,7 +5594,7 @@
 			)
 		)
 		(property "Value" "+1V8"
-			(at 67.31 134.62 0)
+			(at 55.88 134.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5356,7 +5604,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 67.31 139.7 0)
+			(at 55.88 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5367,7 +5615,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 67.31 139.7 0)
+			(at 55.88 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5378,7 +5626,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+1V8\""
-			(at 67.31 139.7 0)
+			(at 55.88 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6313,6 +6561,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+1V8")
+		(at 97.79 119.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e4eed303-3a94-47eb-adc2-6011f997f524")
+		(property "Reference" "#PWR01"
+			(at 97.79 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 97.79 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 97.79 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 97.79 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "476879cc-f09d-4b5c-bf9d-c7cc28b385fe")
+		)
+		(instances
+			(project "ethernet"
+				(path "/e39299b5-7b36-4958-86c0-94842928a548"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 184.15 39.37 0)
 		(mirror y)
@@ -6400,7 +6726,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 77.47 154.94 0)
+		(at 66.04 154.94 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6411,7 +6737,7 @@
 		(fields_autoplaced yes)
 		(uuid "e92d7eeb-fd68-4a5a-bdb7-1d89f8812f9c")
 		(property "Reference" "#PWR0303"
-			(at 77.47 161.29 0)
+			(at 66.04 161.29 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6422,7 +6748,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 77.47 160.02 0)
+			(at 66.04 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6432,7 +6758,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 77.47 154.94 0)
+			(at 66.04 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6443,7 +6769,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 154.94 0)
+			(at 66.04 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6454,7 +6780,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 77.47 154.94 0)
+			(at 66.04 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6478,7 +6804,7 @@
 	)
 	(symbol
 		(lib_id "Oscillator:SG-210SCD")
-		(at 77.47 139.7 0)
+		(at 66.04 139.7 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6488,7 +6814,7 @@
 		(dnp no)
 		(uuid "ef2b1e70-942d-49ac-8310-7d58a7937a62")
 		(property "Reference" "Y301"
-			(at 77.47 107.95 0)
+			(at 66.04 107.95 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6498,7 +6824,7 @@
 			)
 		)
 		(property "Value" "DSC1525JL2A-25M00000T"
-			(at 77.47 110.49 0)
+			(at 66.04 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6508,7 +6834,7 @@
 			)
 		)
 		(property "Footprint" "Oscillator:Oscillator_SMD_SeikoEpson_SG210-4Pin_2.5x2.0mm"
-			(at 88.9 148.59 0)
+			(at 77.47 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6519,7 +6845,7 @@
 			)
 		)
 		(property "Datasheet" "https://support.epson.biz/td/api/doc_check.php?mode=dl&lang=en&Parts=SG-210SED"
-			(at 74.93 139.7 0)
+			(at 63.5 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6530,7 +6856,7 @@
 			)
 		)
 		(property "Description" "Crystal Oscillator Low Profile / High Stability SPXO"
-			(at 77.47 139.7 0)
+			(at 66.04 139.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
