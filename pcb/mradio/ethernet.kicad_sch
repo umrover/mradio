@@ -6205,6 +6205,12 @@
 			(uuid "15278023-b8b4-456f-b6a3-0f01c97dcf3e")
 		)
 		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR02")
