@@ -723,7 +723,7 @@
     ],
     [
       "acb636b0-b919-4b86-a74c-b533f89957a8",
-      "5v5_Buck"
+      "2v2_Buck"
     ],
     [
       "cd16224c-c66f-4bd7-8549-cc0e165ba672",
@@ -732,6 +732,10 @@
     [
       "4cca8186-706d-4229-b1ca-cabe637c5293",
       "5V_LDO"
+    ],
+    [
+      "e2cd56ff-e1ff-487d-8f44-743edfee6194",
+      "1v8_LDO"
     ]
   ],
   "text_variables": {},

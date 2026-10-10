@@ -776,6 +776,12 @@
 			(uuid "645f5b25-a3d9-455e-99b2-ea75711563a8")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR0108")
@@ -860,6 +866,12 @@
 			(uuid "29474675-52b7-4e3f-8929-ec30912fa9d0")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "J1")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "J1")
@@ -938,6 +950,12 @@
 			(uuid "68364e9b-5eb2-4011-8bdc-1be465970b15")
 		)
 		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(reference "#PWR0309")
+					(unit 1)
+				)
+			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR0309")
@@ -990,6 +1008,11 @@
 					(page "5")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "9")
+				)
+			)
 		)
 	)
 	(sheet
@@ -1034,6 +1057,11 @@
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(page "3")
+				)
+			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "6")
 				)
 			)
 		)
@@ -1082,6 +1110,11 @@
 					(page "4")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "7")
+				)
+			)
 		)
 	)
 	(sheet
@@ -1126,6 +1159,11 @@
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(page "1")
+				)
+			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "8")
 				)
 			)
 		)
@@ -1174,6 +1212,11 @@
 					(page "6")
 				)
 			)
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
+					(page "10")
+				)
+			)
 		)
 	)
 	(sheet_instances
@@ -1181,5 +1224,4 @@
 			(page "2")
 		)
 	)
-	(embedded_fonts no)
 )
