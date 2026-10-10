@@ -4,4 +4,5 @@
 	(lib (name "DSC1121CI2-025.0000T") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/DSC1121CI2-025.0000T.pretty") (options "") (descr ""))
 	(lib (name "SiT1533") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/SiT1533.pretty") (options "") (descr ""))
 	(lib (name "MM60-52B1-E1-R650") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/MM60-52B1-E1-R650.pretty") (options "") (descr ""))
+	(lib (name "JX0026D21BNL") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/JX0026D21BNL.pretty") (options "") (descr ""))
 )
