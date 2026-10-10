@@ -5,6 +5,129 @@
 	(uuid "5e7ecf52-a594-4de2-8d38-33c4006490b4")
 	(paper "A4")
 	(lib_symbols
+		(symbol "Connector:TestPoint"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "TP"
+				(at 0 6.858 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint"
+				(at 0 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "test point"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TestPoint_0_1"
+				(circle
+					(center 0 3.302)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "TestPoint_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -616,6 +739,121 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "symbols:TPS7A8500ARGRR"
 			(pin_names
 				(offset 0.254)
@@ -1192,6 +1430,12 @@
 		(uuid "2e525bfe-2d5a-4ee5-bb8f-56321449a838")
 	)
 	(junction
+		(at 194.31 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2fedb0cb-331e-40a2-851d-521d5fa691f5")
+	)
+	(junction
 		(at 161.29 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1208,6 +1452,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4ed51a03-2914-41ec-9b91-9b38950047e6")
+	)
+	(junction
+		(at 66.04 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "597473fa-db20-4d1a-8fd4-93bef27cc984")
 	)
 	(junction
 		(at 148.59 73.66)
@@ -1287,6 +1537,18 @@
 		(color 0 0 0 0)
 		(uuid "f4303b80-2308-4bf6-a403-703d747be2a1")
 	)
+	(no_connect
+		(at 107.95 101.6)
+		(uuid "4cb86778-c97f-4800-ab96-69dc1a9cc69e")
+	)
+	(no_connect
+		(at 107.95 93.98)
+		(uuid "82b7a068-2747-4bd4-90dc-2b402bdf7cd8")
+	)
+	(no_connect
+		(at 107.95 96.52)
+		(uuid "985eae14-143b-483b-b116-1e5272535abb")
+	)
 	(wire
 		(pts
 			(xy 107.95 88.9) (xy 100.33 88.9)
@@ -1359,7 +1621,7 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 68.58) (xy 196.85 68.58)
+			(xy 185.42 68.58) (xy 194.31 68.58)
 		)
 		(stroke
 			(width 0)
@@ -1589,7 +1851,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 58.42) (xy 74.93 58.42)
+			(xy 63.5 58.42) (xy 66.04 58.42)
 		)
 		(stroke
 			(width 0)
@@ -1689,6 +1951,26 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 68.58) (xy 196.85 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f15eb002-7ada-4065-9fbb-c7adc98ae3b8")
+	)
+	(wire
+		(pts
+			(xy 66.04 58.42) (xy 74.93 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f6f7f89a-712a-4e76-8349-ecd9aa9aa879")
+	)
+	(wire
+		(pts
 			(xy 100.33 91.44) (xy 107.95 91.44)
 		)
 		(stroke
@@ -1717,7 +1999,7 @@
 		)
 		(uuid "218a44fa-78ca-4a66-a8c4-0a513ec6c9f9")
 	)
-	(label "3.7V_Buck_out"
+	(label "3v7_Buck_Out"
 		(at 63.5 58.42 180)
 		(effects
 			(font
@@ -1726,6 +2008,163 @@
 			(justify right bottom)
 		)
 		(uuid "991010cc-95a5-4c99-8cde-47bfe2ba6b8a")
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 148.59 68.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0d096a1d-b2dc-44cb-a150-19e375bb27a0")
+		(property "Reference" "TP5"
+			(at 151.13 64.0079 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "3v3_TP"
+			(at 151.13 66.5479 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Module:RaspberryPi_Pico_SMD"
+			(at 153.67 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 153.67 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 148.59 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0f4f063a-be6a-448a-ad90-1aaf75baf2ed")
+		)
+		(instances
+			(project "power_distribution"
+				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 66.04 58.42 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1162ec58-d5dc-4ae2-af78-5d0b0b26f13d")
+		(property "Reference" "#FLG07"
+			(at 66.04 56.515 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 66.04 53.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 66.04 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 66.04 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 66.04 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2aabed79-968c-40f9-ba5d-dadbb2340a02")
+		)
+		(instances
+			(project "power_distribution"
+				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+					(reference "#FLG07")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -1797,12 +2236,6 @@
 			(uuid "9804dd4d-e442-4bbe-be24-159ce5d22500")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0102")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0102")
@@ -1881,12 +2314,6 @@
 			(uuid "57d87a5b-c257-4cf5-a34c-aa5bcef069d7")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0105")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0105")
@@ -1969,12 +2396,6 @@
 			(uuid "431bbd23-6248-4a25-80db-b22853ecc382")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C107")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C107")
@@ -2057,12 +2478,6 @@
 			(uuid "5cbb5fc8-5b3a-4845-bed2-942f288474bd")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C105")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C105")
@@ -2093,7 +2508,7 @@
 				)
 			)
 		)
-		(property "Value" "260"
+		(property "Value" "1.2k"
 			(at 167.64 57.15 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2143,12 +2558,6 @@
 			(uuid "f7dfbc73-3fba-4299-b002-87287f625b1d")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "R101")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "R101")
@@ -2227,12 +2636,6 @@
 			(uuid "b382c356-b470-44cd-abdc-5231bdf19aea")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0101")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0101")
@@ -2311,12 +2714,6 @@
 			(uuid "0941390f-0085-43ee-b406-46c708f38ac3")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0106")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0106")
@@ -2395,12 +2792,6 @@
 			(uuid "2d238648-adfd-49f9-b234-de3b55c60806")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0103")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0103")
@@ -2492,12 +2883,6 @@
 			(uuid "5c87f413-c494-48ae-a193-a9e74a5172d2")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "D101")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "D101")
@@ -2529,7 +2914,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "10uF"
 			(at 189.23 73.6599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2580,12 +2965,6 @@
 			(uuid "4fcade5b-666a-4b43-b484-7f0291203e32")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C109")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C109")
@@ -2668,12 +3047,6 @@
 			(uuid "156c898c-d792-456a-b02b-f7ebc346d425")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C101")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C101")
@@ -2756,12 +3129,6 @@
 			(uuid "d34bd14f-083f-4a67-97bf-e332e253b63a")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C104")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C104")
@@ -2901,12 +3268,6 @@
 			(uuid "fdeccde2-dc28-4f45-86c7-14b97cfc1c70")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "U101")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "U101")
@@ -2989,12 +3350,6 @@
 			(uuid "f3b04c30-f32c-4d35-a485-7a3ce384bd60")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C108")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C108")
@@ -3077,15 +3432,87 @@
 			(uuid "9518047a-986e-4b69-94db-d8f1cf00a844")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
+			(project "power_distribution"
+				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C106")
 					(unit 1)
 				)
 			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 194.31 68.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ae35365b-10a3-4670-83ac-f61bb091b41a")
+		(property "Reference" "#FLG06"
+			(at 194.31 66.675 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 194.31 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 194.31 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 194.31 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b1bcbcfb-fabb-4161-9033-75407e0a7ee7")
+		)
+		(instances
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C106")
+					(reference "#FLG06")
 					(unit 1)
 				)
 			)
@@ -3165,12 +3592,6 @@
 			(uuid "dafc6ed9-b30e-465e-a66f-d35f3127b396")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C102")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C102")
@@ -3202,7 +3623,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "10uF"
 			(at 200.66 73.6599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3253,12 +3674,6 @@
 			(uuid "c8725e4a-f814-4873-9bf5-577b73ff9b9e")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C110")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C110")
@@ -3341,12 +3756,6 @@
 			(uuid "a9295955-f7fd-4d73-872b-e818bcbb0ac2")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "C103")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "C103")
@@ -3425,12 +3834,6 @@
 			(uuid "dd3835d8-eb47-4c61-af5e-443f9d839eca")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0104")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0104")
@@ -3509,12 +3912,6 @@
 			(uuid "b9522e8a-77aa-4074-b636-c34f636a7dbc")
 		)
 		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/cd16224c-c66f-4bd7-8549-cc0e165ba672"
-					(reference "#PWR0107")
-					(unit 1)
-				)
-			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/cd16224c-c66f-4bd7-8549-cc0e165ba672"
 					(reference "#PWR0107")
