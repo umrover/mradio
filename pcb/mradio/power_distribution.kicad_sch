@@ -639,7 +639,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Package_DFN_QFN:QFN-20-1EP_5x5mm_P0.65mm_EP3.35x3.35mm"
+		(property "Footprint" "molex_conn:CONN_2125280000_02_MOL"
 			(at 118.11 17.78 0)
 			(hide yes)
 			(show_name no)
