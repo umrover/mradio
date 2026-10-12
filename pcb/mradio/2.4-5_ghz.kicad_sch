@@ -2774,7 +2774,7 @@
 					)
 				)
 			)
-			(property "Footprint" "XTAL4_SiT1533_SIT"
+			(property "Footprint" "SiT1533:XTAL4_SiT1533_SIT"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2908,24 +2908,6 @@
 						)
 					)
 				)
-				(pin power_out line
-					(at 0 -2.54 0)
-					(length 7.62)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin output line
 					(at 45.72 -2.54 180)
 					(length 7.62)
@@ -2955,6 +2937,26 @@
 						)
 					)
 					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "SIT1533AI-H4-DCC-32.768E_1_1"
+				(pin power_in line
+					(at 0 -2.54 0)
+					(length 7.62)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -7181,94 +7183,6 @@
 		)
 	)
 	(symbol
-		(lib_id "symbols:SIT1533AI-H4-DCC-32.768E")
-		(at 57.15 78.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "af645cbe-43a7-4927-8972-b86543ec8bb9")
-		(property "Reference" "XTAL501"
-			(at 80.01 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Value" "SIT1533AI-H4-DCC-32.768E"
-			(at 80.01 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Footprint" "SiT1533:XTAL4_SiT1533_SIT"
-			(at 57.15 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Datasheet" "SIT1533AI-H4-DCC-32.768E"
-			(at 57.15 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 57.15 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "34601f91-265e-48c8-a162-19bdfb1a2567")
-		)
-		(pin "4"
-			(uuid "6cb4cbe0-80e4-4973-8a04-edb598d1154a")
-		)
-		(pin "3"
-			(uuid "7998bceb-0eb1-4f0e-b9b8-ade698301b15")
-		)
-		(pin "2"
-			(uuid "71cda76c-e869-42f7-b913-39ce92c23314")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "XTAL501")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 149.86 55.88 0)
 		(unit 1)
@@ -7812,6 +7726,94 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0525")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "symbols:SIT1533AI-H4-DCC-32.768E")
+		(at 57.15 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dd592ec1-f849-4018-bfaf-944fa4faa6fc")
+		(property "Reference" "XTAL501"
+			(at 80.01 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Value" "SIT1533AI-H4-DCC-32.768E"
+			(at 80.01 71.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Footprint" "SiT1533:XTAL4_SiT1533_SIT"
+			(at 57.15 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+		(property "Datasheet" "SIT1533AI-H4-DCC-32.768E"
+			(at 57.15 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "8cec171a-35ce-411b-aa11-44e659e23d97")
+		)
+		(pin "3"
+			(uuid "ad1a68d9-6777-4646-aad3-81a1dd0a2372")
+		)
+		(pin "1"
+			(uuid "9c2b7df3-2f23-4d78-a57b-6c8c5b4c63ed")
+		)
+		(pin "4"
+			(uuid "1ac85a9d-0e9a-4dc2-a998-92f1026c6731")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "XTAL501")
 					(unit 1)
 				)
 			)
