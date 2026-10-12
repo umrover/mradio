@@ -5979,26 +5979,6 @@
 		)
 		(uuid "170eae46-f950-48ea-be14-a9189d46b8ea")
 	)
-	(label "STLINK_RX"
-		(at 151.13 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1cf0914b-18ab-4fa2-86bc-953d78c80d72")
-	)
-	(label "ETH_RESET"
-		(at 80.01 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "22fbfcc1-39ce-4ae6-85fc-85304905a4a4")
-	)
 	(label "SoS_LED3"
 		(at 105.41 148.59 270)
 		(effects
@@ -6008,16 +5988,6 @@
 			(justify right bottom)
 		)
 		(uuid "2d960d6f-757e-4268-a256-595b41b7369a")
-	)
-	(label "ETH_MDC"
-		(at 158.75 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3aa5b44b-8b3d-4454-86c2-f7e5c7e0e95c")
 	)
 	(label "SoS_LED4"
 		(at 107.95 148.59 270)
@@ -6079,16 +6049,6 @@
 		)
 		(uuid "4e0e8f89-ceec-4f76-ae11-0389fde59f78")
 	)
-	(label "ETH_TX_EN"
-		(at 140.97 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4f6a7f99-a4af-4540-a0ba-ea99510c69a2")
-	)
 	(label "SPI1_CS"
 		(at 123.19 148.59 270)
 		(effects
@@ -6119,16 +6079,6 @@
 		)
 		(uuid "65420863-4d49-42bd-9dbf-4b4e2511621b")
 	)
-	(label "ETH_MDIO"
-		(at 74.93 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "65f56da6-38d5-4c4f-bc72-1caba44d3cf2")
-	)
 	(label "M7_DBG1"
 		(at 135.89 152.4 270)
 		(effects
@@ -6149,16 +6099,6 @@
 		)
 		(uuid "69d69994-9c81-49e2-8ce9-e5b2a6a27cb5")
 	)
-	(label "ETH_CRS_DV"
-		(at 87.63 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6ab2ef8a-47c7-4856-bee3-e35258480175")
-	)
 	(label "VDDA"
 		(at 125.73 177.8 180)
 		(effects
@@ -6168,16 +6108,6 @@
 			(justify right bottom)
 		)
 		(uuid "6b655549-6ec4-4388-968c-dad586f34931")
-	)
-	(label "ETH_INT"
-		(at 82.55 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6f213d27-dc08-4875-be0e-fdbb7c1f87c8")
 	)
 	(label "SoS_LED4"
 		(at 264.16 54.61 180)
@@ -6209,16 +6139,6 @@
 		)
 		(uuid "783c6715-7567-49c9-b5d7-ff57b9c7e67e")
 	)
-	(label "ETH_TXD1"
-		(at 146.05 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7ce77d10-ef6c-4555-b8d2-50b31145ab8d")
-	)
 	(label "WM_BUSY"
 		(at 161.29 152.4 270)
 		(effects
@@ -6238,16 +6158,6 @@
 			(justify right bottom)
 		)
 		(uuid "9284bedd-b614-4b5d-b5dc-018190262767")
-	)
-	(label "ETH_RXD1"
-		(at 168.91 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "98b4c95e-2cad-49ff-bcd6-cbebce0bd667")
 	)
 	(label "M4_DBG2"
 		(at 264.16 76.2 180)
@@ -6279,16 +6189,6 @@
 		)
 		(uuid "ade90ddb-b0a4-45cd-83f9-a746df08baa8")
 	)
-	(label "ETH_REF_CLK"
-		(at 72.39 54.61 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b2b732a2-1b2f-4146-8d46-79dd4f5e8371")
-	)
 	(label "VDDA"
 		(at 50.8 86.36 180)
 		(effects
@@ -6318,16 +6218,6 @@
 			(justify right bottom)
 		)
 		(uuid "c0d56957-3e24-4a5f-86f5-a2c792496de3")
-	)
-	(label "STLINK_TX"
-		(at 148.59 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cbae2700-4727-4756-9ad7-987158ffb6fb")
 	)
 	(label "M7_DBG2"
 		(at 138.43 152.4 270)
@@ -6389,16 +6279,6 @@
 		)
 		(uuid "e65d7a28-51da-44f8-a310-c02abd647748")
 	)
-	(label "ETH_RXD0"
-		(at 166.37 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e8d49154-6fbb-4d3a-aaa4-c066524729ea")
-	)
 	(label "M4_DBG2"
 		(at 133.35 152.4 270)
 		(effects
@@ -6418,16 +6298,6 @@
 			(justify left bottom)
 		)
 		(uuid "ea3f88a9-bd3b-4c96-b5a7-48813466f51e")
-	)
-	(label "ETH_TXD0"
-		(at 143.51 50.8 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ea77a7a7-d7aa-45c9-8622-a423e120d7be")
 	)
 	(label "VDD_MCU"
 		(at 128.27 165.1 180)
@@ -6541,6 +6411,78 @@
 			)
 		)
 	)
+	(global_label "ETH_RESET"
+		(shape input)
+		(at 80.01 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4f837445-b4d4-4efe-b7ed-66c8c5482f39")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 80.01 37.655 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_MDIO"
+		(shape input)
+		(at 74.93 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "524206be-f06d-4038-bec5-d04e5ac12e9c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 74.93 38.7434 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_MDC"
+		(shape input)
+		(at 158.75 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5f1500b8-d20a-4576-b790-0746a261b014")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 158.75 39.4087 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "SDMMC1_CMD"
 		(shape input)
 		(at 204.47 50.8 90)
@@ -6589,6 +6531,54 @@
 			)
 		)
 	)
+	(global_label "ETH_TXD0"
+		(shape input)
+		(at 143.51 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "71684578-4b89-4016-a32c-898781d0ad94")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 143.51 38.7435 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_TXD1"
+		(shape input)
+		(at 146.05 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "72166f49-cc7b-4157-ae93-a4526fcb0ca2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 146.05 38.7435 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "SDMMC1_CK"
 		(shape input)
 		(at 186.69 50.8 90)
@@ -6602,6 +6592,54 @@
 		(uuid "754b7dc8-e37e-46d4-aa48-b2767e04cb92")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 186.69 36.4454 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_REF_CLK"
+		(shape input)
+		(at 72.39 54.61 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8eacc8e9-ffad-491b-90a0-76c520c53b1d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 39.1668 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "STLINK_TX"
+		(shape input)
+		(at 148.59 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "94bde82e-0e58-4644-9275-89aab68ee2b0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 148.59 38.2596 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6637,6 +6675,54 @@
 			)
 		)
 	)
+	(global_label "ETH_TX_EN"
+		(shape input)
+		(at 140.97 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a1a741c7-4fe3-4ff4-aa1d-a7e5bc3514bf")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 140.97 37.7759 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "STLINK_RX"
+		(shape input)
+		(at 151.13 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ab18fd24-6ff6-40c4-b9fa-4f94b4e98268")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.13 37.9572 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "WL_DEV_WAKE"
 		(shape input)
 		(at 217.17 50.8 90)
@@ -6661,6 +6747,54 @@
 			)
 		)
 	)
+	(global_label "ETH_INT"
+		(shape input)
+		(at 82.55 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c1c8f059-7c69-4619-80d2-22832bbe8c18")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.55 40.4972 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_RXD1"
+		(shape input)
+		(at 168.91 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c2a8d0cd-75a8-4c31-bbf6-29ae5d17ff66")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 168.91 38.4411 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "SDMMC1_D1"
 		(shape input)
 		(at 179.07 50.8 90)
@@ -6674,6 +6808,54 @@
 		(uuid "e1e510ed-1783-4735-b887-5a7a807008a5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 179.07 36.5059 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_RXD0"
+		(shape input)
+		(at 166.37 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f3c74f8e-da51-4a2d-ab79-4bc4653597e2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 166.37 38.4411 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "ETH_CRS_DV"
+		(shape input)
+		(at 87.63 50.8 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f5325e44-93c5-4266-99e3-15a28be7778a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.63 36.3244 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
