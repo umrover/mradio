@@ -1349,6 +1349,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+3V0"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+3V0"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3V0\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+3V0_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3V0_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -1587,12 +1726,6 @@
 		(uuid "00d812bc-86ac-456a-815b-3305d360bef5")
 	)
 	(junction
-		(at 240.03 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "147b0d6c-d487-47b8-a4b4-787c6540bb5c")
-	)
-	(junction
 		(at 38.1 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1675,6 +1808,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8d47b1e7-dc51-40af-a94c-9113df91431a")
+	)
+	(junction
+		(at 243.84 60.96)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8e1f1118-87f8-45a9-87c3-f3007de69b0a")
 	)
 	(junction
 		(at 243.84 80.01)
@@ -1898,6 +2037,16 @@
 	)
 	(wire
 		(pts
+			(xy 215.9 60.96) (xy 227.33 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51bba615-d15e-4816-91ec-eba97c0a425b")
+	)
+	(wire
+		(pts
 			(xy 185.42 68.58) (xy 204.47 68.58)
 		)
 		(stroke
@@ -1968,16 +2117,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 60.96) (xy 227.33 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "93c13aac-9938-456d-b384-4afdb7f81e8d")
-	)
-	(wire
-		(pts
 			(xy 165.1 59.69) (xy 165.1 60.96)
 		)
 		(stroke
@@ -2005,16 +2144,6 @@
 			(type default)
 		)
 		(uuid "ab797705-9851-4f93-9cb8-bcbd161a50e0")
-	)
-	(wire
-		(pts
-			(xy 227.33 60.96) (xy 240.03 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba1cf079-4017-4a15-a5a2-53ca052138cc")
 	)
 	(wire
 		(pts
@@ -2088,7 +2217,7 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 60.96) (xy 243.84 60.96)
+			(xy 227.33 60.96) (xy 243.84 60.96)
 		)
 		(stroke
 			(width 0)
@@ -2156,16 +2285,6 @@
 		)
 		(uuid "21931ae0-095e-4191-982f-2e5d54c5722b")
 	)
-	(label "3.7V_Buck_out"
-		(at 243.84 60.96 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3ab8d9ed-f718-4f99-bfb0-22f26f9ef533")
-	)
 	(symbol
 		(lib_id "Device:C")
 		(at 66.04 58.42 0)
@@ -2200,7 +2319,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 67.0052 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -2288,7 +2407,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 38.1 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -2437,7 +2556,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "044fc369-a0f8-4b87-a644-68f9bb05a6cd")
-		(property "Reference" "#PWR0608"
+		(property "Reference" "#PWR0609"
 			(at 243.84 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2497,7 +2616,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-					(reference "#PWR0608")
+					(reference "#PWR0609")
 					(unit 1)
 				)
 			)
@@ -2543,7 +2662,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 242.062 72.39 90)
 			(hide yes)
 			(show_name no)
@@ -2631,7 +2750,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 205.4352 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -2803,7 +2922,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 89.662 60.96 90)
 			(hide yes)
 			(show_name no)
@@ -2975,7 +3094,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 89.662 71.12 90)
 			(hide yes)
 			(show_name no)
@@ -3147,7 +3266,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SMC"
 			(at 185.42 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -3303,6 +3422,85 @@
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/88f11220-c6f2-4fca-9990-14703b250433"
 					(reference "U301")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V0")
+		(at 243.84 60.96 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7166e8bf-3859-4e7b-bc7f-6fc8d9a696c3")
+		(property "Reference" "#PWR0608"
+			(at 240.03 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V7"
+			(at 247.65 60.9599 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 243.84 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V0\""
+			(at 243.84 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "49692175-94a3-4c90-a152-cec7fcc04fb8")
+		)
+		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
+					(reference "#PWR0608")
 					(unit 1)
 				)
 			)
@@ -3594,7 +3792,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 111.4552 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3649,90 +3847,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 240.03 60.96 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8710f38d-d221-4585-8ead-7a4e2d74845e")
-		(property "Reference" "#FLG0603"
-			(at 240.03 59.055 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 240.03 55.88 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 240.03 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 240.03 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 240.03 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3c63e55-b633-4d77-966b-dff90c7bd555")
-		)
-		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-					(reference "#FLG0603")
-					(unit 1)
-				)
-			)
-			(project "power_distribution"
-				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/88f11220-c6f2-4fca-9990-14703b250433"
-					(reference "#FLG03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 135.89 69.85 0)
 		(unit 1)
@@ -3766,7 +3880,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 134.112 69.85 90)
 			(hide yes)
 			(show_name no)
@@ -3854,7 +3968,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 54.3052 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -4027,7 +4141,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 216.8652 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4113,7 +4227,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_Bourns_SRN6045TA"
 			(at 196.85 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -4286,7 +4400,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 121.6152 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -4374,7 +4488,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 242.062 87.63 90)
 			(hide yes)
 			(show_name no)
@@ -4462,7 +4576,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 79.7052 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -4550,7 +4664,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 173.6852 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -4638,7 +4752,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 228.2952 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4810,7 +4924,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 122.428 66.04 90)
 			(hide yes)
 			(show_name no)

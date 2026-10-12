@@ -1349,6 +1349,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+2V5"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+2V5"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+2V5\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+2V5_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+2V5_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -1464,121 +1603,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:PWR_FLAG"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#FLG"
-				(at 0 1.905 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "PWR_FLAG"
-				(at 0 3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Special symbol for telling ERC where power comes from"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "flag power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "PWR_FLAG_0_0"
-				(pin power_out line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "PWR_FLAG_0_1"
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(junction
 		(at 132.08 71.12)
@@ -1603,6 +1627,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2b867011-60fd-42c2-bc96-adf7e6eb703d")
+	)
+	(junction
+		(at 255.27 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "390a4126-9132-42af-909a-97ceedc759be")
 	)
 	(junction
 		(at 77.47 71.12)
@@ -1639,12 +1669,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9f0e4bfc-1946-479b-addf-5e50a086abf5")
-	)
-	(junction
-		(at 252.73 69.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b3e0d202-b0d3-4a6c-8da3-0db66c485b98")
 	)
 	(junction
 		(at 49.53 63.5)
@@ -1998,7 +2022,7 @@
 	)
 	(wire
 		(pts
-			(xy 252.73 69.85) (xy 255.27 69.85)
+			(xy 238.76 69.85) (xy 255.27 69.85)
 		)
 		(stroke
 			(width 0)
@@ -2136,16 +2160,6 @@
 		)
 		(uuid "e672e7fe-0bd1-430a-af78-b098200b3e3e")
 	)
-	(wire
-		(pts
-			(xy 238.76 69.85) (xy 252.73 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f136e7f1-7bc5-435b-a1b7-22ad5ee1ad95")
-	)
 	(label "FB"
 		(at 176.53 73.66 0)
 		(effects
@@ -2155,16 +2169,6 @@
 			(justify left bottom)
 		)
 		(uuid "b0c7235c-bb00-4751-b41e-a70c42604591")
-	)
-	(label "2.2V_Buck_Out"
-		(at 255.27 69.85 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f0e29a76-649a-4cd6-94e6-3de8d28e9741")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -2178,7 +2182,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0677e75d-8544-41a5-a25c-00583d8e385d")
-		(property "Reference" "R402"
+		(property "Reference" "R702"
 			(at 105.41 78.7399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2200,7 +2204,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 101.092 80.01 90)
 			(hide yes)
 			(show_name no)
@@ -2242,7 +2246,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R402")
+					(reference "R702")
 					(unit 1)
 				)
 			)
@@ -2266,7 +2270,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09ec77d0-1507-494b-9cf4-ebd3543e50e7")
-		(property "Reference" "C401"
+		(property "Reference" "C701"
 			(at 53.34 65.4049 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2288,7 +2292,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 49.53 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -2330,7 +2334,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C401")
+					(reference "C701")
 					(unit 1)
 				)
 			)
@@ -2354,7 +2358,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "195db5bc-466e-44cb-b02f-11a5ada84077")
-		(property "Reference" "R403"
+		(property "Reference" "R703"
 			(at 134.62 73.6599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2376,7 +2380,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 133.858 74.93 90)
 			(hide yes)
 			(show_name no)
@@ -2418,7 +2422,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R403")
+					(reference "R703")
 					(unit 1)
 				)
 			)
@@ -2442,7 +2446,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f95be34-2231-48a7-ba3f-747767821f30")
-		(property "Reference" "R406"
+		(property "Reference" "R706"
 			(at 257.81 95.2499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2464,7 +2468,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 253.492 96.52 90)
 			(hide yes)
 			(show_name no)
@@ -2506,7 +2510,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R406")
+					(reference "R706")
 					(unit 1)
 				)
 			)
@@ -2530,7 +2534,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2e1d391b-8935-4f71-baf8-3520967a7eeb")
-		(property "Reference" "C407"
+		(property "Reference" "C707"
 			(at 187.96 64.7699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2552,7 +2556,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 185.1152 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -2594,7 +2598,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C407")
+					(reference "C707")
 					(unit 1)
 				)
 			)
@@ -2618,7 +2622,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "42e93b77-d61c-4d64-954a-3823bf71cced")
-		(property "Reference" "#PWR0407"
+		(property "Reference" "#PWR0707"
 			(at 196.85 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -2678,7 +2682,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0407")
+					(reference "#PWR0707")
 					(unit 1)
 				)
 			)
@@ -2702,7 +2706,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "43cc74cc-e827-4e67-82fa-168169aa3e30")
-		(property "Reference" "R401"
+		(property "Reference" "R701"
 			(at 105.41 68.5799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2724,7 +2728,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 101.092 69.85 90)
 			(hide yes)
 			(show_name no)
@@ -2766,7 +2770,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R401")
+					(reference "R701")
 					(unit 1)
 				)
 			)
@@ -2790,7 +2794,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "548f8d96-75d0-44ae-bcf2-91dc0f7f2019")
-		(property "Reference" "#PWR0401"
+		(property "Reference" "#PWR0701"
 			(at 49.53 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -2850,7 +2854,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0401")
+					(reference "#PWR0701")
 					(unit 1)
 				)
 			)
@@ -2874,7 +2878,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "61c76d79-ace2-485e-833a-68a127aca6b8")
-		(property "Reference" "R405"
+		(property "Reference" "R705"
 			(at 257.81 80.0099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2896,7 +2900,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 253.492 81.28 90)
 			(hide yes)
 			(show_name no)
@@ -2938,7 +2942,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R405")
+					(reference "R705")
 					(unit 1)
 				)
 			)
@@ -2962,7 +2966,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6446af3d-2263-4552-a692-58a762637fec")
-		(property "Reference" "C409"
+		(property "Reference" "C709"
 			(at 231.14 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2984,7 +2988,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 228.2952 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -3026,7 +3030,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C409")
+					(reference "C709")
 					(unit 1)
 				)
 			)
@@ -3050,7 +3054,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7e99d3f4-f4e1-4b7b-a4fd-678d4bb522fb")
-		(property "Reference" "#PWR0406"
+		(property "Reference" "#PWR0706"
 			(at 163.83 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -3110,7 +3114,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0406")
+					(reference "#PWR0706")
 					(unit 1)
 				)
 			)
@@ -3134,7 +3138,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7ebc891c-2f93-4c8f-8693-afd67e8f544c")
-		(property "Reference" "#PWR0405"
+		(property "Reference" "#PWR0705"
 			(at 147.32 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -3194,7 +3198,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0405")
+					(reference "#PWR0705")
 					(unit 1)
 				)
 			)
@@ -3218,7 +3222,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83ce564e-d992-4350-96f1-63719ee09ca0")
-		(property "Reference" "#PWR0403"
+		(property "Reference" "#PWR0703"
 			(at 102.87 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -3278,7 +3282,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0403")
+					(reference "#PWR0703")
 					(unit 1)
 				)
 			)
@@ -3302,7 +3306,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "87c0e6e6-0b33-47f6-9d19-518b209cd24a")
-		(property "Reference" "R404"
+		(property "Reference" "R704"
 			(at 149.86 77.4699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3324,7 +3328,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 145.542 78.74 90)
 			(hide yes)
 			(show_name no)
@@ -3366,7 +3370,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "R404")
+					(reference "R704")
 					(unit 1)
 				)
 			)
@@ -3390,7 +3394,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8db8ba47-5794-4e4a-962e-79798bb30104")
-		(property "Reference" "L401"
+		(property "Reference" "L701"
 			(at 208.28 64.77 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3410,7 +3414,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_Bourns_SRN6045TA"
 			(at 208.28 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -3452,7 +3456,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "L401")
+					(reference "L701")
 					(unit 1)
 				)
 			)
@@ -3475,7 +3479,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "97e4baad-6b6e-49fd-85fd-be730a214a6a")
-		(property "Reference" "C405"
+		(property "Reference" "C705"
 			(at 125.73 77.4699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3497,7 +3501,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 122.8852 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -3539,13 +3543,92 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C405")
+					(reference "C705")
 					(unit 1)
 				)
 			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/acb636b0-b919-4b86-a74c-b533f89957a8"
 					(reference "C405")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+2V5")
+		(at 255.27 69.85 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9fab584a-e06c-42de-b42c-7dd037d9d7fb")
+		(property "Reference" "#PWR0708"
+			(at 251.46 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+2V2"
+			(at 259.08 69.8499 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+2V5\""
+			(at 255.27 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eb31658a-a012-4aab-a5b6-11a07c92acd2")
+		)
+		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
+					(reference "#PWR0708")
 					(unit 1)
 				)
 			)
@@ -3563,7 +3646,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3298081-1fa5-4e2d-819c-d42172763b44")
-		(property "Reference" "C403"
+		(property "Reference" "C703"
 			(at 81.28 66.0399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3585,7 +3668,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 78.4352 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -3627,97 +3710,13 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C403")
+					(reference "C703")
 					(unit 1)
 				)
 			)
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/acb636b0-b919-4b86-a74c-b533f89957a8"
 					(reference "C403")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 252.73 69.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a5ed7e7a-8c7b-40b7-a3d8-e261776a85e4")
-		(property "Reference" "#FLG04"
-			(at 252.73 67.945 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 252.73 64.77 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 252.73 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 252.73 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 252.73 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b0f3bc00-3bb5-4255-a61f-1c3cd723e7e4")
-		)
-		(instances
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#FLG04")
-					(unit 1)
-				)
-			)
-			(project "power_distribution"
-				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#FLG04")
 					(unit 1)
 				)
 			)
@@ -3735,7 +3734,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a7322676-d760-457b-93ba-30d037e64420")
-		(property "Reference" "#PWR0404"
+		(property "Reference" "#PWR0704"
 			(at 132.08 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -3795,7 +3794,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0404")
+					(reference "#PWR0704")
 					(unit 1)
 				)
 			)
@@ -3819,7 +3818,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aed56c7f-7eba-419f-a65f-7e5a0bd43ed7")
-		(property "Reference" "C410"
+		(property "Reference" "C710"
 			(at 242.57 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3841,7 +3840,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 239.7252 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -3883,7 +3882,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C410")
+					(reference "C710")
 					(unit 1)
 				)
 			)
@@ -3907,7 +3906,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b32a1ee7-4309-40e3-9e86-713c31539789")
-		(property "Reference" "C406"
+		(property "Reference" "C706"
 			(at 135.89 81.2799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3929,7 +3928,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 133.0452 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3971,7 +3970,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C406")
+					(reference "C706")
 					(unit 1)
 				)
 			)
@@ -3995,7 +3994,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b424d8cb-876e-4400-9079-6fe96b092a44")
-		(property "Reference" "D401"
+		(property "Reference" "D701"
 			(at 199.39 72.0724 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4017,7 +4016,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SMC"
 			(at 196.85 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4059,7 +4058,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "D401")
+					(reference "D701")
 					(unit 1)
 				)
 			)
@@ -4083,7 +4082,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cb10e34a-ac93-4231-9f9e-54fa1ec69f21")
-		(property "Reference" "C402"
+		(property "Reference" "C702"
 			(at 68.58 66.0399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4105,7 +4104,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 65.7352 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -4147,7 +4146,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C402")
+					(reference "C702")
 					(unit 1)
 				)
 			)
@@ -4171,7 +4170,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "da9f1c51-2efa-46eb-8e3f-9e1dc43be989")
-		(property "Reference" "TP3"
+		(property "Reference" "TP701"
 			(at 199.39 65.2779 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4232,7 +4231,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "TP3")
+					(reference "TP701")
 					(unit 1)
 				)
 			)
@@ -4256,7 +4255,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e682318e-d061-4e5d-9866-3b49310c2d93")
-		(property "Reference" "C404"
+		(property "Reference" "C704"
 			(at 93.98 66.0399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4278,7 +4277,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 91.1352 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -4320,7 +4319,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C404")
+					(reference "C704")
 					(unit 1)
 				)
 			)
@@ -4344,7 +4343,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed2bdbcc-64bb-48a4-9366-64b28a6aacb3")
-		(property "Reference" "U401"
+		(property "Reference" "U701"
 			(at 163.83 55.88 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4427,7 +4426,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "U401")
+					(reference "U701")
 					(unit 1)
 				)
 			)
@@ -4451,7 +4450,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f076a45c-1262-40fb-8991-6bf3f353350b")
-		(property "Reference" "#PWR0402"
+		(property "Reference" "#PWR0702"
 			(at 49.53 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -4511,7 +4510,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0402")
+					(reference "#PWR0702")
 					(unit 1)
 				)
 			)
@@ -4535,7 +4534,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f68c596b-c98b-4b19-a520-d3bdc3c8dabc")
-		(property "Reference" "C408"
+		(property "Reference" "C708"
 			(at 219.71 72.3899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4557,7 +4556,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 216.8652 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -4599,7 +4598,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "C408")
+					(reference "C708")
 					(unit 1)
 				)
 			)
@@ -4623,7 +4622,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9883997-9c41-46f8-a7bc-648f6c15506b")
-		(property "Reference" "#PWR0408"
+		(property "Reference" "#PWR0709"
 			(at 255.27 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -4683,7 +4682,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/acb636b0-b919-4b86-a74c-b533f89957a8"
-					(reference "#PWR0408")
+					(reference "#PWR0709")
 					(unit 1)
 				)
 			)
