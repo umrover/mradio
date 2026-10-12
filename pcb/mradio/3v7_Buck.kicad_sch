@@ -2242,11 +2242,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C303")
-=======
 					(reference "C603")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2334,11 +2330,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C301")
-=======
 					(reference "C601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2422,11 +2414,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0307")
-=======
 					(reference "#PWR0607")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2509,11 +2497,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0308")
-=======
 					(reference "#PWR0608")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2601,11 +2585,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R305")
-=======
 					(reference "R605")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2693,11 +2673,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C308")
-=======
 					(reference "C608")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2781,11 +2757,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0304")
-=======
 					(reference "#PWR0604")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2873,11 +2845,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R301")
-=======
 					(reference "R601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -2961,11 +2929,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0306")
-=======
 					(reference "#PWR0606")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3053,11 +3017,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R302")
-=======
 					(reference "R602")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3141,11 +3101,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0302")
-=======
 					(reference "#PWR0602")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3233,11 +3189,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "D301")
-=======
 					(reference "D601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3344,11 +3296,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "U301")
-=======
 					(reference "U601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3432,11 +3380,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0305")
-=======
 					(reference "#PWR0605")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3520,11 +3464,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0301")
-=======
 					(reference "#PWR0601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3609,11 +3549,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#FLG012")
-=======
 					(reference "#FLG0601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3700,11 +3636,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C305")
-=======
 					(reference "C605")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3788,11 +3720,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#FLG03")
-=======
 					(reference "#FLG0603")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3880,11 +3808,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R304")
-=======
 					(reference "R604")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -3972,11 +3896,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C302")
-=======
 					(reference "C602")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4061,11 +3981,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "TP4")
-=======
 					(reference "TP601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4153,11 +4069,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C309")
-=======
 					(reference "C609")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4243,11 +4155,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "L301")
-=======
 					(reference "L601")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4332,11 +4240,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#FLG013")
-=======
 					(reference "#FLG0602")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4424,11 +4328,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C306")
-=======
 					(reference "C606")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4516,11 +4416,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R306")
-=======
 					(reference "R606")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4608,11 +4504,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C304")
-=======
 					(reference "C604")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4700,11 +4592,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C307")
-=======
 					(reference "C607")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4792,11 +4680,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "C310")
-=======
 					(reference "C610")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4880,11 +4764,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "#PWR0303")
-=======
 					(reference "#PWR0603")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
@@ -4972,11 +4852,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/88f11220-c6f2-4fca-9990-14703b250433"
-<<<<<<< HEAD
-					(reference "R303")
-=======
 					(reference "R603")
->>>>>>> c83e9c0 (Schematic review updates)
 					(unit 1)
 				)
 			)
