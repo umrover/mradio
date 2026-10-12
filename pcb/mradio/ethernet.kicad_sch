@@ -2922,10 +2922,12 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+			)
+			(symbol "SSM3K56FS_LF_1_1"
+				(pin input line
 					(at -2.54 -7.62 0)
 					(length 2.54)
-					(name "1"
+					(name "G"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2940,10 +2942,10 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 10.16 -17.78 90)
 					(length 2.54)
-					(name "2"
+					(name "S"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2958,10 +2960,10 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 10.16 2.54 270)
 					(length 2.54)
-					(name "3"
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4256,91 +4258,6 @@
 		)
 	)
 	(symbol
-		(lib_id "symbols:SSM3K56FS_LF")
-		(at 82.55 119.38 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "128f9989-aadd-4d72-a2a7-228313fb57ce")
-		(property "Reference" "MOSFET301"
-			(at 74.93 135.89 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Value" "SSM3K56FS_LF"
-			(at 74.93 138.43 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
-			(at 82.55 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=13419&prodName=SSM3K56FS"
-			(at 82.55 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 82.55 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "d6d9c495-8250-4941-94c2-582517208523")
-		)
-		(pin "1"
-			(uuid "c4360d6e-db38-4c3b-a1a6-1dd4cbd18740")
-		)
-		(pin "3"
-			(uuid "a2acf583-658f-4f93-87dd-5804a4a8fad9")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "MOSFET301")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 69.85 168.91 0)
 		(unit 1)
@@ -5115,6 +5032,91 @@
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR0309")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "symbols:SSM3K56FS_LF")
+		(at 82.55 119.38 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "421512b6-3e25-4293-99b4-81480de6af8a")
+		(property "Reference" "MOSFET301"
+			(at 74.93 135.89 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Value" "SSM3K56FS_LF"
+			(at 74.93 138.43 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Footprint" "SSM3K56FS:SSM_TOS"
+			(at 82.55 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+		(property "Datasheet" "https://toshiba.semicon-storage.com/info/docget.jsp?did=13419&prodName=SSM3K56FS"
+			(at 82.55 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 82.55 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "ba4a70c8-e2ec-4da5-a0f0-7c1a387c93b2")
+		)
+		(pin "1"
+			(uuid "540c7fab-1769-41aa-b2dd-7ed4d32e7e2f")
+		)
+		(pin "2"
+			(uuid "378e1bcd-122e-4721-a5c8-0b75a3af26f8")
+		)
+		(instances
+			(project "mradio"
+				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
+					(reference "MOSFET301")
 					(unit 1)
 				)
 			)
