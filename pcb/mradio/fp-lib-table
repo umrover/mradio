@@ -6,4 +6,5 @@
 	(lib (name "MM60-52B1-E1-R650") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/MM60-52B1-E1-R650.pretty") (options "") (descr ""))
 	(lib (name "JX0026D21BNL") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/JX0026D21BNL.pretty") (options "") (descr ""))
 	(lib (name "SSM3K56FS") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/SSM3K56FS.pretty") (options "") (descr ""))
+	(lib (name "TPS7A8500RGRR") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/TPS7A8500RGRR.pretty") (options "") (descr ""))
 )

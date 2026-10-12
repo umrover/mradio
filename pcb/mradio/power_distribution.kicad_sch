@@ -717,7 +717,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4bd02bce-f7ea-4654-b6e2-0b5fc1fee5e6")
-		(property "Reference" "#PWR0108"
+		(property "Reference" "#PWR0202"
 			(at 153.67 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -778,7 +778,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
-					(reference "#PWR0108")
+					(reference "#PWR0202")
 					(unit 1)
 				)
 			)
@@ -802,7 +802,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7417a8c3-911a-4ae0-af5a-75ab6613607b")
-		(property "Reference" "J1"
+		(property "Reference" "J201"
 			(at 151.13 16.5099 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -868,7 +868,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
-					(reference "J1")
+					(reference "J201")
 					(unit 1)
 				)
 			)
@@ -892,7 +892,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fc636c58-3216-486e-9c3b-e16fe0ee4f83")
-		(property "Reference" "#PWR0309"
+		(property "Reference" "#PWR0201"
 			(at 148.59 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -952,7 +952,7 @@
 		(instances
 			(project "mradio"
 				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
-					(reference "#PWR0309")
+					(reference "#PWR0201")
 					(unit 1)
 				)
 			)
@@ -960,57 +960,6 @@
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
 					(reference "#PWR0309")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(sheet
-		(at 57.15 59.69)
-		(size 12.7 3.81)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "4cca8186-706d-4229-b1ca-cabe637c5293")
-		(property "Sheetname" "5V_LDO"
-			(at 57.15 58.9784 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "5V_LDO.kicad_sch"
-			(at 57.15 64.0846 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "power_distribution"
-				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6"
-					(page "5")
-				)
-			)
-			(project "mradio"
-				(path "/2cc0edad-946a-464e-a48b-49648a6334ed"
-					(page "9")
 				)
 			)
 		)
@@ -1093,7 +1042,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "5v5_Buck.kicad_sch"
+		(property "Sheetfile" "2v2_Buck.kicad_sch"
 			(at 57.15 43.7646 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -2,3 +2,4 @@
 mradio-backups/*
 ~*.lck
 .history/
+.DS_Store
