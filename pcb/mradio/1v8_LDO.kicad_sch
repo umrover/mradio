@@ -1424,6 +1424,12 @@
 		(uuid "207e432c-7eb2-4c2f-b11e-7406ffe5875b")
 	)
 	(junction
+		(at 113.03 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2a3b5233-9259-4f61-a8df-5b85de9832c0")
+	)
+	(junction
 		(at 152.4 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1609,16 +1615,6 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 73.66) (xy 111.76 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "272bf3bd-35a2-46e6-85fe-57fd66e87e37")
-	)
-	(wire
-		(pts
 			(xy 67.31 81.28) (xy 67.31 85.09)
 		)
 		(stroke
@@ -1649,7 +1645,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 53.34) (xy 128.27 53.34)
+			(xy 111.76 53.34) (xy 113.03 53.34)
 		)
 		(stroke
 			(width 0)
@@ -1909,6 +1905,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 53.34) (xy 128.27 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e437b053-2122-4aa0-8880-6267061db32a")
+	)
+	(wire
+		(pts
 			(xy 152.4 73.66) (xy 156.21 73.66)
 		)
 		(stroke
@@ -1956,6 +1962,16 @@
 			(justify right bottom)
 		)
 		(uuid "8d2c0cff-9b1f-4a2a-99b8-82b240b0e956")
+	)
+	(label "3v3_LDO_Out"
+		(at 111.76 53.34 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ce2d635e-cadd-47fc-9351-f744e266ea6e")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -3916,6 +3932,84 @@
 			(project "power_distribution"
 				(path "/e6698048-9125-4cf3-9b80-868e7e50deb6/e2cd56ff-e1ff-487d-8f44-743edfee6194"
 					(reference "C519")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 113.03 53.34 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dc21f0ca-e091-428d-abaa-be0566cb0dee")
+		(property "Reference" "#FLG01003"
+			(at 113.03 51.435 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 113.03 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 113.03 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 113.03 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c51d1806-d0cb-4561-873c-8f10e29295ee")
+		)
+		(instances
+			(project "mradio"
+				(path "/2cc0edad-946a-464e-a48b-49648a6334ed/e2cd56ff-e1ff-487d-8f44-743edfee6194"
+					(reference "#FLG01003")
 					(unit 1)
 				)
 			)
