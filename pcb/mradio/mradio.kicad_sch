@@ -5979,6 +5979,16 @@
 		)
 		(uuid "170eae46-f950-48ea-be14-a9189d46b8ea")
 	)
+	(label "STLINK_RX"
+		(at 151.13 50.8 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2d94b632-3b40-40f9-bd9b-040804cb0bcf")
+	)
 	(label "SoS_LED3"
 		(at 105.41 148.59 270)
 		(effects
@@ -6038,6 +6048,16 @@
 			(justify right bottom)
 		)
 		(uuid "54ad114d-0023-4317-b1a5-d2aeb27d5d55")
+	)
+	(label "STLINK_TX"
+		(at 148.59 50.8 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5b683ceb-ba45-4ac9-a754-f18b94e9146f")
 	)
 	(label "SoS_LED2"
 		(at 264.16 31.75 180)
@@ -6691,30 +6711,6 @@
 			)
 		)
 	)
-	(global_label "STLINK_TX"
-		(shape input)
-		(at 148.59 50.8 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "94bde82e-0e58-4644-9275-89aab68ee2b0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.59 38.2596 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
 	(global_label "SDMMC1_D3"
 		(shape input)
 		(at 184.15 50.8 90)
@@ -6752,30 +6748,6 @@
 		(uuid "a1a741c7-4fe3-4ff4-aa1d-a7e5bc3514bf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.97 37.7759 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "STLINK_RX"
-		(shape input)
-		(at 151.13 50.8 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ab18fd24-6ff6-40c4-b9fa-4f94b4e98268")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 151.13 37.9572 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
