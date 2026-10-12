@@ -3721,7 +3721,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 179.07 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -4235,7 +4235,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 201.93 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -4785,7 +4785,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 223.52 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -5217,7 +5217,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 201.93 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -7880,7 +7880,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 179.07 102.87 0)
 			(hide yes)
 			(show_name no)

@@ -7731,7 +7731,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -8295,7 +8295,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -8703,7 +8703,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -9195,7 +9195,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 20.32 0)
 			(hide yes)
 			(show_name no)
@@ -9609,7 +9609,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -10336,7 +10336,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -10744,7 +10744,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -10834,7 +10834,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 276.86 76.2 0)
 			(hide yes)
 			(show_name no)

@@ -4056,7 +4056,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Module:RaspberryPi_Pico_SMD"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 209.55 60.96 0)
 			(hide yes)
 			(show_name no)

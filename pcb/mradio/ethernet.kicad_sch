@@ -4378,7 +4378,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 90.17 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -4548,7 +4548,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 115.57 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -5757,7 +5757,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 106.68 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -6593,7 +6593,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 116.84 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -6930,7 +6930,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 175.26 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -7358,7 +7358,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 105.41 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -7443,7 +7443,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Loop_D2.60mm_Drill0.9mm_Beaded"
 			(at 96.52 129.54 0)
 			(hide yes)
 			(show_name no)
