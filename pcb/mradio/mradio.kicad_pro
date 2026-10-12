@@ -693,7 +693,7 @@
         "uuid": "a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
       }
     ],
-    "used_designators": "TP301-307,R301-305,J301,#FLG301-305,C1,C301-312,Y301,FB301-302,#PWR1-3,#PWR301-308,#PWR310-316,Q301,U1-4,U301",
+    "used_designators": "TP301-307,R301-305,J301,#FLG301-305,MOSFET301,C1,C301-312,Y301,FB301-302,#PWR1-3,#PWR301-308,#PWR310-316,Q301,U1-4,U301",
     "variants": []
   },
   "sheets": [
