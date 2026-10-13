@@ -8,4 +8,5 @@
 	(lib (name "SSM3K56FS") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/SSM3K56FS.pretty") (options "") (descr ""))
 	(lib (name "TPS7A8500RGRR") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/TPS7A8500RGRR.pretty") (options "") (descr ""))
 	(lib (name "molex_conn") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/molex_conn.pretty") (options "") (descr ""))
+	(lib (name "FTSH-107") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/FTSH-107") (options "") (descr ""))
 )
