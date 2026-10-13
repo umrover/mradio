@@ -10094,7 +10094,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 237.49 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -11000,7 +11000,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 275.59 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -11771,7 +11771,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 158.75 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -12568,7 +12568,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 198.12 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -14175,7 +14175,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 275.59 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -14341,7 +14341,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 275.59 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -14821,7 +14821,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 275.59 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -15391,7 +15391,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SSM3K56FS:SSM_TOS"
+		(property "Footprint" "SSM3K56FS:SSM_TOS_REAL"
 			(at 275.59 114.3 0)
 			(hide yes)
 			(show_name no)
