@@ -3001,18 +3001,6 @@
 		(uuid "12ffc325-0620-480b-a5c5-01a9b23354bb")
 	)
 	(junction
-		(at 170.18 132.08)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1fe38718-dc54-4b4e-b0b3-f62f6e9c1921")
-	)
-	(junction
-		(at 110.49 96.52)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2eb6b316-e78d-4bb9-a40b-9b63ba5b1450")
-	)
-	(junction
 		(at 88.9 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3035,12 +3023,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4a868df3-ac24-412f-8d8f-1c126b7d84e8")
-	)
-	(junction
-		(at 110.49 99.06)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4e27af5a-8c23-467d-9f29-0cdbb187d94a")
 	)
 	(junction
 		(at 166.37 54.61)
@@ -3067,28 +3049,22 @@
 		(uuid "652db34a-d0b1-41db-8c1d-e1d16dacfea4")
 	)
 	(junction
-		(at 111.76 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6c8f5eb9-d6e0-4901-aa3c-dd89d5bca31f")
-	)
-	(junction
 		(at 175.26 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7148c5bf-1b73-40e2-8ac9-0888314d4159")
 	)
 	(junction
-		(at 95.25 171.45)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "784dec4d-5046-4c40-82c7-d48ea5f091ee")
-	)
-	(junction
 		(at 100.33 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7f4056c7-fad8-4ca0-b865-7f6787024081")
+	)
+	(junction
+		(at 200.66 80.01)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "81e3d3c5-6753-41f3-b28d-a5e6e9662a6a")
 	)
 	(junction
 		(at 101.6 129.54)
@@ -3133,12 +3109,6 @@
 		(uuid "ca990a3c-8c6e-4212-8942-340f4a81356e")
 	)
 	(junction
-		(at 111.76 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cf3e9c99-536f-4c1d-a797-5a45d880930c")
-	)
-	(junction
 		(at 128.27 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3161,12 +3131,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f64b9a12-a1d9-4924-a343-b37fb7699f1e")
-	)
-	(junction
-		(at 200.66 80.01)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fb51545c-ea91-4129-830a-c6aa8ac3ce18")
 	)
 	(no_connect
 		(at 262.89 87.63)
@@ -3254,17 +3218,7 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 171.45) (xy 95.25 171.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0c9cd4dc-5b17-49e5-a033-3eb2ebdf8e84")
-	)
-	(wire
-		(pts
-			(xy 110.49 99.06) (xy 118.11 99.06)
+			(xy 107.95 99.06) (xy 118.11 99.06)
 		)
 		(stroke
 			(width 0)
@@ -3284,7 +3238,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 132.08) (xy 170.18 132.08)
+			(xy 168.91 132.08) (xy 173.99 132.08)
 		)
 		(stroke
 			(width 0)
@@ -3394,16 +3348,6 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 96.52) (xy 110.49 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3a772f23-fc02-4ebf-b27a-95400b738d8b")
-	)
-	(wire
-		(pts
 			(xy 146.05 46.99) (xy 146.05 71.12)
 		)
 		(stroke
@@ -3434,7 +3378,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 78.74) (xy 118.11 78.74)
+			(xy 109.22 78.74) (xy 118.11 78.74)
 		)
 		(stroke
 			(width 0)
@@ -3471,16 +3415,6 @@
 			(type default)
 		)
 		(uuid "4e275f25-3d50-4944-9332-042eb50c9eed")
-	)
-	(wire
-		(pts
-			(xy 109.22 78.74) (xy 111.76 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ed98d41-ec0f-4e65-9a61-5ceb3cdcd747")
 	)
 	(wire
 		(pts
@@ -3534,16 +3468,6 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 81.28) (xy 118.11 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "74262837-ad3b-4a56-884a-2c12c4e358c6")
-	)
-	(wire
-		(pts
 			(xy 200.66 83.82) (xy 200.66 80.01)
 		)
 		(stroke
@@ -3551,16 +3475,6 @@
 			(type default)
 		)
 		(uuid "746a190c-c098-4c5a-9a6c-fe2b9f751e6b")
-	)
-	(wire
-		(pts
-			(xy 213.36 83.82) (xy 207.01 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7dab78d6-06fd-4ab4-983a-42f8c70cba52")
 	)
 	(wire
 		(pts
@@ -3574,7 +3488,7 @@
 	)
 	(wire
 		(pts
-			(xy 95.25 171.45) (xy 102.87 171.45)
+			(xy 92.71 171.45) (xy 102.87 171.45)
 		)
 		(stroke
 			(width 0)
@@ -3604,7 +3518,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 81.28) (xy 111.76 81.28)
+			(xy 109.22 81.28) (xy 118.11 81.28)
 		)
 		(stroke
 			(width 0)
@@ -3621,16 +3535,6 @@
 			(type default)
 		)
 		(uuid "9210c612-9345-433c-b588-2c217818a743")
-	)
-	(wire
-		(pts
-			(xy 107.95 99.06) (xy 110.49 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "949e4341-d4e4-4f15-ac90-1a747a4d6a1d")
 	)
 	(wire
 		(pts
@@ -3674,7 +3578,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 96.52) (xy 118.11 96.52)
+			(xy 107.95 96.52) (xy 118.11 96.52)
 		)
 		(stroke
 			(width 0)
@@ -3784,7 +3688,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 83.82) (xy 200.66 83.82)
+			(xy 200.66 83.82) (xy 213.36 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3814,13 +3718,13 @@
 	)
 	(wire
 		(pts
-			(xy 208.28 80.01) (xy 219.71 80.01)
+			(xy 200.66 80.01) (xy 219.71 80.01)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d8095a4d-3af3-4da6-818e-4ae4947d7d94")
+		(uuid "d63cd60d-feb9-484a-a082-77f5ba08f3b3")
 	)
 	(wire
 		(pts
@@ -3841,16 +3745,6 @@
 			(type default)
 		)
 		(uuid "df76bbe5-3c01-41b6-9a84-64e8fb6c20e7")
-	)
-	(wire
-		(pts
-			(xy 170.18 132.08) (xy 168.91 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e887c86e-5b2c-481b-87ee-574f1221d8ff")
 	)
 	(wire
 		(pts
@@ -4551,91 +4445,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 95.25 171.45 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "168ad537-1951-4b9b-a3e4-af5925f6b039")
-		(property "Reference" "TP301"
-			(at 92.964 177.292 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 97.79 176.0219 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 90.17 171.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 90.17 171.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 95.25 171.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e3709728-87ce-45cf-bdde-929d373ce46d")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP301")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP301")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 102.87 50.8 180)
 		(unit 1)
@@ -4792,91 +4601,6 @@
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
 					(reference "#PWR0313")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 110.49 96.52 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "20db5fe3-da9e-411f-872c-dbd46aa15389")
-		(property "Reference" "TP303"
-			(at 111.76 93.98 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 113.03 94.4879 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 115.57 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 115.57 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 110.49 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9037f7a5-8f7c-4c3d-8c26-fe4f964d613a")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP303")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP303")
 					(unit 1)
 				)
 			)
@@ -5332,7 +5056,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "421512b6-3e25-4293-99b4-81480de6af8a")
-		(property "Reference" "MOSFET301"
+		(property "Reference" "Q301"
 			(at 74.93 135.89 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5399,7 +5123,7 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "MOSFET301")
+					(reference "Q301")
 					(unit 1)
 				)
 			)
@@ -5769,7 +5493,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "55"
 			(at 266.954 77.724 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6001,91 +5725,6 @@
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "C308")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 111.76 81.28 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "73ee431e-b4db-40e4-9f41-26bb0f9f9f13")
-		(property "Reference" "TP306"
-			(at 113.03 84.836 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 114.3 85.8519 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 106.68 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 111.76 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0bc837c7-326b-437c-9114-1a9c42cc6d94")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP306")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP306")
 					(unit 1)
 				)
 			)
@@ -6602,87 +6241,6 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 204.47 83.82 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "90681b89-fd7a-4aff-9409-65c1287ca3b1")
-		(property "Reference" "C313"
-			(at 210.82 86.106 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1nF, 1KV"
-			(at 203.962 85.852 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 204.47 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 204.47 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 214.63 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "6b8612ba-3b79-439c-81ce-777ae6237255")
-		)
-		(pin "1"
-			(uuid "51675c0a-fb82-4b5c-a787-cc2527ec257b")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "C313")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
 		(at 269.24 86.36 90)
 		(unit 1)
 		(body_style 1)
@@ -6692,7 +6250,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "90efa65e-5119-4cec-a376-62a37236d71d")
-		(property "Reference" "C314"
+		(property "Reference" "C313"
 			(at 275.59 88.646 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6703,8 +6261,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "skibidi farads"
-			(at 269.24 93.218 90)
+		(property "Value" "0nF"
+			(at 270.256 89.408 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6756,7 +6314,7 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "C314")
+					(reference "C313")
 					(unit 1)
 				)
 			)
@@ -6999,91 +6557,6 @@
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "U301")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 111.76 78.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a26d58e8-033e-451d-a0e7-0b211963ad33")
-		(property "Reference" "TP305"
-			(at 113.03 74.676 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 114.3 76.7079 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 116.84 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 116.84 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 111.76 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "14f33b78-00a5-40e4-a84e-ecd9df7317f3")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP305")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP305")
 					(unit 1)
 				)
 			)
@@ -7336,91 +6809,6 @@
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "#PWR0315")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 170.18 132.08 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b33d46cf-e4da-40e2-856e-73a812ce07ff")
-		(property "Reference" "TP307"
-			(at 167.64 126.238 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 169.164 125.222 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 175.26 132.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 175.26 132.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 170.18 132.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "146396ae-7343-4ab2-a35c-9d9798fbcefc")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP307")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP307")
 					(unit 1)
 				)
 			)
@@ -7688,91 +7076,6 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 110.49 99.06 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d0e57fca-dc0c-49ef-919d-48c9b38ec44b")
-		(property "Reference" "TP304"
-			(at 112.014 103.124 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 113.03 103.6319 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D1.80mm_Drill1.0mm_Beaded"
-			(at 105.41 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 105.41 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 110.49 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e6fd9bd0-bd45-4729-9f24-49a7e6fea089")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP304")
-					(unit 1)
-				)
-			)
-			(project "ethernet"
-				(path "/e39299b5-7b36-4958-86c0-94842928a548"
-					(reference "TP304")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
 		(at 101.6 129.54 180)
 		(unit 1)
 		(body_style 1)
@@ -7782,7 +7085,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e366299c-5b61-43d3-8268-0eaee929eda3")
-		(property "Reference" "TP302"
+		(property "Reference" "TP301"
 			(at 100.838 128.016 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7844,7 +7147,7 @@
 		(instances
 			(project "mradio"
 				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "TP302")
+					(reference "TP301")
 					(unit 1)
 				)
 			)
@@ -8368,85 +7671,6 @@
 			(project "ethernet"
 				(path "/e39299b5-7b36-4958-86c0-94842928a548"
 					(reference "R304")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 204.47 80.01 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "fb5b02c9-475b-464e-ae3a-54e8f777a809")
-		(property "Reference" "R306"
-			(at 204.47 80.01 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1M"
-			(at 204.47 78.232 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 204.47 81.788 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 204.47 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 204.47 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "b255da1c-b5a6-41fc-a580-3651a86ba7b4")
-		)
-		(pin "1"
-			(uuid "1e1473b9-2c71-454b-8f07-030183566ac7")
-		)
-		(instances
-			(project "mradio"
-				(path "/55b6eb85-38d4-40f0-bb66-a9af1190092b"
-					(reference "R306")
 					(unit 1)
 				)
 			)

@@ -5609,6 +5609,12 @@
 		(uuid "8370ddda-6097-462c-9f8d-2b4fd07e4891")
 	)
 	(junction
+		(at 57.15 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "861af8ee-ff1e-4d99-82eb-c06027c395c8")
+	)
+	(junction
 		(at 52.07 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5751,6 +5757,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d97376c5-5e7a-42c3-8a59-9eb299d49bda")
+	)
+	(junction
+		(at 57.15 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "eab13298-bc30-40e8-b724-021471a0622d")
 	)
 	(junction
 		(at 31.75 33.02)
@@ -6262,7 +6274,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 78.74) (xy 59.69 78.74)
+			(xy 50.8 78.74) (xy 57.15 78.74)
 		)
 		(stroke
 			(width 0)
@@ -6942,7 +6954,17 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 71.12) (xy 59.69 71.12)
+			(xy 57.15 78.74) (xy 59.69 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5a5e27a-3d98-4f10-add3-69dbcebde7b8")
+	)
+	(wire
+		(pts
+			(xy 54.61 71.12) (xy 57.15 71.12)
 		)
 		(stroke
 			(width 0)
@@ -7099,6 +7121,16 @@
 			(type default)
 		)
 		(uuid "cd3e236b-ea9d-4d20-a4c5-3e776bd28d3d")
+	)
+	(wire
+		(pts
+			(xy 57.15 71.12) (xy 59.69 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce3508f0-6cb3-4404-a5b8-a960e5bab868")
 	)
 	(wire
 		(pts
@@ -9914,7 +9946,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2a3b95b5-eb45-493a-9b33-1cbc45c3a232")
 		(property "Reference" "#PWR0104"
 			(at 54.61 77.47 0)
@@ -9928,7 +9959,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 54.61 76.2 0)
+			(at 50.8 71.628 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10221,6 +10252,87 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "R106")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 57.15 74.93 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "37fd5f90-0b41-42b2-a3b6-5c5a46e8942c")
+		(property "Reference" "C106"
+			(at 48.768 74.93 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7uF"
+			(at 50.292 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 58.1152 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 57.15 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5a08b0ca-ab65-4e6b-83ce-ab67d8c1c593")
+		)
+		(pin "2"
+			(uuid "2c4159c8-0994-485b-9fc3-ab478691f369")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "C106")
 					(unit 1)
 				)
 			)
@@ -14652,7 +14764,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 53.34 82.296 0)
+			(at 53.594 87.884 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
