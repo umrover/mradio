@@ -3800,6 +3800,126 @@
 		)
 		(uuid "fe97c7e8-519a-4249-aa0c-7f085cf171f6")
 	)
+	(label "SDIO_D0"
+		(at 158.75 120.65 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "14236125-4418-426b-9ff2-fd53ff7bc1b3")
+	)
+	(label "SDIO_CK"
+		(at 222.25 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "16293206-217d-43fb-8446-edc0713fc999")
+	)
+	(label "SDIO_D3"
+		(at 222.25 107.95 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1a1fec9d-a4c0-40a3-ae22-6254cf47e582")
+	)
+	(label "SDIO_D0"
+		(at 222.25 119.38 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3c1b83fa-82dd-4efd-826b-9fa13dc82e54")
+	)
+	(label "SDIO_D2"
+		(at 222.25 111.76 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "48c86f2c-ae56-40f1-bffe-bcd14fb4dbb6")
+	)
+	(label "SDIO_D2"
+		(at 158.75 113.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4e3452e5-1c9c-49e0-90a7-1a05ab5e100a")
+	)
+	(label "SDIO_CMD"
+		(at 158.75 124.46 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4f3d1a3c-590f-4fd2-9cc6-dfae48634d2a")
+	)
+	(label "SDIO_D1"
+		(at 158.75 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8e618df1-9b3d-4d31-8895-ef048ec8d207")
+	)
+	(label "SDIO_CMD"
+		(at 222.25 123.19 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a07359d1-ca33-4904-9789-e3815f509ec9")
+	)
+	(label "SDIO_D1"
+		(at 222.25 115.57 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a19e9bc4-91b9-453a-85bb-352d758d1055")
+	)
+	(label "SDIO_CK"
+		(at 158.75 128.27 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a8e06268-2959-4444-a812-9fbf174034fa")
+	)
+	(label "SDIO_D3"
+		(at 158.75 109.22 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cee274af-a1d2-4dce-b9bb-9997fa3095d9")
+	)
 	(label "M2_WL_REG_ON"
 		(at 113.03 69.85 180)
 		(effects
@@ -3820,9 +3940,9 @@
 		)
 		(uuid "f8ac0560-798c-4a98-8aae-437c8a208a0b")
 	)
-	(global_label "SDMMC1_CMD"
+	(global_label "SDMMC1_CK"
 		(shape input)
-		(at 166.37 124.46 0)
+		(at 229.87 127 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3830,33 +3950,9 @@
 			)
 			(justify left)
 		)
-		(uuid "47be4ae4-43f5-4d69-863e-95ee720ec66e")
+		(uuid "50eabed8-1276-4bdd-b46f-ba6c3590b4b9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.176 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "SDMMC1_D0"
-		(shape input)
-		(at 166.37 120.65 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "52f102ba-831e-47f0-b116-08f82b607e41")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.6641 120.65 0)
+			(at 244.2246 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3892,9 +3988,9 @@
 			)
 		)
 	)
-	(global_label "SDMMC1_D2"
+	(global_label "SDMMC1_CMD"
 		(shape input)
-		(at 166.37 113.03 0)
+		(at 229.87 123.19 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3902,33 +3998,9 @@
 			)
 			(justify left)
 		)
-		(uuid "580266c1-9bc3-4a1a-8fd7-8ef34a342fd4")
+		(uuid "65eb01c3-53a5-458c-886d-1e3880b29618")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.6641 113.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "SDMMC1_CK"
-		(shape input)
-		(at 166.37 128.27 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "608a7b23-3642-44e0-aeda-83a2ec17a974")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.7246 128.27 0)
+			(at 245.676 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3964,9 +4036,9 @@
 			)
 		)
 	)
-	(global_label "SDMMC1_D1"
+	(global_label "SDMMC1_D0"
 		(shape input)
-		(at 166.37 116.84 0)
+		(at 229.87 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3974,9 +4046,9 @@
 			)
 			(justify left)
 		)
-		(uuid "85f76cc3-878c-46e9-a001-4cc9baf3804b")
+		(uuid "8f6462e5-a22e-4c10-80ef-767f07441b93")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.6641 116.84 0)
+			(at 244.1641 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4014,7 +4086,7 @@
 	)
 	(global_label "SDMMC1_D3"
 		(shape input)
-		(at 166.37 109.22 0)
+		(at 229.87 107.95 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4022,9 +4094,9 @@
 			)
 			(justify left)
 		)
-		(uuid "ac8a37fd-2d33-4129-b0f9-8cadbd755a6f")
+		(uuid "ad40ebbe-1e6a-45e3-a900-512346ada15c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.6641 109.22 0)
+			(at 244.1641 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4132,6 +4204,30 @@
 			)
 		)
 	)
+	(global_label "SDMMC1_D2"
+		(shape input)
+		(at 229.87 111.76 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "eaf23c3e-adeb-4a31-bea4-5674e7e23b8a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 244.1641 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "WL_DEV_WAKE"
 		(shape input)
 		(at 113.03 93.98 180)
@@ -4153,6 +4249,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "SDMMC1_D1"
+		(shape input)
+		(at 229.87 115.57 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f8d9f9de-d18a-4a1a-9129-29a0f9e014d3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 244.1641 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -4229,85 +4349,6 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0512")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 162.56 120.65 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "035082d7-fceb-441b-bcf1-b0e57762c733")
-		(property "Reference" "R509"
-			(at 162.56 118.618 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 120.65 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 122.428 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "04e46c15-96d3-42e3-878a-fb90dcf0a6d0")
-		)
-		(pin "1"
-			(uuid "6fdb0f39-d484-4f74-bd94-61b262addcab")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R509")
 					(unit 1)
 				)
 			)
@@ -5340,85 +5381,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 162.56 109.22 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "37fe642b-b365-4568-81e9-be67a7cce500")
-		(property "Reference" "R506"
-			(at 162.56 107.188 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 109.22 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 110.998 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "a3ea670b-fb1b-4e85-a2ab-2bd25144f408")
-		)
-		(pin "1"
-			(uuid "683fc53b-0e6a-4002-81e8-26941397d07c")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R506")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 179.07 74.93 90)
 		(unit 1)
@@ -5995,6 +5957,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 226.06 111.76 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "41e075a1-53a5-4ade-a334-d6ff79e5e7c5")
+		(property "Reference" "R502"
+			(at 226.06 109.728 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 111.76 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 113.538 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "27707913-1963-4413-94e1-d9bc2a7b6110")
+		)
+		(pin "1"
+			(uuid "f23b1f9e-5d35-403d-88bf-de8223b895ce")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R502")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 114.3 147.32 0)
 		(unit 1)
@@ -6073,6 +6114,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 226.06 107.95 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4990fa00-fd66-4a9e-8876-05812c874307")
+		(property "Reference" "R501"
+			(at 226.06 105.918 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 107.95 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 109.728 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "f26b512c-11ef-4f21-bd2b-9f7caea1f4fb")
+		)
+		(pin "1"
+			(uuid "3f9a14a7-19f5-48b5-bca5-6699af70b0ce")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R501")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 182.88 72.39 0)
 		(unit 1)
@@ -6145,85 +6265,6 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0527")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 162.56 128.27 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "59ee37f0-7e91-4675-8c6b-a53daa5cba31")
-		(property "Reference" "R511"
-			(at 162.56 126.492 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 128.27 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 130.048 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 128.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 128.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "cee15a6e-b9f6-4ecf-8ddc-dc7b29f9dfe9")
-		)
-		(pin "1"
-			(uuid "ee5c7a57-64ea-4dd2-9fe5-17fce99eae86")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R511")
 					(unit 1)
 				)
 			)
@@ -6478,6 +6519,85 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 226.06 115.57 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7543164b-5dc5-40d4-974e-6e0c23d946b8")
+		(property "Reference" "R503"
+			(at 226.06 113.538 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 115.57 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 117.348 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "abd72623-e25f-41e7-ba61-3248ec73e8f7")
+		)
+		(pin "1"
+			(uuid "6ef4caed-59a9-4654-a371-1c40f9c8e547")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R503")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 176.53 46.99 0)
 		(unit 1)
 		(body_style 1)
@@ -6709,85 +6829,6 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0522")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 162.56 124.46 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7e432e6f-73cf-41b1-9cd7-5905b59c5d3d")
-		(property "Reference" "R510"
-			(at 162.56 122.682 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 124.46 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 126.238 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "d9d9c208-ead6-401b-807a-830768db01dd")
-		)
-		(pin "1"
-			(uuid "26108572-3219-45d3-b264-21e2c4d8dc13")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R510")
 					(unit 1)
 				)
 			)
@@ -7118,6 +7159,85 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0517")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 226.06 123.19 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "981440a9-9ca2-4a86-9ddd-580dbe256a57")
+		(property "Reference" "R507"
+			(at 226.06 121.412 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 123.19 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 124.968 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "c92e7a66-3c2b-403c-9bf5-6c447c9674c5")
+		)
+		(pin "1"
+			(uuid "02a1ff10-b551-40e1-a44b-60eadbb8728f")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R507")
 					(unit 1)
 				)
 			)
@@ -7913,85 +8033,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 162.56 116.84 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d68ca342-4d49-4969-b197-246a750fd59e")
-		(property "Reference" "R508"
-			(at 162.56 114.808 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 116.84 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 118.618 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "712784d5-662d-4f96-84f5-7dcda49cda96")
-		)
-		(pin "1"
-			(uuid "b07925f3-d6a3-4c05-8ad1-708ecf41efe7")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R508")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 149.86 127 0)
 		(unit 1)
@@ -8469,6 +8510,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 226.06 127 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f141cf71-5a6a-4c6b-9ffc-b9990b39bdaf")
+		(property "Reference" "R508"
+			(at 226.06 125.222 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 127 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 128.778 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "cfe9991b-634c-4684-bb9c-6bc464139a04")
+		)
+		(pin "1"
+			(uuid "97c4fa58-18dc-4149-9bda-bbe4c6b2d93d")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R508")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 116.84 114.3 0)
 		(unit 1)
@@ -8540,85 +8660,6 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0516")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 162.56 113.03 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f40a2e21-a1f6-4dea-a89e-b5f5f90330f8")
-		(property "Reference" "R507"
-			(at 162.56 110.998 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 162.56 113.03 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 162.56 114.808 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 113.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 113.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "21a14586-b729-4311-9af9-4ba1822ebbae")
-		)
-		(pin "1"
-			(uuid "00fcee8a-5cb3-4083-bfe1-a91bdfd1f9f8")
-		)
-		(instances
-			(project "mradio"
-				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
-					(reference "R507")
 					(unit 1)
 				)
 			)
@@ -8697,6 +8738,85 @@
 			(project "mradio"
 				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
 					(reference "#PWR0523")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 226.06 119.38 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ffa74655-8eb1-471d-9b4d-41fee362f246")
+		(property "Reference" "R506"
+			(at 226.06 117.348 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 226.06 119.38 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 226.06 121.158 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 226.06 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 226.06 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "4770b0e0-bdd6-4b75-9588-6ea37d81bba5")
+		)
+		(pin "1"
+			(uuid "399410df-3f17-4d63-89c3-e37a5ec9ea34")
+		)
+		(instances
+			(project "mradio"
+				(path "/a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
+					(reference "R506")
 					(unit 1)
 				)
 			)
