@@ -4455,6 +4455,284 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+1V8"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+1V8"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+1V8\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+1V8_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+1V8_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+3V3"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+3V3"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+3V3_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3V3_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -4747,12 +5025,6 @@
 		(uuid "27d26b6c-f14a-491e-ad04-fa2e326872c3")
 	)
 	(junction
-		(at 53.34 106.68)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2f4158d6-2e57-4e29-aeb0-e60ce84c27ec")
-	)
-	(junction
 		(at 41.91 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4811,12 +5083,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "76434bdf-3c67-4900-9a73-59e468dd8dd1")
-	)
-	(junction
-		(at 53.34 88.9)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7ed49a24-bce9-4e90-b35a-0066ff4d16e9")
 	)
 	(junction
 		(at 59.69 81.28)
@@ -5063,10 +5329,6 @@
 	(no_connect
 		(at 184.15 144.78)
 		(uuid "3d62b376-0988-4f1e-9d64-e4044aa63b95")
-	)
-	(no_connect
-		(at 109.22 157.48)
-		(uuid "3f81f804-2837-4e89-8ab4-a0b9bda72721")
 	)
 	(no_connect
 		(at 146.05 144.78)
@@ -5926,6 +6188,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 88.9) (xy 257.81 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "871116fe-0d39-4245-94c5-aebd24f69b5d")
+	)
+	(wire
+		(pts
 			(xy 59.69 78.74) (xy 59.69 81.28)
 		)
 		(stroke
@@ -6046,6 +6318,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 43.18) (xy 257.81 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a720b54f-49d2-4418-b98b-07109a4e02a9")
+	)
+	(wire
+		(pts
 			(xy 125.73 177.8) (xy 128.27 177.8)
 		)
 		(stroke
@@ -6053,6 +6335,16 @@
 			(type default)
 		)
 		(uuid "a76183fc-b983-49bf-9295-fdbaab0faaec")
+	)
+	(wire
+		(pts
+			(xy 255.27 66.04) (xy 257.81 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa7714ba-e1b9-4971-b5d3-6950809275d2")
 	)
 	(wire
 		(pts
@@ -6186,7 +6478,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 106.68) (xy 59.69 106.68)
+			(xy 50.8 106.68) (xy 59.69 106.68)
 		)
 		(stroke
 			(width 0)
@@ -6213,16 +6505,6 @@
 			(type default)
 		)
 		(uuid "ca672615-5f32-4a18-9abe-eeea2277b40c")
-	)
-	(wire
-		(pts
-			(xy 50.8 106.68) (xy 53.34 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cbe219e5-7205-43ca-a262-9410fc986f26")
 	)
 	(wire
 		(pts
@@ -6376,7 +6658,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 88.9) (xy 59.69 88.9)
+			(xy 50.8 88.9) (xy 59.69 88.9)
 		)
 		(stroke
 			(width 0)
@@ -6516,16 +6798,6 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 88.9) (xy 53.34 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fcb54bf1-9d66-41bc-8f68-216d1a87b6dc")
-	)
-	(wire
-		(pts
 			(xy 199.39 144.78) (xy 199.39 152.4)
 		)
 		(stroke
@@ -6554,26 +6826,6 @@
 		)
 		(uuid "ffc2dafc-7f35-4bca-bfa8-a6ffb39898fb")
 	)
-	(label "3v3_LDO_OUT"
-		(at 138.43 19.05 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "032244e3-98f9-4b29-876a-8ae844cbdc58")
-	)
-	(label "VDD_MCU"
-		(at 44.45 127 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "0a52028f-7068-4772-bf63-94f01f09b893")
-	)
 	(label "SoS_LED2"
 		(at 187.96 24.13 180)
 		(effects
@@ -6584,26 +6836,6 @@
 		)
 		(uuid "0a90fdf1-7023-46a5-a886-2da9cab51d68")
 	)
-	(label "VDD_MCU"
-		(at 21.59 22.86 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1141a6f2-ad23-4fb9-88ce-3c407648bfe9")
-	)
-	(label "3v3_LDO_OUT"
-		(at 257.81 88.9 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "22af98fe-0d40-46b2-84d9-2cfbdf041e26")
-	)
 	(label "SoS_LED3"
 		(at 105.41 148.59 270)
 		(effects
@@ -6613,16 +6845,6 @@
 			(justify right bottom)
 		)
 		(uuid "2d960d6f-757e-4268-a256-595b41b7369a")
-	)
-	(label "3v3_LDO_OUT"
-		(at 177.8 19.05 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "30f724a1-e26d-4657-9065-074c667b0845")
 	)
 	(label "SoS_LED4"
 		(at 107.95 148.59 270)
@@ -6674,16 +6896,6 @@
 		)
 		(uuid "457def66-06b5-44e0-976d-2fecd37373dc")
 	)
-	(label "3v3_LDO_OUT"
-		(at 255.27 111.76 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4c808854-53ec-43de-9bf5-3dc2b8b716cf")
-	)
 	(label "SWCLK"
 		(at 105.41 50.8 90)
 		(effects
@@ -6693,16 +6905,6 @@
 			(justify left bottom)
 		)
 		(uuid "4e0e8f89-ceec-4f76-ae11-0389fde59f78")
-	)
-	(label "3v3_LDO_OUT"
-		(at 50.8 88.9 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "54ad114d-0023-4317-b1a5-d2aeb27d5d55")
 	)
 	(label "STLINK_TX"
 		(at 148.59 54.61 90)
@@ -6734,16 +6936,6 @@
 		)
 		(uuid "69497fdf-4bdf-4a64-8b40-a2ce19ba043d")
 	)
-	(label "VDD_MCU"
-		(at 50.8 78.74 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "69d69994-9c81-49e2-8ce9-e5b2a6a27cb5")
-	)
 	(label "VDDA"
 		(at 125.73 177.8 180)
 		(effects
@@ -6753,26 +6945,6 @@
 			(justify right bottom)
 		)
 		(uuid "6b655549-6ec4-4388-968c-dad586f34931")
-	)
-	(label "VDD_MCU"
-		(at 87.63 165.1 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "9284bedd-b614-4b5d-b5dc-018190262767")
-	)
-	(label "3v3_LDO_OUT"
-		(at 257.81 43.18 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "92ec2384-7e04-4a55-a998-ae8b97e319d9")
 	)
 	(label "M7_DBG1"
 		(at 265.43 93.98 180)
@@ -6803,16 +6975,6 @@
 			(justify left bottom)
 		)
 		(uuid "a55c60a2-7da9-4ad4-8dc3-5d6a9cd6af02")
-	)
-	(label "VDD_MCU"
-		(at 50.8 106.68 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "aa5bebd1-cf67-4481-9e16-1d9772d27c36")
 	)
 	(label "SWO"
 		(at 120.65 50.8 90)
@@ -6884,16 +7046,6 @@
 		)
 		(uuid "ddeed61e-5da3-4315-b698-b84e80c17bca")
 	)
-	(label "3v3_LDO_OUT"
-		(at 255.27 19.05 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e20e5bce-0215-4698-8a75-c9a1821bb6ca")
-	)
 	(label "STLINK_RX"
 		(at 151.13 54.61 90)
 		(effects
@@ -6934,26 +7086,6 @@
 		)
 		(uuid "ea3f88a9-bd3b-4c96-b5a7-48813466f51e")
 	)
-	(label "VDD_MCU"
-		(at 128.27 165.1 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ecae5af9-be44-4190-a539-bbf3d1f73006")
-	)
-	(label "3v3_LDO_OUT"
-		(at 257.81 66.04 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "f0b61137-de81-4bff-806a-e8efc8d4c4d1")
-	)
 	(label "BOOT0"
 		(at 69.85 165.1 270)
 		(effects
@@ -6983,16 +7115,6 @@
 			(justify right bottom)
 		)
 		(uuid "f4633d8b-e0c4-4a6e-8234-83ed1a80045f")
-	)
-	(label "3v3_LDO_OUT"
-		(at 217.17 19.05 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "f9603b64-a6ab-4d28-8d98-b983c0c64c7f")
 	)
 	(global_label "SDMMC1_D0"
 		(shape input)
@@ -7829,6 +7951,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+1V8")
+		(at 50.8 78.74 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0527343d-c406-4f03-ab47-a119ad907608")
+		(property "Reference" "#PWR0130"
+			(at 54.61 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 46.99 78.7399 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 50.8 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bf9e7b94-7aa1-4dc7-86c3-a9252d0203cc")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0130")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED")
 		(at 152.4 19.05 180)
 		(unit 1)
@@ -8577,6 +8778,85 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "C115")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 128.27 165.1 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "116efeac-56f8-42d4-829c-fdf66c82c842")
+		(property "Reference" "#PWR0132"
+			(at 132.08 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 124.46 165.0999 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 128.27 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 128.27 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 128.27 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "47f55e8a-6df9-4e61-88b4-d1499acde1d6")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0132")
 					(unit 1)
 				)
 			)
@@ -10461,6 +10741,162 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 177.8 19.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6c1c0756-8df4-451e-8d25-e87536b823f3")
+		(property "Reference" "#PWR0122"
+			(at 177.8 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 177.8 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 177.8 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7d64e82d-3674-4cb3-b12c-721c1fd84c43")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0122")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 138.43 19.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6d7dadd1-cde5-4106-a8c1-be942461029c")
+		(property "Reference" "#PWR0121"
+			(at 138.43 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 138.43 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 138.43 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 138.43 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 138.43 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e734a7c4-46df-4bf9-81c2-d9aba1bc8b6f")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0121")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 52.07 29.21 0)
 		(unit 1)
@@ -10702,6 +11138,84 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "C108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 255.27 43.18 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "73ef09a4-3ca1-40f6-bf54-03bd5a06a350")
+		(property "Reference" "#PWR0125"
+			(at 255.27 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 255.27 38.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 255.27 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "15d0529a-477f-4439-89c1-7b2d5c636933")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0125")
 					(unit 1)
 				)
 			)
@@ -11424,83 +11938,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 53.34 106.68 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "99527cf1-d2ef-40aa-99c8-cd2f2b789d83")
-		(property "Reference" "#FLG0101"
-			(at 53.34 108.585 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 53.34 110.744 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 53.34 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 53.34 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6ca2c518-9329-4f0d-b49c-6591eacfd27d")
-		)
-		(instances
-			(project "mradio"
-				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
-					(reference "#FLG0101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 153.67 186.69 0)
 		(unit 1)
@@ -11737,8 +12174,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 53.34 88.9 180)
+		(lib_id "power:+1V8")
+		(at 50.8 106.68 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11746,9 +12183,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "b5675808-8d97-4d30-bd3e-46111335f27a")
-		(property "Reference" "#FLG0102"
-			(at 53.34 90.805 0)
+		(fields_autoplaced yes)
+		(uuid "ab491282-2708-4ef8-a1a1-2dbffe6cdbe3")
+		(property "Reference" "#PWR0120"
+			(at 54.61 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11758,18 +12196,19 @@
 				)
 			)
 		)
-		(property "Value" "PWR_FLAG"
-			(at 53.34 93.218 0)
+		(property "Value" "+1V8"
+			(at 46.99 106.6799 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 53.34 88.9 0)
+			(at 50.8 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11780,7 +12219,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 53.34 88.9 0)
+			(at 50.8 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11790,8 +12229,8 @@
 				)
 			)
 		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 53.34 88.9 0)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 50.8 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11802,12 +12241,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "87297d99-af3c-4a2e-9c66-b2800921154f")
+			(uuid "c49171a5-2d06-4242-915c-427ec12c48d7")
 		)
 		(instances
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
-					(reference "#FLG0102")
+					(reference "#PWR0120")
 					(unit 1)
 				)
 			)
@@ -11981,6 +12420,163 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 50.8 88.9 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b8244764-ad50-4af5-85eb-952798eeda01")
+		(property "Reference" "#PWR0119"
+			(at 54.61 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 46.99 88.8999 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.8 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.8 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 50.8 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "96f69992-3e84-4961-a48f-b644ab05405c")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0119")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 217.17 19.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "babe29a8-aeb1-401a-9f8b-ca5183ac078b")
+		(property "Reference" "#PWR0123"
+			(at 217.17 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 217.17 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 217.17 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 217.17 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0fee2083-d527-4208-bfc8-28753701cd52")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0123")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 144.78 19.05 270)
 		(unit 1)
@@ -12134,6 +12730,84 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 255.27 88.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c03bd49a-8444-458f-99f1-c21af26ce039")
+		(property "Reference" "#PWR0127"
+			(at 255.27 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 255.27 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 255.27 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f6ca16ae-0803-4464-8fdf-8e9ef1bedc12")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0127")
 					(unit 1)
 				)
 			)
@@ -12386,6 +13060,85 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "R101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 44.45 127 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d21df378-149e-491f-9126-21c57a1173e3")
+		(property "Reference" "#PWR0129"
+			(at 48.26 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 40.64 126.9999 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 44.45 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 44.45 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 44.45 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b5c213af-0c26-4b23-a612-c79e3e668cee")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0129")
 					(unit 1)
 				)
 			)
@@ -12795,6 +13548,162 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "Q104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 87.63 165.1 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dd4f9253-e62b-4c75-9465-f96ed5e452d8")
+		(property "Reference" "#PWR0131"
+			(at 87.63 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 87.63 170.18 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.63 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.63 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 87.63 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0824dd50-ee99-4375-b8d4-13e277492899")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0131")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 255.27 66.04 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "de38b25e-606e-46ef-abfb-28f5baf28519")
+		(property "Reference" "#PWR0126"
+			(at 255.27 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 255.27 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 255.27 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "87546bad-4286-4982-8f70-c1108e2ff131")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0126")
 					(unit 1)
 				)
 			)
@@ -13296,6 +14205,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 255.27 19.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "eedd9a67-5f29-4dbb-82df-3647204367d0")
+		(property "Reference" "#PWR0124"
+			(at 255.27 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 255.27 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 255.27 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d99df84b-7bce-4d41-b5a3-5f95cb3ffdce")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0124")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 90.17 146.05 0)
 		(unit 1)
@@ -13533,6 +14520,162 @@
 			(project "mradio"
 				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
 					(reference "Q108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 255.27 111.76 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f9157443-2996-4f0c-89a4-2700a0addc9a")
+		(property "Reference" "#PWR0128"
+			(at 255.27 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 255.27 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 255.27 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4b0b5f23-02f9-433b-adbc-5edb62d48c17")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0128")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 21.59 22.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fb0f0394-6b97-4352-adc5-5fdc7692384e")
+		(property "Reference" "#PWR0133"
+			(at 21.59 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 21.59 17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 21.59 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 21.59 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 21.59 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5e843755-69a6-40ec-9ce2-4f1f09774c3f")
+		)
+		(instances
+			(project "mradio"
+				(path "/8dc7c7b7-3424-46ed-8e13-a2f5eca35b9b"
+					(reference "#PWR0133")
 					(unit 1)
 				)
 			)
