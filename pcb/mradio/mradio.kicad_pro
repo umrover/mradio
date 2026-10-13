@@ -142,18 +142,18 @@
         "max_error": 0.005,
         "min_clearance": 0.0,
         "min_connection": 0.0,
-        "min_copper_edge_clearance": 0.5,
+        "min_copper_edge_clearance": 0.2,
         "min_groove_width": 0.0,
-        "min_hole_clearance": 0.25,
-        "min_hole_to_hole": 0.25,
+        "min_hole_clearance": 0.2,
+        "min_hole_to_hole": 0.2,
         "min_microvia_diameter": 0.2,
         "min_microvia_drill": 0.1,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
+        "min_text_height": 0.1,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
-        "min_track_width": 0.2,
+        "min_track_width": 0.09,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
@@ -514,12 +514,14 @@
         "wire_width": 6
       },
       {
-        "clearance": 0.6312,
-        "name": "SDIO",
+        "clearance": 0.2,
+        "diff_pair_gap": 0.1,
+        "diff_pair_width": 0.1,
+        "name": "ETH",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.358648,
+        "track_width": 0.2,
         "tuning_profile": ""
       }
     ],
@@ -528,7 +530,16 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "ETH",
+        "pattern": "ETH_TD*"
+      },
+      {
+        "netclass": "ETH",
+        "pattern": "ETH_RD*"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -702,7 +713,7 @@
         "uuid": "a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
       }
     ],
-    "used_designators": "#FLG501-502,#FLG601-603,#FLG701,#FLG801-802,#FLG901-902,#FLG1001-1003,D101-108,D501-502,D601,D701,D801,D901,D1001,#PWR1-3,#PWR101-116,#PWR119-133,#PWR201-202,#PWR301-317,#PWR401-432,#PWR501-536,#PWR601-609,#PWR701-709,#PWR801-809,#PWR901-910,#PWR1001-1010,Y301,TP301-307,TP401-405,TP601,TP701,TP801,TP901,TP1001,C1,C101-119,C301-314,C401-407,C501-506,C601-610,C701-710,C801-810,C901-910,C1001-1010,FB301-302,U1-4,U101,U301,U401-402,U501-502,U601,U701,U801,U901,U1001,J201-202,J301,J401,J501,L601,L701,R101-112,R301-306,R401-405,R501-513,R601-606,R701-706,R801,R901-903,R1001,XTAL501,Q301",
+    "used_designators": "#FLG101-105,#FLG501-502,#FLG601-603,#FLG701,#FLG801-802,#FLG901-902,#FLG1001-1003,MOSFET101,C1,C101-119,C301-312,C401-407,C501-506,C601-610,C701-710,C801-810,C901-910,C1001-1010,XTAL501,J201,J301,J401,J501,Q101-108,Q301,D101-108,D501-502,D601,D701,D801,D901,D1001,U1-4,U101,U301,U401-402,U501-502,U601,U701,U801,U901,U1001,R101-112,R301-305,R401-405,R501-513,R601-606,R701-706,R801,R901-903,R1001,TP301-307,TP401-405,TP601,TP701,TP801,TP901,TP1001,L601,L701,FB301-302,#PWR1-3,#PWR101-126,#PWR201-202,#PWR301-317,#PWR401-432,#PWR501-536,#PWR601-609,#PWR701-709,#PWR801-809,#PWR901-906,#PWR1001-1010,Y301",
     "variants": []
   },
   "sheets": [
