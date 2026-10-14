@@ -534,12 +534,21 @@
         "microvia_drill": 0.1,
         "name": "ETH",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
+        "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2,
         "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
+      },
+      {
+        "clearance": 0.3,
+        "name": "SDIO",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.150876,
+        "tuning_profile": ""
       }
     ],
     "meta": {
@@ -555,6 +564,10 @@
       {
         "netclass": "ETH",
         "pattern": "/Ethernet/ETH_TD*"
+      },
+      {
+        "netclass": "SDIO",
+        "pattern": "/2.4-5 Ghz/SDIO*"
       }
     ]
   },
