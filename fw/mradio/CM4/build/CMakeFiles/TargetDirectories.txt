@@ -1,4 +1,0 @@
-/home/nate/projects/mradio/fw/mradio/CM4/build/CMakeFiles/mradio_CM4.dir
-/home/nate/projects/mradio/fw/mradio/CM4/build/CMakeFiles/STM32_Drivers.dir
-/home/nate/projects/mradio/fw/mradio/CM4/build/CMakeFiles/edit_cache.dir
-/home/nate/projects/mradio/fw/mradio/CM4/build/CMakeFiles/rebuild_cache.dir

@@ -1,7 +1,0 @@
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:102:5:main	16	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:186:6:SystemClock_Config	120	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:246:13:MX_ETH_Init	8	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:295:13:MX_USART1_UART_Init	8	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:343:13:MX_GPIO_Init	48	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:393:6:MPU_Config	24	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/main.c:424:6:Error_Handler	4	static

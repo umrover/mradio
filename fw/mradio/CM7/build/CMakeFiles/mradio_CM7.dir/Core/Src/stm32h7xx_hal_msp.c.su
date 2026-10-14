@@ -1,5 +1,0 @@
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/stm32h7xx_hal_msp.c:62:6:HAL_MspInit	16	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/stm32h7xx_hal_msp.c:84:6:HAL_ETH_MspInit	64	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/stm32h7xx_hal_msp.c:146:6:HAL_ETH_MspDeInit	16	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/stm32h7xx_hal_msp.c:188:6:HAL_UART_MspInit	240	static
-/home/nate/projects/mradio/fw/mradio/CM7/Core/Src/stm32h7xx_hal_msp.c:236:6:HAL_UART_MspDeInit	16	static
