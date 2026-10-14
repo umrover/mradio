@@ -32,6 +32,7 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 *-prefix/
+.ninja_*
 
 # Editors
 .idea
