@@ -1,0 +1,4 @@
+/home/nate/projects/mradio/fw/mradio/CM7/build/CMakeFiles/mradio_CM7.dir
+/home/nate/projects/mradio/fw/mradio/CM7/build/CMakeFiles/STM32_Drivers.dir
+/home/nate/projects/mradio/fw/mradio/CM7/build/CMakeFiles/edit_cache.dir
+/home/nate/projects/mradio/fw/mradio/CM7/build/CMakeFiles/rebuild_cache.dir

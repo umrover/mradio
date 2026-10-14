@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM7"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM7.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM7-complete.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-build.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-configure.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-download.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-install.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-mkdir.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-patch.rule"
+		},
+		{
+			"file" : "/home/nate/projects/mradio/fw/mradio/build/Debug/CM7/src/mradio_CM7-stamp/mradio_CM7-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"mradio_CM7"
+		],
+		"name" : "mradio_CM7"
+	}
+}

@@ -1,0 +1,13 @@
+# Target labels
+ mradio_CM4
+# Source files and their labels
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM4
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM4.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM4-complete.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-build.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-configure.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-download.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-install.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-mkdir.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-patch.rule
+/home/nate/projects/mradio/fw/mradio/build/Debug/CM4/src/mradio_CM4-stamp/mradio_CM4-update.rule

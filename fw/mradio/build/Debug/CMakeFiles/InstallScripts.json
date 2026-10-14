@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/nate/projects/mradio/fw/mradio/build/Debug/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,4 @@
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM4.dir
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/mradio_CM7.dir
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/edit_cache.dir
+/home/nate/projects/mradio/fw/mradio/build/Debug/CMakeFiles/rebuild_cache.dir
