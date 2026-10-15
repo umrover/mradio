@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mradio interface</title>
+  </head>
+  <body>
+    <p id="message"></p>
+
+    <h2>Status</h2>
+
+    <p>under construction</p>
+
+    <h2>Config</h2>
+
+    <form data-section="">
+      <p>
+        role
+        <select name="role">
+          <option>base</option>
+          <option>rover</option>
+        </select>
+      </p>
+      <button>Apply</button>
+    </form>
+
+    <h3>Net Settings</h3>
+
+    <form data-section="net">
+      <p>ip <input name="ip" required /></p>
+      <p>mask <input name="mask" required /></p>
+      <button>Apply</button>
+    </form>
+
+    <h3>Link Settings</h3>
+
+    <form data-section="link">
+      <p>
+        passphrase
+        <input
+          name="passphrase"
+          type="password"
+          minlength="8"
+          maxlength="63"
+          placeholder="unchanged"
+        />
+      </p>
+      <p>passphrase_set <input name="passphrase_set" disabled /></p>
+      <button>Apply</button>
+    </form>
+
+    <h3>Halow Settings</h3>
+
+    <form data-section="halow">
+      <p>
+        center_khz <input name="center_khz" type="number" step="500" required />
+      </p>
+      <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
+      <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
+      <p>
+        mcs
+        <select name="mcs">
+          <option>auto</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+        </select>
+      </p>
+      <button>Apply</button>
+    </form>
+
+    <h3>Wifi Settings</h3>
+
+    <form data-section="wifi">
+      <p>
+        band
+        <select name="band">
+          <option>2.4</option>
+          <option>5</option>
+        </select>
+      </p>
+      <p>channel <input name="channel" type="number" required /></p>
+      <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
+      <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
+      <button>Apply</button>
+    </form>
+
+    <h2>Reboot</h2>
+    <form id="reboot"><button>Reboot</button></form>
+
+    <script>
+      const message = document.getElementById("message");
+      const configForms = document.querySelectorAll("form[data-section]");
+
+      async function request(method, path, body) {
+        const options = {
+          method,
+          headers: { "Content-Type": "application/json" },
+        };
+        if (body !== undefined) options.body = JSON.stringify(body);
+        try {
+          const response = await fetch("/api" + path, options);
+          const text = await response.text();
+          message.textContent = response.ok
+            ? "ok"
+            : `${response.status} ${text}`;
+          return response.ok ? JSON.parse(text) : null;
+        } catch (error) {
+          message.textContent = error.message;
+          return null;
+        }
+      }
+
+      function fillForms(config) {
+        if (config === null) return;
+        for (const form of configForms) {
+          const values = form.dataset.section
+            ? config[form.dataset.section]
+            : config;
+          for (const field of form.elements) {
+            if (field.name in values)
+              field.value = values[field.name] ?? "auto";
+          }
+        }
+      }
+
+      function readForm(form) {
+        const values = {};
+        for (const field of form.elements) {
+          if (!field.name || field.disabled) continue;
+          if (field.type === "password" && field.value === "") continue;
+          if (field.value === "auto") values[field.name] = null;
+          else if (field.type === "number" || field.name === "mcs")
+            values[field.name] = Number(field.value);
+          else values[field.name] = field.value;
+        }
+        return form.dataset.section
+          ? { [form.dataset.section]: values }
+          : values;
+      }
+
+      for (const form of configForms) {
+        form.onsubmit = async (event) => {
+          event.preventDefault();
+          fillForms(await request("POST", "/config", readForm(form)));
+        };
+      }
+
+      document.getElementById("reboot").onsubmit = async (event) => {
+        event.preventDefault();
+        await request("POST", "/reboot");
+      };
+
+      request("GET", "/config").then(fillForms);
+    </script>
+  </body>
+</html>
