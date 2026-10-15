@@ -10,4 +10,5 @@
 	(lib (name "molex_conn") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/molex_conn.pretty") (options "") (descr ""))
 	(lib (name "FTSH-107") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/FTSH-107") (options "") (descr ""))
 	(lib (name "2250065-1") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/2250065-1.pretty") (options "") (descr ""))
+	(lib (name "RGR0020A") (type "KiCad") (uri "${KIPRJMOD}/mradio-library/footprints/RGR0020A.pretty") (options "") (descr ""))
 )

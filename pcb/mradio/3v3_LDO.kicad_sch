@@ -3665,7 +3665,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TPS7A8500RGRR:RGR0020A"
+		(property "Footprint" "TPS7A8500RGRR:TPS7A8500RGRR"
 			(at 128.27 78.74 0)
 			(hide yes)
 			(show_name no)

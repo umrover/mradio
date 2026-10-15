@@ -52,8 +52,8 @@
         "zones": {
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.0,
-          "corner_smoothing": 0,
+          "corner_radius": 1.0,
+          "corner_smoothing": 2,
           "fill_mode": 0,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
@@ -63,7 +63,7 @@
           "min_clearance": 0.3,
           "min_island_area": 10.0,
           "min_thickness": 0.2,
-          "pad_connection": 1,
+          "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -210,7 +210,9 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.2,
+        0.3
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -528,24 +530,38 @@
       },
       {
         "clearance": 0.2,
-        "diff_pair_gap": 0.2032,
-        "diff_pair_width": 0.1171,
-        "microvia_diameter": 0.3,
-        "microvia_drill": 0.1,
+        "diff_pair_gap": 0.2,
+        "diff_pair_width": 0.1191,
         "name": "ETH",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 3,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2,
+        "tuning_profile": ""
+      },
+      {
+        "clearance": 0.2,
+        "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
-        "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3
+        "track_width": 0.3,
+        "tuning_profile": ""
+      },
+      {
+        "clearance": 0.2,
+        "name": "RMII",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.1509,
+        "tuning_profile": ""
       },
       {
         "clearance": 0.3,
         "name": "SDIO",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
+        "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.150876,
         "tuning_profile": ""
@@ -568,6 +584,30 @@
       {
         "netclass": "SDIO",
         "pattern": "/2.4-5 Ghz/SDIO*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+12V"
+      },
+      {
+        "netclass": "RMII",
+        "pattern": "ETH_TX*"
+      },
+      {
+        "netclass": "RMII",
+        "pattern": "ETH_RX*"
+      },
+      {
+        "netclass": "RMII",
+        "pattern": "ETH_CRS_DV"
+      },
+      {
+        "netclass": "RMII",
+        "pattern": "ETH_RXD1"
+      },
+      {
+        "netclass": "RMII",
+        "pattern": "ETH_REF_CLK"
       }
     ]
   },
@@ -743,7 +783,7 @@
         "uuid": "a3cfb3f7-0a76-4383-aac7-b46c1ac4283d"
       }
     ],
-    "used_designators": "#FLG101-105,#FLG301,#FLG501-502,#FLG601-603,#FLG701,#FLG801-802,#FLG901-902,#FLG1001-1003,MOSFET101,C1,C101-119,C301-316,C401-407,C501-506,C601-610,C701-710,C801-810,C901-910,C1001-1010,XTAL501,J201,J301-302,J401,J501,Q101-108,Q301,D101-108,D501-502,D601,D701,D801,D901,D1001,U1-4,U101,U301,U401-402,U501-502,U601,U701,U801,U901,U1001,R101-112,R301-306,R401-405,R501-513,R601-606,R701-706,R801,R901-903,R1001,TP301-307,TP401-405,TP601,TP701,TP801,TP901,TP1001,L601,L701,FB301-302,#PWR1-3,#PWR101-126,#PWR201-202,#PWR301-319,#PWR401-432,#PWR501-536,#PWR601-609,#PWR701-709,#PWR801-809,#PWR901-906,#PWR1001-1010,Y301",
+    "used_designators": "#FLG101-105,#FLG301,#FLG501-502,#FLG601-603,#FLG701,#FLG801-802,#FLG901-902,#FLG1001-1003,Q101-108,Q301,J201,J301-302,J401,J501,MOSFET101,XTAL501,Y301,#PWR1-3,#PWR101-126,#PWR201-202,#PWR301-319,#PWR401-432,#PWR501-536,#PWR601-609,#PWR701-709,#PWR801-809,#PWR901-906,#PWR1001-1010,D101-108,D501-502,D601,D701,D801,D901,D1001,C1,C101-119,C301-316,C401-407,C501-506,C601-610,C701-710,C801-810,C901-910,C1001-1010,FB301-302,U1-4,U101,U301,U401-402,U501-502,U601,U701,U801,U901,U1001,TP301-307,TP401-405,TP601,TP701,TP801,TP901,TP1001,R101-112,R301-306,R401-405,R501-513,R601-606,R701-706,R801,R901-903,R1001,L601,L701",
     "variants": []
   },
   "sheets": [
