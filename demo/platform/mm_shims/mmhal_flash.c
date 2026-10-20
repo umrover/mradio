@@ -128,7 +128,7 @@ int mmhal_flash_write(uint32_t write_address, const uint8_t *data, size_t size)
                 fw_data[i] = *data++; /* Replace specific bytes to be programmed */
             }
             /* perform aligned writes */
-            HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, write_address, *((uint64_t *)fw_data));
+            HAL_FLASH_Program(FLASH_TYPEPROGRAM_FLASHWORD, write_address, (uint32_t)fw_data);
         }
 
         retval = 0;
