@@ -283,7 +283,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void udp_recv_callback(void* arg, struct udp_pcb* upcb, struct pbuf* p, const ip_addr_t* addr, u16_t port)
+{
+	if (p != NULL) {
+		char prefix[11] = "Received: \"";
+		char suffix[2] = "\"\n";
 
+		int len = sizeof(prefix) + sizeof(suffix) + p->tot_len;
+		struct pbuf* p_out = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_RAM);
+		if (p_out != NULL) {
+			pbuf_take_at(p_out, prefix, sizeof(prefix), 0);
+			pbuf_copy_partial(p, p_out->payload + sizeof(prefix), p->tot_len, 0);
+			pbuf_take_at(p_out, suffix, sizeof(suffix), len - sizeof(suffix));
+			udp_sendto(upcb, p_out, addr, port);
+			pbuf_free(p_out);
+		}
+		pbuf_free(p);
+	}
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -318,30 +335,50 @@ void StartDefaultTask(void *argument)
 //    {
 //      osDelay(1000);
 //    }
-  	const char* message = "Hello UDP message!\n\r";
-	osDelay(1000);
-	LOCK_TCPIP_CORE();
-	ip_addr_t PC_IPADDR;
-	IP_ADDR4(&PC_IPADDR, 10, 1, 0, 2);
-	struct udp_pcb* my_udp = udp_new();
-	udp_connect(my_udp, &PC_IPADDR, 55151);
-	struct pbuf* udp_buffer = NULL;
-	UNLOCK_TCPIP_CORE();
 
-	/* Infinite loop */
-	for (;;) {
-	  osDelay(500);
-	  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-	  /* !! PBUF_RAM is critical for correct operation !! */
-	  LOCK_TCPIP_CORE();
-	  udp_buffer = pbuf_alloc(PBUF_TRANSPORT, strlen(message), PBUF_RAM);
-	  if (udp_buffer != NULL) {
-		memcpy(udp_buffer->payload, message, strlen(message));
-		udp_send(my_udp, udp_buffer);
-		pbuf_free(udp_buffer);
-	  }
-	  UNLOCK_TCPIP_CORE();
-	}
+//  	const char* message = "Hello UDP message!\n\r";
+//	osDelay(1000);
+//	LOCK_TCPIP_CORE();
+//	ip_addr_t PC_IPADDR;
+//	IP_ADDR4(&PC_IPADDR, 10, 1, 0, 2);
+//	struct udp_pcb* my_udp = udp_new();
+//	udp_connect(my_udp, &PC_IPADDR, 55151);
+//	struct pbuf* udp_buffer = NULL;
+//	UNLOCK_TCPIP_CORE();
+//
+//	/* Infinite loop */
+//	for (;;) {
+//	  osDelay(500);
+//	  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+//	  /* !! PBUF_RAM is critical for correct operation !! */
+//	  LOCK_TCPIP_CORE();
+//	  udp_buffer = pbuf_alloc(PBUF_TRANSPORT, strlen(message), PBUF_RAM);
+//	  if (udp_buffer != NULL) {
+//		memcpy(udp_buffer->payload, message, strlen(message));
+//		udp_send(my_udp, udp_buffer);
+//		pbuf_free(udp_buffer);
+//	  }
+//	  UNLOCK_TCPIP_CORE();
+//	}
+
+  struct udp_pcb* upcb;
+  err_t err;
+
+  LOCK_TCPIP_CORE();
+  upcb = udp_new();
+  if (upcb == NULL)
+	  return;
+  err = udp_bind(upcb, IP_ADDR_ANY, 6767);
+  if (err != ERR_OK) {
+	  udp_remove(upcb);
+	  return;
+  }
+  udp_recv(upcb, udp_recv_callback, NULL);
+  UNLOCK_TCPIP_CORE();
+
+  for (;;) {
+	  osDelay(1000);
+  }
   /* USER CODE END 5 */
 }
 
