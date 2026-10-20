@@ -1,0 +1,578 @@
+/*
+ * Copyright 2025 Morse Micro
+ *
+ * This file is licensed under terms that can be found in the LICENSE.md file in the root
+ * directory of the Morse Micro IoT SDK software package.
+ */
+
+/**
+ * @file
+ * @brief AP Example Application.
+ *
+ * @note It is assumed that you have followed the steps in the @ref GETTING_STARTED guide and are
+ * therefore familiar with how to build, flash, and monitor an application using the MM-IoT-SDK
+ * framework.
+ */
+
+#include <string.h>
+#include "mmconfig.h"
+#include "mmosal.h"
+#include "mmutils.h"
+#include "mm_app_common.h"
+#include "mm_app_loadconfig.h"
+#include "mmlog.h"
+#include "mmhal_app.h"
+#include "lwip/tcpip.h"
+#include "lwip/udp.h"
+
+#ifndef DEMO_UDP_PORT
+#define DEMO_UDP_PORT 5000
+#endif
+
+#define LED_BLINK_MS 200
+#define LED_POLL_INTERVAL_MS 20
+
+/* Written from the lwIP thread, read by the app task to turn the LED back off */
+static volatile uint32_t led_off_time_ms = 0;
+static volatile bool led_is_on = false;
+
+static void press_received(void *arg, struct udp_pcb *pcb, struct pbuf *p,
+                           const ip_addr_t *addr, u16_t port)
+{
+    LWIP_UNUSED_ARG(arg);
+    LWIP_UNUSED_ARG(pcb);
+    LWIP_UNUSED_ARG(port);
+    if (p == NULL)
+    {
+        return;
+    }
+
+    char message[33] = { 0 };
+    (void)pbuf_copy_partial(p, message, sizeof(message) - 1, 0);
+    pbuf_free(p);
+
+    MMLOG_APP("Received '%s' from %s\n", message, ipaddr_ntoa(addr));
+    mmhal_set_led(LED_GREEN, LED_ON);
+    led_off_time_ms = mmosal_get_time_ms() + LED_BLINK_MS;
+    led_is_on = true;
+}
+
+static bool start_press_listener(void)
+{
+    LOCK_TCPIP_CORE();
+    struct udp_pcb *pcb = udp_new();
+    if (pcb != NULL && udp_bind(pcb, IP_ADDR_ANY, DEMO_UDP_PORT) != ERR_OK)
+    {
+        udp_remove(pcb);
+        pcb = NULL;
+    }
+    if (pcb != NULL)
+    {
+        udp_recv(pcb, press_received, NULL);
+    }
+    UNLOCK_TCPIP_CORE();
+    return pcb != NULL;
+}
+
+/*
+ * --
+ * Default Network configuration
+ * --
+ */
+
+#ifndef STATIC_LOCAL_IP
+/** Statically configured IP address. */
+#define STATIC_LOCAL_IP "192.168.1.1"
+#endif
+#ifndef STATIC_GATEWAY
+/** Statically configured gateway address. */
+#define STATIC_GATEWAY "192.168.1.1"
+#endif
+#ifndef STATIC_NETMASK
+/** Statically configured netmask. */
+#define STATIC_NETMASK "255.255.255.0"
+#endif
+
+/*
+ * --
+ * Default SSID/Security configuration
+ * --
+ */
+
+#ifndef AP_SSID
+/** SSID of the AP. (Do not quote; it will be stringified.) */
+#define AP_SSID MorseMicroIoT
+#endif
+
+#ifndef SAE_PASSPHRASE
+/** Passphrase of the AP (ignored if security type is not SAE).
+ *  (Do not quote; it will be stringified.) */
+#define SAE_PASSPHRASE 12345678
+#endif
+
+/* Default security type  */
+#ifndef SECURITY_TYPE
+/** Security type (@see mmwlan_security_type). */
+#define SECURITY_TYPE MMWLAN_SAE
+#endif
+
+/* Default PMF mode */
+#ifndef PMF_MODE
+/** Protected Management Frames (PMF) mode (@see mmwlan_pmf_mode). */
+#define PMF_MODE MMWLAN_PMF_REQUIRED
+#endif
+
+/*
+ * --
+ * Default channel configuration
+ * --
+ */
+
+#ifndef OP_CLASS
+/**
+ * Operating Class to use for AP.
+ * This together with S1G_CHANNEL must correspond to a channel in the regulatory database.
+ */
+#define OP_CLASS (71) /* US, 8 MHz */
+#endif
+
+#ifndef S1G_CHANNEL
+/**
+ * S1G Channel to use for AP.
+ * This together with OP_CLASS must correspond to a channel in the regulatory database.
+ */
+#define S1G_CHANNEL (44) /* US, 8 MHz */
+#endif
+
+#ifndef PRIMARY_BW_MHZ
+/**
+ * Primary Bandwidth to use for AP.
+ *
+ * Valid values:
+ * * 0 (auto)
+ * * 1
+ * * 2
+ */
+#define PRIMARY_BW_MHZ (0)
+#endif
+
+#ifndef PRIMARY_1MHZ_CHANNEL_INDEX
+/** Primary 1 MHz Channel Index to use for AP */
+#define PRIMARY_1MHZ_CHANNEL_INDEX (3)
+#endif
+
+#ifndef MAX_STAS
+/**
+ * The maximum number of stations that can connect to the AP.
+ * Must not be greater than @ref MMWLAN_AP_MAX_STAS_LIMIT.
+ */
+#define MAX_STAS MMWLAN_DEFAULT_AP_MAX_STAS
+#endif
+
+/** Stringify macro. Do not use directly; use @ref STRINGIFY(). */
+#define _STRINGIFY(x) #x
+/** Convert the content of the given macro to a string. */
+#define STRINGIFY(x) _STRINGIFY(x)
+
+/** A throwaway variable for checking that the opaque argument is correct. */
+uint32_t opaque_argument_value;
+
+/**
+ * Function to convert @c mmwlan_ap_sta_state enumeration to a human readable string.
+ *
+ * @param state State enum to convert
+ *
+ * @return string representation of the enumeration.
+ */
+static char *mmwlan_ap_sta_state_to_str(enum mmwlan_ap_sta_state state)
+{
+    switch (state)
+    {
+        case MMWLAN_AP_STA_UNKNOWN:
+            return "Unknown (disconnected)";
+
+        case MMWLAN_AP_STA_AUTHENTICATED:
+            return "Authenticated";
+
+        case MMWLAN_AP_STA_ASSOCIATED:
+            return "Associated";
+
+        case MMWLAN_AP_STA_AUTHORIZED:
+            return "Authorized";
+    }
+
+    return "Unrecognized";
+}
+
+/**
+ * Handler for AP STA Status callback.
+ *
+ * @param sta_status    STA status information.
+ * @param arg           Opaque argument that was provided when the callback was registered.
+ */
+static void handle_ap_sta_status(const struct mmwlan_ap_sta_status *sta_status, void *arg)
+{
+    /* Validate that the opaque argument received matches the value passed in. This is just for
+     * testing purposes. */
+    MMOSAL_ASSERT(arg == &opaque_argument_value);
+
+    MMLOG_APP("AP STA " MM_MAC_ADDR_FMT " State: %s, AID: %u\n",
+              MM_MAC_ADDR_VAL(sta_status->mac_addr),
+              mmwlan_ap_sta_state_to_str(sta_status->state),
+              sta_status->aid);
+}
+
+/**
+ * Loads the provided structure with initialization parameters
+ * read from config store.  If a specific parameter is not found then
+ * default values are used.  Use this function to load defaults before
+ * calling @c mmipal_init().
+ *
+ * @note This is a AP specific implementation.
+ *
+ * @param args  A pointer to the @c mmipal_init_args to return
+ *              the settings in.
+ */
+static void load_ap_mmipal_init_args(struct mmipal_init_args *args)
+{
+    /* Load default static IP in case we don't find the key */
+    (void)mmosal_safer_strcpy(args->ip_addr, STATIC_LOCAL_IP, sizeof(args->ip_addr));
+    (void)mmconfig_read_string("ip.ip_addr", args->ip_addr, sizeof(args->ip_addr));
+
+    /* Load default netmask in case we don't find the key */
+    (void)mmosal_safer_strcpy(args->netmask, STATIC_NETMASK, sizeof(args->netmask));
+    (void)mmconfig_read_string("ip.netmask", args->netmask, sizeof(args->netmask));
+
+    /* Load default gateway in case we don't find the key */
+    (void)mmosal_safer_strcpy(args->gateway_addr, STATIC_GATEWAY, sizeof(args->gateway_addr));
+    (void)mmconfig_read_string("ip.gateway", args->gateway_addr, sizeof(args->gateway_addr));
+}
+
+/**
+ * Loads the provided structure with initialization parameters
+ * read from config store.  If a specific parameter is not found then
+ * default values are used.  Use this function to load defaults before
+ * calling @c mmwlan_ap_enable().
+ *
+ * @param ap_args A pointer to the @c mmwlan_ap_args to return
+ *                    the settings in.
+ */
+void load_mmwlan_ap_args(struct mmwlan_ap_args *ap_args)
+{
+    char strval[32];
+    uint32_t uint32val;
+
+    /* Load SSID */
+    (void)mmosal_safer_strcpy((char *)ap_args->ssid, STRINGIFY(AP_SSID), sizeof(ap_args->ssid));
+    (void)mmconfig_read_string("wlan.ap_ssid", (char *)ap_args->ssid, sizeof(ap_args->ssid));
+    ap_args->ssid_len = strlen((char *)ap_args->ssid);
+
+    /* Load password */
+    (void)mmosal_safer_strcpy(ap_args->passphrase,
+                              STRINGIFY(SAE_PASSPHRASE),
+                              sizeof(ap_args->passphrase));
+    (void)mmconfig_read_string("wlan.ap_password",
+                               ap_args->passphrase,
+                               sizeof(ap_args->passphrase));
+    ap_args->passphrase_len = strlen(ap_args->passphrase);
+
+    /* Load security type */
+    ap_args->security_type = SECURITY_TYPE;
+    if (mmconfig_read_string("wlan.ap_security", strval, sizeof(strval)) > 0)
+    {
+        if (strncmp("sae", strval, sizeof(strval)) == 0)
+        {
+            ap_args->security_type = MMWLAN_SAE;
+        }
+        else if (strncmp("owe", strval, sizeof(strval)) == 0)
+        {
+            ap_args->security_type = MMWLAN_OWE;
+        }
+        else if (strncmp("open", strval, sizeof(strval)) == 0)
+        {
+            ap_args->security_type = MMWLAN_OPEN;
+        }
+        else
+        {
+            MMLOG_APP("Invalid value of %s read from config store: %s\n",
+                      "wlan.ap_security",
+                      strval);
+        }
+    }
+
+    /* Load PMF mode */
+    ap_args->pmf_mode = PMF_MODE;
+    if (mmconfig_read_string("wlan.ap_pmf_mode", strval, sizeof(strval)) > 0)
+    {
+        if (strncmp("disabled", strval, sizeof(strval)) == 0)
+        {
+            MMLOG_APP("PMF disabled\n");
+            ap_args->pmf_mode = MMWLAN_PMF_DISABLED;
+        }
+        else if (strncmp("required", strval, sizeof(strval)) == 0)
+        {
+            ap_args->pmf_mode = MMWLAN_PMF_REQUIRED;
+        }
+        else
+        {
+            MMLOG_APP("Invalid value of %s read from config store: %s\n",
+                      "wlan.ap_pmf_mode",
+                      strval);
+        }
+    }
+
+    /* Load BSSID */
+    if (mmconfig_read_string("wlan.ap_bssid", strval, sizeof(strval)) > 0)
+    {
+        int temp[6];
+        int i;
+
+        int ret = sscanf(strval,
+                         "%x:%x:%x:%x:%x:%x",
+                         &temp[0],
+                         &temp[1],
+                         &temp[2],
+                         &temp[3],
+                         &temp[4],
+                         &temp[5]);
+        if (ret == 6)
+        {
+            for (i = 0; i < 6; i++)
+            {
+                if (temp[i] > UINT8_MAX || temp[i] < 0)
+                {
+                    /* Invalid value, ignore and reset to default */
+                    memset(ap_args->bssid, 0, sizeof(ap_args->bssid));
+                    break;
+                }
+
+                ap_args->bssid[i] = (uint8_t)temp[i];
+            }
+        }
+    }
+
+    ap_args->op_class = OP_CLASS;
+    if (mmconfig_read_uint32("wlan.ap_op_class", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT8_MAX)
+        {
+            ap_args->op_class = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_op_class");
+        }
+    }
+
+    ap_args->s1g_chan_num = S1G_CHANNEL;
+    if (mmconfig_read_uint32("wlan.ap_s1g_chan_num", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT8_MAX)
+        {
+            ap_args->s1g_chan_num = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_s1g_chan_num");
+        }
+    }
+
+    ap_args->pri_bw_mhz = PRIMARY_BW_MHZ;
+    if (mmconfig_read_uint32("wlan.ap_pri_bw_mhz", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT8_MAX)
+        {
+            ap_args->pri_bw_mhz = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_pri_bw_mhz");
+        }
+    }
+
+    ap_args->pri_1mhz_chan_idx = PRIMARY_1MHZ_CHANNEL_INDEX;
+    if (mmconfig_read_uint32("wlan.ap_pri_1mhz_chan_idx", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT8_MAX)
+        {
+            ap_args->pri_1mhz_chan_idx = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_pri_1mhz_chan_idx");
+        }
+    }
+
+    /* Load DTIM period */
+    if (mmconfig_read_uint32("wlan.ap_dtim_period", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT16_MAX)
+        {
+            ap_args->dtim_period = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_dtim_period");
+        }
+    }
+
+    /* Load Beacon Interval */
+    if (mmconfig_read_uint32("wlan.ap_beacon_interval_tus", &uint32val) == MMCONFIG_OK)
+    {
+        if (uint32val <= UINT16_MAX)
+        {
+            ap_args->beacon_interval_tus = uint32val;
+        }
+        else
+        {
+            MMLOG_APP("%s out of range\n", "wlan.ap_beacon_interval_tus");
+        }
+    }
+}
+
+/**
+ * Loads various WLAN AP specific settings from config store and applies them.
+ */
+static void load_mmwlan_settings_ap(void)
+{
+    int intval;
+    uint32_t uintval;
+    bool boolval;
+
+    /* Apply subbands enabled if specified */
+    if (mmconfig_read_bool("wlan.subbands_enabled", &boolval) == MMCONFIG_OK)
+    {
+        mmwlan_set_subbands_enabled(boolval);
+    }
+
+    /* Apply sgi enabled if specified */
+    if (mmconfig_read_bool("wlan.sgi_enabled", &boolval) == MMCONFIG_OK)
+    {
+        mmwlan_set_sgi_enabled(boolval);
+    }
+
+    /* Apply ampdu enabled if specified */
+    if (mmconfig_read_bool("wlan.ampdu_enabled", &boolval) == MMCONFIG_OK)
+    {
+        mmwlan_set_ampdu_enabled(boolval);
+    }
+
+    /* Apply fragment threshold if specified */
+    if (mmconfig_read_int("wlan.fragment_threshold", &intval) == MMCONFIG_OK)
+    {
+        mmwlan_set_fragment_threshold(intval);
+    }
+
+    /* Apply rts threshold if specified */
+    if (mmconfig_read_int("wlan.rts_threshold", &intval) == MMCONFIG_OK)
+    {
+        mmwlan_set_rts_threshold(intval);
+    }
+
+    /* Apply Health check intervals if specified */
+    if (mmconfig_read_uint32("wlan.max_health_check_intvl_ms", &uintval) == MMCONFIG_OK)
+    {
+        /* If not specified, the minimum is 0 */
+        uint32_t health_check_min = 0;
+        mmconfig_read_uint32("wlan.min_health_check_intvl_ms", &health_check_min);
+        mmwlan_set_health_check_interval(health_check_min, uintval);
+    }
+    else if (mmconfig_read_uint32("wlan.min_health_check_intvl_ms", &uintval) == MMCONFIG_OK)
+    {
+        /* If only minimum is specified, then treat the maximum as unbounded */
+        mmwlan_set_health_check_interval(uintval, UINT32_MAX);
+    }
+}
+
+/**
+ * Link status callback
+ *
+ * @param link_status   Current link status
+ */
+static void link_status_callback(const struct mmipal_link_status *link_status)
+{
+    uint32_t time_ms = mmosal_get_time_ms();
+    if (link_status->link_state == MMIPAL_LINK_UP)
+    {
+        MMLOG_PRINTF("Link is up. Time: %lu ms", time_ms);
+        MMLOG_PRINTF(", IP: %s", link_status->ip_addr);
+        MMLOG_PRINTF(", Netmask: %s", link_status->netmask);
+        MMLOG_PRINTF(", Gateway: %s\n", link_status->gateway);
+    }
+    else
+    {
+        MMLOG_PRINTF("Link is down. Time: %lu ms\n", time_ms);
+    }
+}
+
+/**
+ * Main entry point to the application. This will be invoked in a thread once operating system
+ * and hardware initialization has completed. It may return, but it does not have to.
+ */
+void app_init(void)
+{
+    MMLOG_PRINTF("\n\nAP Mode Example (Built " __DATE__ " " __TIME__ ")\n\n");
+    mmwlan_init();
+    mmwlan_set_channel_list(load_channel_list());
+    mmwlan_boot(NULL);
+
+    app_print_version_info();
+
+    /* Load IP stack settings from config store, or use defaults if no entry found in
+     * config store. */
+    struct mmipal_init_args mmipal_init_args = MMIPAL_INIT_ARGS_DEFAULT;
+    mmipal_init_args.mode = MMIPAL_STATIC;
+    mmipal_init_args.ip6_mode = MMIPAL_IP6_DISABLED;
+    load_ap_mmipal_init_args(&mmipal_init_args);
+
+    /* Initialize IP stack. */
+    if (mmipal_init(&mmipal_init_args) != MMIPAL_SUCCESS)
+    {
+        MMLOG_APP("Error initializing network interface.\n");
+        MMOSAL_ASSERT(false);
+    }
+
+    mmipal_set_link_status_callback(link_status_callback);
+
+    mmwlan_set_power_save_mode(MMWLAN_PS_DISABLED);
+    load_mmwlan_settings_ap();
+
+    struct mmwlan_ap_args ap_args = MMWLAN_AP_ARGS_INIT;
+    load_mmwlan_ap_args(&ap_args);
+
+    ap_args.sta_status_cb = handle_ap_sta_status;
+    ap_args.sta_status_cb_arg = &opaque_argument_value;
+
+    ap_args.max_stas = MAX_STAS;
+
+    MMLOG_APP("Starting AP mode...\n");
+    enum mmwlan_status status = mmwlan_ap_enable(&ap_args);
+    if (status == MMWLAN_SUCCESS)
+    {
+        MMLOG_APP("AP started successfully\n");
+    }
+    else
+    {
+        MMLOG_APP("Failed to start AP (status %d)\n", status);
+        mmhal_set_error_led(true);
+        return;
+    }
+
+    if (!start_press_listener())
+    {
+        MMLOG_APP("Failed to listen on UDP port %d\n", DEMO_UDP_PORT);
+        mmhal_set_error_led(true);
+        return;
+    }
+    MMLOG_APP("Waiting for button presses on UDP port %d\n", DEMO_UDP_PORT);
+
+    while (true)
+    {
+        mmosal_task_sleep(LED_POLL_INTERVAL_MS);
+        if (led_is_on && mmosal_time_has_passed(led_off_time_ms))
+        {
+            led_is_on = false;
+            mmhal_set_led(LED_GREEN, LED_OFF);
+        }
+    }
+}

@@ -46,3 +46,7 @@ starter-projects/**/.gitignore
 lib/**/.gitignore
 
 **/Middlewares
+
+# demo builds with make, not cmake
+!demo/Makefile
+!demo_f4/Makefile
