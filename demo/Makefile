@@ -59,7 +59,7 @@ endif
 APP_DIR = $(CURDIR)
 PLATFORM_DIR = $(APP_DIR)/platform
 SRCS_CPP = $(wildcard $(APP_DIR)/src/$(APP)/*.cpp)
-# Wi-Fi bring-up helpers and mbedtls config, used unmodified from the SDK ping example
+# Unmodified from the SDK's ping example
 COMMON_DIR = $(MMIOT_ROOT)/../examples/ping/src
 COMMON_SRCS_C = $(COMMON_DIR)/mm_app_common.c $(COMMON_DIR)/mm_app_loadconfig.c
 INCLUDES += $(COMMON_DIR)
@@ -68,7 +68,7 @@ CFLAGS += -Werror -Wall -Wextra
 CONLYFLAGS += -Wc++-compat
 CONLYFLAGS += -std=gnu11
 CXXFLAGS += -std=gnu++20 -fno-exceptions -fno-rtti
-# The SDK's MMOSAL_ASSERT macro partially initializes a struct, which only C++ warns about
+# SDK macros partially initialize structs
 CXXFLAGS += -Wno-missing-field-initializers
 
 BUILD_DEFINES += EXCLUDE_MMCONFIG=$(EXCLUDE_MMCONFIG)

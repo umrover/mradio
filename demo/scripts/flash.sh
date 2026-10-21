@@ -8,7 +8,7 @@ BLUE="\e[1;34m"
 YELLOW="\e[1;33m"
 NC="\e[0m"
 
-# -s keeps demo_f4/scripts/flash.sh, a symlink to this file, building demo_f4
+# -s so the demo_f4 symlink builds demo_f4
 DEMO_ROOT="$(dirname "$(dirname "$(realpath -s "$0")")")"
 SCRIPT_NAME=$(basename "$0")
 

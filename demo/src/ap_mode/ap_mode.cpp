@@ -5,10 +5,7 @@
  * directory of the Morse Micro IoT SDK software package.
  */
 
-/*
- * HaLow AP, trimmed from the SDK ap_mode example: blinks the green LED for each press datagram a
- * station sends to DEMO_UDP_PORT.
- */
+/* Trimmed from the SDK's ap_mode example */
 
 #include <atomic>
 #include <cstdint>

@@ -1,8 +1,4 @@
-#
-# NUCLEO-H755ZI-Q (CM7 only) + Seeed XIAO HaLow board, built on the SDK's mm-ekh08-h753 platform.
-# The H753 HAL is reused because the H755's CM7 sees the same peripherals. Unmodified SDK platform
-# files are compiled in place; platform/ holds only the ones changed for this board.
-#
+# NUCLEO-H755ZI-Q (CM7) on the SDK's mm-ekh08-h753 platform; platform/ holds only changed files
 
 CORE = arm-cortex-m7f
 

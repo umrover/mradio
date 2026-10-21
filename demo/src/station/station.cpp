@@ -1,7 +1,4 @@
-/*
- * HaLow station: each press of the Nucleo user button sends one UDP datagram to the AP, which
- * blinks its LED on receipt. Joins the SSID and passphrase set in the Makefile.
- */
+/* Sends one UDP datagram to the AP per button press */
 
 #include <cstdint>
 #include <cstdio>
@@ -97,7 +94,7 @@ extern "C" void app_init(void)
     printf("\n\nmradio station demo (built " __DATE__ " " __TIME__ ")\n\n");
 
     app_wlan_init();
-    /* WAKE is pulled high and BUSY is unconnected on the XIAO HaLow board, so power save cannot work */
+    /* XIAO HaLow board has no usable WAKE/BUSY lines */
     mmwlan_set_power_save_mode(MMWLAN_PS_DISABLED);
     app_wlan_start();
 

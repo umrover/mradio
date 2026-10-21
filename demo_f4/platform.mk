@@ -19,7 +19,7 @@ SRCS_S += $(DEVICE_DIR)/Source/Templates/gcc/startup_stm32f439xx.s
 SRCS_C += $(wildcard $(PLATFORM_DIR)/*.c)
 SRCS_H += $(wildcard $(PLATFORM_DIR)/*.h)
 
-# Board-independent shims are compiled unmodified from the SDK's H753 platform
+# Board-independent shims, unmodified from the SDK
 SDK_SHIM_DIR = src/platforms/mm-ekh08-h753/mm_shims
 MMIOT_SRCS_C += $(addprefix $(SDK_SHIM_DIR)/,mm_logging.c mmhal_littlefs.c mmhal_wlan_binaries.c \
 	mmosal_shim_alloc.c mmosal_shim_fileio.c mmosal_shim_freertos.c mmosal_shim_libc_stubs.c)
