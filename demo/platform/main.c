@@ -74,7 +74,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  /* The SDK's SystemInit points VTOR past its bootloader, but this image starts at the base of flash */
+  SCB->VTOR = FLASH_BANK1_BASE;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/

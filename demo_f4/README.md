@@ -1,6 +1,6 @@
 # demo_f4
 
-Temporary port of `demo/` to a NUCLEO-F439ZI while the H755 boards are in use. The apps are the same: `src` is a symlink to `../demo/src`, and the Morse SDK comes from `../demo/mm-iot-sdk`.
+Port of `demo/` to a NUCLEO-F439ZI for demos. `src`, the Makefile, and `scripts/flash.sh` are shared with `demo/`; only `platform/` and `platform.mk` are F4-specific. The Morse SDK comes from `../demo/mm-iot-sdk`.
 
 ## Wiring
 

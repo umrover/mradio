@@ -18,14 +18,18 @@ SRCS_S += $(DEVICE_DIR)/Source/Templates/gcc/startup_stm32f439xx.s
 
 SRCS_C += $(wildcard $(PLATFORM_DIR)/*.c)
 SRCS_H += $(wildcard $(PLATFORM_DIR)/*.h)
-SRCS_C += $(wildcard $(PLATFORM_DIR)/mm_shims/*.c)
-SRCS_H += $(wildcard $(PLATFORM_DIR)/mm_shims/*.h)
+
+# Board-independent shims are compiled unmodified from the SDK's H753 platform
+SDK_SHIM_DIR = src/platforms/mm-ekh08-h753/mm_shims
+MMIOT_SRCS_C += $(addprefix $(SDK_SHIM_DIR)/,mm_logging.c mmhal_littlefs.c mmhal_wlan_binaries.c \
+	mmosal_shim_alloc.c mmosal_shim_fileio.c mmosal_shim_freertos.c mmosal_shim_libc_stubs.c)
+CFLAGS-$(SDK_SHIM_DIR) += -Wno-unused-parameter
 
 INCLUDES += $(PLATFORM_DIR)
-INCLUDES += $(PLATFORM_DIR)/mm_shims
 INCLUDES += $(LL_DIR)/Inc
 INCLUDES += $(DEVICE_DIR)/Include
 MMIOT_INCLUDES += src/bsps/stm32cubeh7/Drivers/CMSIS/Include
+MMIOT_INCLUDES += $(SDK_SHIM_DIR)
 
 BUILD_DEFINES += STM32F439xx
 BUILD_DEFINES += USE_FULL_LL_DRIVER

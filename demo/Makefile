@@ -1,13 +1,13 @@
 #
-# HaLow ping demo for two NUCLEO-H755ZI-Q boards, adapted from the MM-IoT-SDK example Makefiles.
+# HaLow button demo for NUCLEO-H755ZI-Q boards, adapted from the MM-IoT-SDK example Makefiles.
 #
 #   make APP=ap_mode    board 1, HaLow access point at 192.168.1.1
-#   make APP=button     board 2, station at 192.168.1.2; its user button blinks board 1's LED
+#   make APP=station    board 2, station at 192.168.1.2; its user button blinks board 1's LED
 #
 
-APP ?= button
-ifeq ($(filter $(APP),ap_mode button),)
-$(error APP must be ap_mode or button, got '$(APP)')
+APP ?= station
+ifeq ($(filter $(APP),ap_mode station),)
+$(error APP must be ap_mode or station, got '$(APP)')
 endif
 APP_NAME = $(APP)
 
@@ -58,13 +58,18 @@ endif
 
 APP_DIR = $(CURDIR)
 PLATFORM_DIR = $(APP_DIR)/platform
-SRCS_C = $(wildcard $(APP_DIR)/src/common/*.c) $(wildcard $(APP_DIR)/src/$(APP)/*.c)
-SRCS_H = $(wildcard $(APP_DIR)/src/common/*.h)
-INCLUDES += $(APP_DIR)/src/common
+SRCS_CPP = $(wildcard $(APP_DIR)/src/$(APP)/*.cpp)
+# Wi-Fi bring-up helpers and mbedtls config, used unmodified from the SDK ping example
+COMMON_DIR = $(MMIOT_ROOT)/../examples/ping/src
+COMMON_SRCS_C = $(COMMON_DIR)/mm_app_common.c $(COMMON_DIR)/mm_app_loadconfig.c
+INCLUDES += $(COMMON_DIR)
 
 CFLAGS += -Werror -Wall -Wextra
 CONLYFLAGS += -Wc++-compat
 CONLYFLAGS += -std=gnu11
+CXXFLAGS += -std=gnu++20 -fno-exceptions -fno-rtti
+# The SDK's MMOSAL_ASSERT macro partially initializes a struct, which only C++ warns about
+CXXFLAGS += -Wno-missing-field-initializers
 
 BUILD_DEFINES += EXCLUDE_MMCONFIG=$(EXCLUDE_MMCONFIG)
 
@@ -110,6 +115,8 @@ $(eval $(call check_for_files,$(SRCS_H)))
 
 OBJS += $(patsubst $(APP_DIR)/%.s,$(BUILD_DIR)/%.o,$(SRCS_S))
 OBJS += $(patsubst $(APP_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS_C))
+OBJS += $(patsubst $(APP_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS_CPP))
+OBJS += $(patsubst $(COMMON_DIR)/%.c,$(BUILD_DIR)/common/%.o,$(COMMON_SRCS_C))
 OBJS += $(patsubst %.c,$(BUILD_DIR)/%.o,$(MMIOT_SRCS_C))
 OBJS += $(patsubst %.S,$(BUILD_DIR)/%.o,$(patsubst %.s,$(BUILD_DIR)/%.o,$(MMIOT_SRCS_S)))
 
@@ -153,11 +160,14 @@ flash: $(ELF_FILE)
 
 # For clangd. Both apps' sources get this app's flags; source dirs are prerequisites so adding a file regenerates it
 comma := ,
-CLANGD_SRCS_C = $(sort $(SRCS_C) $(wildcard $(APP_DIR)/src/*/*.c))
+CLANGD_SRCS_C = $(sort $(SRCS_C) $(COMMON_SRCS_C))
+CLANGD_SRCS_CPP = $(wildcard $(APP_DIR)/src/*/*.cpp)
 clangd_entry = {"directory": "$(APP_DIR)", "file": "$(1)", "command": "$(subst ",\",$(CC) -c $(CFLAGS) $(CONLYFLAGS) $(2) $(1))"}
-$(APP_DIR)/compile_commands.json: $(APP_DIR)/Makefile $(APP_DIR)/platform.mk $(sort $(dir $(CLANGD_SRCS_C)))
+clangd_cpp_entry = {"directory": "$(APP_DIR)", "file": "$(1)", "command": "$(subst ",\",$(CXX) -c $(CFLAGS) $(CXXFLAGS) $(APP_CFLAGS) $(1))"}
+$(APP_DIR)/compile_commands.json: $(APP_DIR)/Makefile $(APP_DIR)/platform.mk $(sort $(dir $(CLANGD_SRCS_CPP)))
 	@echo "$(MSGPFX)Generating $@"
 	$(file >$@,[$(subst } {,}$(comma) {,$(strip \
+		$(foreach src,$(CLANGD_SRCS_CPP),$(call clangd_cpp_entry,$(src))) \
 		$(foreach src,$(CLANGD_SRCS_C),$(call clangd_entry,$(src),$(APP_CFLAGS))) \
 		$(foreach src,$(MMIOT_SRCS_C),$(call clangd_entry,$(MMIOT_ROOT)/$(src),$(call file_cflags,$(src))))))])
 
@@ -189,6 +199,16 @@ $(BUILD_DIR)/%.o: $(APP_DIR)/%.c $(SRCS_H)
 	@mkdir -p $(dir $@)
 	$(QUIET)$(CC) -o $@ -c $(CFLAGS) $(CONLYFLAGS) $(APP_CFLAGS) $<
 
+$(BUILD_DIR)/%.o: $(APP_DIR)/%.cpp $(SRCS_H)
+	@echo "$(MSGPFX)Compiling $<"
+	@mkdir -p $(dir $@)
+	$(QUIET)$(CXX) -o $@ -c $(CFLAGS) $(CXXFLAGS) $(APP_CFLAGS) $<
+
+$(BUILD_DIR)/common/%.o: $(COMMON_DIR)/%.c $(SRCS_H)
+	@echo "$(MSGPFX)Compiling $<"
+	@mkdir -p $(dir $@)
+	$(QUIET)$(CC) -o $@ -c $(CFLAGS) $(CONLYFLAGS) $(APP_CFLAGS) $<
+
 $(ELF_FILE): $(OBJS) $(LIBS) $(LD_FILES) $(FILEHASHES_LIST)
 	@echo "$(MSGPFX)Linking $@"
 	$(QUIET)$(LINKER) -o $@ $(OBJS) $(CFLAGS) $(LINKFLAGS) $(LIBS)
@@ -198,7 +218,7 @@ $(BIN_FILE): $(ELF_FILE)
 	$(QUIET)$(OBJCOPY) -Obinary $< $@
 
 ifeq ($(DISABLE_FILEID_GENERATION),)
-$(FILEHASHES_LIST): $(SRCS_C) $(addprefix $(MMIOT_ROOT)/,$(MMIOT_SRCS_C))
+$(FILEHASHES_LIST): $(SRCS_C) $(SRCS_CPP) $(COMMON_SRCS_C) $(addprefix $(MMIOT_ROOT)/,$(MMIOT_SRCS_C))
 	@mkdir -p $(dir $@)
 	@bash -c 'echo -e $(foreach src,$^,$(call uint32_hash,$(src)) $(src)\\n)' > $@
 endif

@@ -8,7 +8,8 @@ BLUE="\e[1;34m"
 YELLOW="\e[1;33m"
 NC="\e[0m"
 
-DEMO_ROOT="$(dirname "$(dirname "$(realpath "$0")")")"
+# -s keeps demo_f4/scripts/flash.sh, a symlink to this file, building demo_f4
+DEMO_ROOT="$(dirname "$(dirname "$(realpath -s "$0")")")"
 SCRIPT_NAME=$(basename "$0")
 
 usage() {
@@ -46,9 +47,8 @@ check_deps() {
 }
 
 check_submodule() {
-    if [ ! -d "$DEMO_ROOT/mm-iot-sdk/framework" ]; then
-        printf "%b\n" "${RED}✗ error: Morse SDK not found at $DEMO_ROOT/mm-iot-sdk${NC}"
-        printf "%b\n" "${RED}  run: git submodule update --init demo/mm-iot-sdk${NC}"
+    if [ -n "$(git -C "$DEMO_ROOT/.." submodule status | grep '^-')" ]; then
+        printf "%b\n" "${RED}✗ error: submodules missing, run: git submodule update --init${NC}"
         exit 1
     fi
 }
@@ -57,7 +57,7 @@ check_submodule() {
 
 case "$1" in
     a|A) APP="ap_mode"; BOARD="A (access point)" ;;
-    b|B) APP="button"; BOARD="B (station)" ;;
+    b|B) APP="station"; BOARD="B (station)" ;;
     -h|--help) usage ;;
     *) printf "%b\n" "${RED}✗ unknown board: $1${NC}"; usage ;;
 esac

@@ -4,7 +4,7 @@ HaLow link between two NUCLEO-H755ZI-Q boards, each with a Seeed Wi-Fi HaLow boa
 Built from the MM-IoT-SDK 2.13.1 `ap_mode` and `ping` examples and its Nucleo-H753 platform. Only the CM7 core is used.
 
 - Board A runs `ap_mode`. It is the HaLow access point at `192.168.1.1` and blinks its green LED (LD1) for every message it receives on UDP port 5000.
-- Board B runs `button`. It joins board A as a station at `192.168.1.2` and sends one UDP message per press of its blue user button (B1), blinking its own green LED when the send succeeds.
+- Board B runs `station`. It joins board A as a station at `192.168.1.2` and sends one UDP message per press of its blue user button (B1), blinking its own green LED when the send succeeds.
 - SSID `mradio`, SAE passphrase `mradiodemo`, country `US`. All of it is compiled in, so there is no config store to program.
 
 ## Wiring
@@ -43,7 +43,7 @@ With both boards plugged in at once, add the ST-LINK serial of the one to flash,
 ./demo/scripts/flash.sh a <board A serial>
 ```
 
-- The script builds with `make APP=ap_mode` or `make APP=button` and then runs `make flash`. Those work directly from `demo/` too.
+- The script builds with `make APP=ap_mode` or `make APP=station` and then runs `make flash`. Those work directly from `demo/` too.
 - Flashing erases the whole chip, including the CM4 bank.
 - The build uses the STM32CubeCLT gcc unless Morse's toolchain is in `/opt/morse`.
 
@@ -55,10 +55,16 @@ The red LED on either board means startup failed; the console says why.
 
 ## Changes from the Morse H753 platform
 
-- `platform/Core/Src/main.c`
+Unmodified SDK files are compiled in place from `mm-iot-sdk`. Only the files changed for this board live in `platform/`.
+
+- `main.c`
   - Direct SMPS supply instead of LDO. The H755 Nucleo is wired for SMPS, and the wrong setting locks the board.
   - VOS1 at 400 MHz, since VOS0 needs the LDO.
   - SPI at 10 MHz instead of 40 MHz, because the boards are on jumper wires.
   - PC2 and PC3 analog switches are closed so SPI_INT reaches the digital input.
-- `platform/flash.ld` puts the image at `0x08000000` across the full 1 MB CM7 bank. The unused config store sits in the last CM4 sector and is only read.
-- `platform/mm_shims/mmhal_wlan.c` reports BUSY as always asserted, and `src/common/mm_app_loadconfig.c` turns power save off.
+  - VTOR is reset to the base of flash, because the SDK's `SystemInit` expects a bootloader in front of the image.
+- `flash.ld` puts the image at `0x08000000` across the full 1 MB CM7 bank. The config store sits in the last CM4 sector.
+- `mmhal_os.c` reports the 400 MHz clock.
+- `mmhal_app.c` reads the blue button.
+- `mmhal_wlan.c` reports BUSY as always asserted, and `station.cpp` turns power save off.
+- `mmhal_flash.c` fixes the SDK's last partial flash write, which passed the data instead of a pointer to it and hard-faulted on first boot.
