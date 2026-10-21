@@ -1,18 +1,11 @@
 # demo
 
-HaLow link between two NUCLEO-H755ZI-Q boards, each with a Seeed Wi-Fi HaLow board for XIAO (FGH100M-H).
-Built from the MM-IoT-SDK 2.13.1 `ap_mode` and `ping` examples and its Nucleo-H753 platform. Only the CM7 core is used.
-
-- Board A runs `ap_mode`. It is the HaLow access point at `192.168.1.1` and blinks its green LED (LD1) for every message it receives on UDP port 5000.
-- Board B runs `station`. It joins board A as a station at `192.168.1.2` and sends one UDP message per press of its blue user button (B1), blinking its own green LED when the send succeeds.
-- SSID `mradio`, SAE passphrase `mradiodemo`, country `US`. All of it is compiled in, so there is no config store to program.
-
 ## Wiring
 
 Same on both boards. The XIAO pin numbers are the castellated header (CN2) on the HaLow board.
 
 | HaLow board (XIAO pin) | Signal  | Nucleo pin | Nucleo header |
-|------------------------|---------|------------|---------------|
+| ---------------------- | ------- | ---------- | ------------- |
 | 1 (D0)                 | RESET_N | PA3        | A0            |
 | 3 (D2)                 | SPI_INT | PC2        | A4            |
 | 4 (D3)                 | SPI_CS  | PD14       | D10           |
@@ -26,32 +19,6 @@ Same on both boards. The XIAO pin numbers are the castellated header (CN2) on th
 - Leave D1 (WAKE) and D4 (BUSY) unconnected. Seeed does not populate those resistors, so the firmware treats the chip as always awake.
 - 5V is required. It powers the module's RF front end.
 - Connect the antenna before powering up. Do not transmit into an open U.FL.
-
-## Build and flash
-
-Plug the board into USB. The Nucleo's USB port is its ST-LINK, so the same cable does flashing and serial.
-
-```sh
-git submodule update --init demo/mm-iot-sdk
-./demo/scripts/flash.sh a    # board A, access point
-./demo/scripts/flash.sh b    # board B, station with the button
-```
-
-With both boards plugged in at once, add the ST-LINK serial of the one to flash, from `STM32_Programmer_CLI --list`:
-
-```sh
-./demo/scripts/flash.sh a <board A serial>
-```
-
-- The script builds with `make APP=ap_mode` or `make APP=station` and then runs `make flash`. Those work directly from `demo/` too.
-- Flashing erases the whole chip, including the CM4 bank.
-- The build uses the STM32CubeCLT gcc unless Morse's toolchain is in `/opt/morse`.
-
-## Check it works
-
-Open both ST-LINK serial ports at 115200 baud, for example `picocom -b 115200 /dev/ttyACM0`. Reset board A first, then board B. Board B prints `Ready` once it has joined. Each press of its blue button then prints `Sent press N` on board B, `Received 'press N'` on board A, and blinks board A's green LED.
-
-The red LED on either board means startup failed; the console says why.
 
 ## Changes from the Morse H753 platform
 
