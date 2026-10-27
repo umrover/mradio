@@ -51,6 +51,7 @@ set(STM32_Drivers_Src
 
 # Drivers Midllewares
 
+
 # Link directories setup
 set(MX_LINK_DIRS
 
