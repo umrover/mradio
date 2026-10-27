@@ -40,6 +40,7 @@ MEMORY
 FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 1024K
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
 ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
+RAM_D2 (xrw)      : ORIGIN = 0x30000000, LENGTH = 288K
 }
 /* Highest address of the user mode stack */
 _estack = 0x20020000;    /* end of RAM */
@@ -217,6 +218,18 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM
+
+
+  /* D2RAM stuff */
+  .lwip_sec (NOLOAD) :
+  {
+  . = ABSOLUTE(0x30040000);
+  *(.RxDecripSection)
+  . = ABSOLUTE(0x30040060);
+  *(.TxDecripSection)
+  . = ABSOLUTE(0x30040200);
+  *(.Rx_PoolSection)
+  } >RAM_D2
 
   
 

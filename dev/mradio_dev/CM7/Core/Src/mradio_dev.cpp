@@ -5,8 +5,7 @@
 namespace mrover {
     void event_loop() {
         while (true) {
-            HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-            HAL_Delay(500);
+            
         }
     }
 
