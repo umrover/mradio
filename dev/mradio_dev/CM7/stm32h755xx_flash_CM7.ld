@@ -226,9 +226,9 @@ SECTIONS
   {
     . = ABSOLUTE(0x30040000);
     *(.RxDescripSection)
-    . = ABSOLUTE(0x30040060);
+    . = ABSOLUTE(0x30040120);
     *(.TxDescripSection)
-    . = ABSOLUTE(0x30040200);
+    . = ABSOLUTE(0x30040180);
     *(.Rx_PoolSection)
   } >RAM_D2
 
