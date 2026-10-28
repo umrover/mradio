@@ -33,6 +33,7 @@ extern "C" {
 #include "stm32h7xx_ll_rtc.h"
 #include "stm32h7xx_ll_rcc.h"
 #include "stm32h7xx_ll_spi.h"
+#include "stm32h7xx_ll_usart.h"
 #include "stm32h7xx_ll_system.h"
 #include "stm32h7xx_ll_gpio.h"
 #include "stm32h7xx_ll_exti.h"
@@ -80,6 +81,8 @@ void Error_Handler(void);
 #define RESET_N_GPIO_Port GPIOA
 #define SPI_CS_Pin LL_GPIO_PIN_14
 #define SPI_CS_GPIO_Port GPIOD
+#define SPI_MOSI_Pin LL_GPIO_PIN_5
+#define SPI_MOSI_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
