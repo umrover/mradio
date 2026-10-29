@@ -61,7 +61,7 @@ RNG_HandleTypeDef hrng;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
@@ -124,7 +124,9 @@ int main(void)
   /* USER CODE END Init */
 
   /* USER CODE BEGIN SysInit */
-
+  // apparently you need to manually connect these? cubemx doesn't handle?
+  HAL_SYSCFG_AnalogSwitchConfig(SYSCFG_SWITCH_PC2, SYSCFG_SWITCH_PC2_CLOSE);
+  HAL_SYSCFG_AnalogSwitchConfig(SYSCFG_SWITCH_PC3, SYSCFG_SWITCH_PC3_CLOSE);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -362,6 +364,8 @@ static void MX_SPI1_Init(void)
   NVIC_EnableIRQ(SPI1_IRQn);
 
   /* USER CODE BEGIN SPI1_Init 1 */
+  LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
+  LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 
   /* USER CODE END SPI1_Init 1 */
   /* SPI1 parameter configuration*/
@@ -583,11 +587,8 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+  PostInit();
+  osThreadExit();
   /* USER CODE END 5 */
 }
 

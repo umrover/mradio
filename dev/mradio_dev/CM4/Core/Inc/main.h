@@ -60,6 +60,21 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+#define SPI_PERIPH              (SPI1)
+#define SPI_DMA_PERIPH          (DMA1)
+#define SPI_RX_DMA_STREAM       (LL_DMA_STREAM_1)
+#define SPI_TX_DMA_STREAM       (LL_DMA_STREAM_0)
+
+#define SPI_IRQn                (EXTI2_IRQn)
+#define SPI_IRQ_LINE            (LL_EXTI_LINE_2)
+#define SPI_IRQ_HANDLER         EXTI2_IRQHandler
+#define BUSY_IRQn               (EXTI3_IRQn)
+#define BUSY_IRQ_LINE           (LL_EXTI_LINE_3)
+#define BUSY_IRQ_HANDLER        EXTI3_IRQHandler
+
+#define LOG_USART               (USART3)
+#define LOG_USART_IRQ           (USART3_IRQn)
+#define LOG_USART_IRQ_HANDLER   USART3_IRQHandler
 
 /* USER CODE END EM */
 
@@ -67,6 +82,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void PostInit(void);
 
 /* USER CODE END EFP */
 
