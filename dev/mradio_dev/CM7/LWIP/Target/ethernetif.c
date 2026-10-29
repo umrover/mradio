@@ -419,6 +419,13 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
 
   pbuf_ref(p);
 
+  for(q = p; q != NULL; q = q->next)
+  {
+    uint32_t clean_start = (uint32_t)q->payload & ~(uint32_t)0x1F;
+    uint32_t clean_size = q->len + 32; 
+    SCB_CleanDCache_by_Addr((uint32_t *)clean_start, clean_size);
+  }
+
   do
   {
     if(HAL_ETH_Transmit_IT(&heth, &tx_config) == HAL_OK)
