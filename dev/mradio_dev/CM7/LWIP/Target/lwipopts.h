@@ -51,8 +51,6 @@
 /* Parameters set in STM32CubeMX LwIP Configuration GUI -*/
 /*----- Default value in ETH configuration GUI in CubeMx: 1524 -----*/
 #define ETH_RX_BUFFER_SIZE 1536
-/*----- Default Value for MEMP_MEM_MALLOC: 0 ---*/
-#define MEMP_MEM_MALLOC 1
 /*----- Value in opt.h for MEM_ALIGNMENT: 1 -----*/
 #define MEM_ALIGNMENT 4
 /*----- Default Value for MEM_SIZE: 1600 ---*/
@@ -76,7 +74,7 @@
 /*----- Value in opt.h for LWIP_NETIF_LINK_CALLBACK: 0 -----*/
 #define LWIP_NETIF_LINK_CALLBACK 1
 /*----- Value in opt.h for TCPIP_THREAD_STACKSIZE: 0 -----*/
-#define TCPIP_THREAD_STACKSIZE 1024
+#define TCPIP_THREAD_STACKSIZE 4096
 /*----- Value in opt.h for TCPIP_THREAD_PRIO: 1 -----*/
 #define TCPIP_THREAD_PRIO 24
 /*----- Value in opt.h for TCPIP_MBOX_SIZE: 0 -----*/
@@ -127,7 +125,10 @@
 #define CHECKSUM_CHECK_ICMP6 0
 /*-----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-
+/* Copy response data into lwIP's AXI heap: the ETH DMA cannot read DTCM, and fs_close frees it before the ACK */
+#define HTTP_IS_DATA_VOLATILE(hs) TCP_WRITE_FLAG_COPY
+/* One pbuf per zero-copy header string overflows the 4 TX descriptors, and ethernetif then drops the frame */
+#define HTTP_IS_HDR_VOLATILE(hs, ptr) TCP_WRITE_FLAG_COPY
 /* USER CODE END 1 */
 
 #ifdef __cplusplus
