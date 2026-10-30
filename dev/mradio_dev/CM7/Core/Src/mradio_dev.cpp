@@ -1,16 +1,10 @@
 #include "main.h"
-#include "tcpip.h"
+#include "web.hpp"
 
 namespace mrover {
-void init() {}
+void init() { web::init(); }
 } // namespace mrover
 
 extern "C" {
-void PostInit() { 
-    mrover::init();
-
-    LOCK_TCPIP_CORE();
-    httpd_init();
-    UNLOCK_TCPIP_CORE();
-}
+void PostInit() { mrover::init(); }
 }

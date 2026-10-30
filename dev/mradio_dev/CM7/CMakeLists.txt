@@ -50,12 +50,16 @@ file(GLOB_RECURSE USER_SOURCES CONFIGURE_DEPENDS
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${USER_SOURCES}
+    # cubemx doesnt include for some reason
+    "${CMAKE_CURRENT_SOURCE_DIR}/../newlib_lock_glue.c"
 )
+include("web.cmake")
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Inc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/.."
 )
 
 # Add project symbols (macros)
