@@ -54,12 +54,7 @@
 /* ETH_RX_BUFFER_SIZE parameter is defined in lwipopts.h */
 
 /* USER CODE BEGIN 1 */
-static void clean_cache_pbuf(struct pbuf* p){
-  uint32_t address = (uint32_t)p->payload;
-  uint32_t address_misalign = (address & 0x1F);
-  uint32_t size = (p->len + 31 + address_misalign) & 0xFFFFFFE0;
-  SCB_CleanDCache_by_Addr((void*)(address - address_misalign), size);
-}
+
 /* USER CODE END 1 */
 
 /* Private variables ---------------------------------------------------------*/
@@ -404,8 +399,6 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
 
     Txbuffer[i].buffer = q->payload;
     Txbuffer[i].len = q->len;
-
-    clean_cache_pbuf(q);
 
     if(i>0)
     {
