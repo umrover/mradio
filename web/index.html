@@ -54,9 +54,22 @@
 
     <form data-section="halow">
       <p>
-        center_khz <input name="center_khz" type="number" step="500" required />
+        sub_band
+        <select name="sub_band">
+          <option>low</option>
+          <option>mid</option>
+          <option>high</option>
+        </select>
       </p>
-      <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
+      <p>
+        bw_mhz
+        <select name="bw_mhz">
+          <option>1</option>
+          <option>2</option>
+          <option>4</option>
+          <option>8</option>
+        </select>
+      </p>
       <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
       <p>
         mcs
@@ -138,7 +151,11 @@
           if (!field.name || field.disabled) continue;
           if (field.type === "password" && field.value === "") continue;
           if (field.value === "auto") values[field.name] = null;
-          else if (field.type === "number" || field.name === "mcs")
+          else if (
+            field.type === "number" ||
+            field.name === "mcs" ||
+            field.name === "bw_mhz"
+          )
             values[field.name] = Number(field.value);
           else values[field.name] = field.value;
         }

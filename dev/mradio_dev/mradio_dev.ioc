@@ -445,4 +445,4 @@ VP_SYS_M4_VS_tim7.Signal=SYS_M4_VS_tim7
 VP_SYS_VS_tim6.Mode=TIM6
 VP_SYS_VS_tim6.Signal=SYS_VS_tim6
 board=custom
-rtos.0.ip=FREERTOS_M4
+rtos.0.ip=FREERTOS_M7

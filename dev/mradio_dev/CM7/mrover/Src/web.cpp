@@ -26,6 +26,8 @@
 
 extern "C" {
 extern struct netif gnetif;
+
+// symbols that mark the start and end of binary html in flash
 extern const char _binary_index_html_start[];
 extern const char _binary_index_html_end[];
 }
@@ -33,16 +35,16 @@ extern const char _binary_index_html_end[];
 namespace mrover::web {
 namespace {
 
-constexpr std::size_t MAX_POST_BODY = 1024;
+constexpr std::size_t MAX_POST_BODY_BYTES = 1024;
 constexpr std::string_view POST_RESPONSE_URI = "/api/.post";
 
 using ArduinoJson::JsonDocument;
 using ArduinoJson::JsonObject;
 
 struct PostSlot {
-    void* connection = nullptr;
+    void *connection = nullptr;
     bool reboot = false;
-    std::size_t expected = 0;
+    std::size_t content_length = 0;
     std::string body;
 };
 
@@ -74,12 +76,7 @@ std::string_view reason_phrase(int status) {
     }
 }
 
-config::ApiError api_error(int status, std::string_view code, std::string_view reason) {
-    return config::ApiError{
-        .status = status, .code = std::string{code}, .field = {}, .reason = std::string{reason}};
-}
-
-void write_error(JsonDocument& json, const config::ApiError& error) {
+void write_error(JsonDocument &json, const config::ApiError &error) {
     json["error"] = error.code;
     if (error.field.empty()) {
         json["field"] = nullptr;
@@ -91,17 +88,17 @@ void write_error(JsonDocument& json, const config::ApiError& error) {
 
 // Returns the header and body as one NUL terminated buffer for open_response to hand to httpd
 template <typename BodyWriter>
-std::unique_ptr<char[]> make_response(int status, BodyWriter&& write_body) {
+std::unique_ptr<char[]> make_response(int status, BodyWriter &&write_body) {
     JsonDocument json;
     write_body(json);
     if (json.overflowed()) {
         status = 500;
         json.clear();
-        write_error(json, api_error(500, "internal", "out of memory"));
+        write_error(json, config::make_error(500, "internal", "", "out of memory"));
     }
     const std::size_t body_size = measureJson(json);
 
-    const auto write_header = [&](char* out, std::size_t size) {
+    const auto write_header = [&](char *out, std::size_t size) {
         return std::snprintf(
             out, size,
             "HTTP/1.0 %d %s\r\nContent-Type: application/json\r\nContent-Length: %u\r\n"
@@ -115,8 +112,8 @@ std::unique_ptr<char[]> make_response(int status, BodyWriter&& write_body) {
     return bytes;
 }
 
-std::unique_ptr<char[]> error_response(const config::ApiError& error) {
-    return make_response(error.status, [&error](JsonDocument& json) { write_error(json, error); });
+std::unique_ptr<char[]> error_response(const config::ApiError &error) {
+    return make_response(error.status, [&error](JsonDocument &json) { write_error(json, error); });
 }
 
 std::string_view eth_state() {
@@ -153,19 +150,19 @@ void write_local_link(JsonObject link_json) {
     link_json["txq_drops"] = 0;
 }
 
-void write_status(JsonDocument& json) {
-    const config::Config& current = config::current();
+void write_status(JsonDocument &json) {
+    const config::Config &current = config::current();
     const std::uint64_t uptime_ms = HAL_GetTick();
 
     const JsonObject halow = json["links"]["halow"].to<JsonObject>();
     write_link_state(halow, config::Link::halow, uptime_ms);
-    halow["center_khz"] = current.halow.center_khz;
+    halow["sub_band"] = config::sub_band_name(current.halow.sub_band);
     halow["bw_mhz"] = current.halow.bw_mhz;
     write_heartbeats(halow);
 
     const auto wifi_links = {std::tuple{"wifi_2_4", config::Link::wifi_2_4, current.wifi_2_4},
                              std::tuple{"wifi_5", config::Link::wifi_5, current.wifi_5}};
-    for (const auto& [name, link, settings] : wifi_links) {
+    for (const auto &[name, link, settings] : wifi_links) {
         const JsonObject wifi = json["links"][name].to<JsonObject>();
         write_link_state(wifi, link, uptime_ms);
         wifi["channel"] = settings.channel;
@@ -175,7 +172,7 @@ void write_status(JsonDocument& json) {
 
     const JsonObject local = json["local"].to<JsonObject>();
     local["role"] = config::role_name(config::boot_role());
-    local["ip"] = config::format_ip(lwip_ntohl(ip4_addr_get_u32(netif_ip4_addr(&gnetif)))).data();
+    local["ip"] = config::format_ipv4(lwip_ntohl(ip4_addr_get_u32(netif_ip4_addr(&gnetif)))).data();
     local["uptime_ms"] = uptime_ms;
     local["fw"] = MRADIO_FW_VERSION;
     write_local_link(local["links"]["halow"].to<JsonObject>());
@@ -218,34 +215,34 @@ void capture_reset_reasons() {
     __HAL_RCC_C1_CLEAR_RESET_FLAGS();
 }
 
-void reboot_now(void* /*arg*/) { NVIC_SystemReset(); }
+void reboot_now(void * /*arg*/) { NVIC_SystemReset(); }
 
 std::unique_ptr<char[]> handle_post(bool reboot, std::string_view body) {
     if (reboot) {
         // Long enough for the reboot response to leave the TCP send buffer first
         sys_timeout(500, reboot_now, nullptr);
-        return make_response(200, [](JsonDocument& json) { json["ok"] = true; });
+        return make_response(200, [](JsonDocument &json) { json["ok"] = true; });
     }
     if (const auto error = config::apply_patch(body)) {
         return error_response(*error);
     }
-    return make_response(200, [](JsonDocument& json) {
+    return make_response(200, [](JsonDocument &json) {
         config::write_json(json.to<ArduinoJson::JsonVariant>(), config::current());
     });
 }
 
-void set_response_uri(char* response_uri, u16_t response_uri_len) {
+void set_response_uri(char *response_uri, u16_t response_uri_len) {
     std::snprintf(response_uri, response_uri_len, "%.*s",
                   static_cast<int>(POST_RESPONSE_URI.size()), POST_RESPONSE_URI.data());
 }
 
-err_t reject_post(const config::ApiError& error, char* response_uri, u16_t response_uri_len) {
+err_t reject_post(const config::ApiError &error, char *response_uri, u16_t response_uri_len) {
     pending_post_response = error_response(error);
     set_response_uri(response_uri, response_uri_len);
     return ERR_ARG;
 }
 
-int open_response(fs_file* file, std::unique_ptr<char[]> response) {
+int open_response(fs_file *file, std::unique_ptr<char[]> response) {
     if (!response) {
         return 0;
     }
@@ -271,7 +268,7 @@ void init() {
 
 // lwIP httpd hooks, all called on the tcpip thread
 
-int fs_open_custom(struct fs_file* file, const char* name) {
+int fs_open_custom(struct fs_file *file, const char *name) {
     using namespace mrover::web;
     const std::string_view path{name};
     if (path == "/index.html") {
@@ -283,7 +280,7 @@ int fs_open_custom(struct fs_file* file, const char* name) {
         return 1;
     }
     if (path == "/api/config") {
-        return open_response(file, make_response(200, [](JsonDocument& json) {
+        return open_response(file, make_response(200, [](JsonDocument &json) {
                                  mrover::config::write_json(json.to<ArduinoJson::JsonVariant>(),
                                                             mrover::config::current());
                              }));
@@ -295,44 +292,44 @@ int fs_open_custom(struct fs_file* file, const char* name) {
         return open_response(file, std::move(pending_post_response));
     }
     if (path == "/404.html") {
-        return open_response(file, error_response(api_error(404, "not_found", "no such path")));
+        return open_response(file, error_response(mrover::config::make_error(404, "not_found", "", "no such path")));
     }
     return 0;
 }
 
-void fs_close_custom(struct fs_file* file) {
+void fs_close_custom(struct fs_file *file) {
     if (file->data != mrover::web::index_html().data()) {
-        const std::unique_ptr<char[]> owned{const_cast<char*>(file->data)};
+        const std::unique_ptr<char[]> owned{const_cast<char *>(file->data)};
     }
 }
 
-err_t httpd_post_begin(void* connection, const char* uri, const char* /*http_request*/,
-                       u16_t /*http_request_len*/, int content_len, char* response_uri,
-                       u16_t response_uri_len, u8_t* post_auto_wnd) {
+err_t httpd_post_begin(void *connection, const char *uri, const char * /*http_request*/,
+                       u16_t /*http_request_len*/, int content_len, char *response_uri,
+                       u16_t response_uri_len, u8_t *post_auto_wnd) {
     using namespace mrover::web;
     const std::string_view path{uri};
     const bool reboot = path == "/api/reboot";
     if (!reboot && path != "/api/config") {
-        return reject_post(api_error(404, "not_found", "no such path"), response_uri,
+        return reject_post(mrover::config::make_error(404, "not_found", "", "no such path"), response_uri,
                            response_uri_len);
     }
-    if (content_len < 0 || static_cast<std::size_t>(content_len) > MAX_POST_BODY) {
-        return reject_post(api_error(400, "bad_json", "body larger than 1024 bytes"), response_uri,
+    if (content_len < 0 || static_cast<std::size_t>(content_len) > MAX_POST_BODY_BYTES) {
+        return reject_post(mrover::config::make_error(400, "bad_json", "", "body larger than 1024 bytes"), response_uri,
                            response_uri_len);
     }
     if (post_slots.size() >= 2) {
-        return reject_post(api_error(500, "internal", "too many requests in flight"), response_uri,
+        return reject_post(mrover::config::make_error(500, "internal", "", "too many requests in flight"), response_uri,
                            response_uri_len);
     }
     post_slots.push_back(PostSlot{.connection = connection,
                                   .reboot = reboot,
-                                  .expected = static_cast<std::size_t>(content_len),
+                                  .content_length = static_cast<std::size_t>(content_len),
                                   .body = {}});
     *post_auto_wnd = 1;
     return ERR_OK;
 }
 
-err_t httpd_post_receive_data(void* connection, struct pbuf* p) {
+err_t httpd_post_receive_data(void *connection, struct pbuf *p) {
     if (p == nullptr) {
         return ERR_OK;
     }
@@ -341,7 +338,7 @@ err_t httpd_post_receive_data(void* connection, struct pbuf* p) {
     err_t result = ERR_VAL;
     if (slot != post_slots.end()) {
         const std::size_t received = slot->body.size();
-        const std::size_t count = std::min<std::size_t>(p->tot_len, slot->expected - received);
+        const std::size_t count = std::min<std::size_t>(p->tot_len, slot->content_length - received);
         slot->body.resize(received + count);
         pbuf_copy_partial(p, slot->body.data() + received, static_cast<u16_t>(count), 0);
         result = ERR_OK;
@@ -350,7 +347,7 @@ err_t httpd_post_receive_data(void* connection, struct pbuf* p) {
     return result;
 }
 
-void httpd_post_finished(void* connection, char* response_uri, u16_t response_uri_len) {
+void httpd_post_finished(void *connection, char *response_uri, u16_t response_uri_len) {
     using namespace mrover::web;
     const auto slot = std::ranges::find(post_slots, connection, &PostSlot::connection);
     if (slot == post_slots.end()) {
@@ -359,7 +356,7 @@ void httpd_post_finished(void* connection, char* response_uri, u16_t response_ur
     const PostSlot finished = std::move(*slot);
     post_slots.erase(slot);
     // httpd also calls this when the client disconnects mid body, and then nobody reads a response
-    if (finished.body.size() == finished.expected) {
+    if (finished.body.size() == finished.content_length) {
         pending_post_response = handle_post(finished.reboot, finished.body);
         set_response_uri(response_uri, response_uri_len);
     }

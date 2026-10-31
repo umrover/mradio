@@ -23,7 +23,7 @@ Base URL `http://<radio-ip>/api`
 | :-------------------------------- | :------------ | :----------------------------------------------------------- |
 | `links.<link>.state`              | string        | `down`, `associating`, `up`                                  |
 | `links.<link>.state_s`            | int           | seconds passed since current state                           |
-| `links.halow.center_khz`          | int           |                                                              |
+| `links.halow.sub_band`            | string        | `low`, `mid`, `high`                                         |
 | `links.wifi_<band>.channel`       | int           | channel number, band dependent                               |
 | `links.<link>.bw_mhz`             | int           |                                                              |
 | `links.<link>.rtt_ms`             | float or null | for heartbeats, null if none yet                             |
@@ -55,10 +55,10 @@ Base URL `http://<radio-ip>/api`
 | :---------------------- | :---------- | :-------------------- |
 | `role`                  | string      | `base`, `rover`       |
 | `net.ip`                | string      | IPv4                  |
-| `net.mask`              | string      | IPv4 contiguous       |
+| `net.mask`              | string      | IPv4, /8 to /30       |
 | `link.passphrase_set`   | bool        | read only             |
-| `halow.center_khz`      | int         | multiple of 500       |
-| `halow.bw_mhz`          | int         | 1, 2, 4, or 8         |
+| `halow.sub_band`        | string      | `low`, `mid`, `high`  |
+| `halow.bw_mhz`          | int         | 1, 2, 4, 8            |
 | `halow.tx_power_dbm`    | int         |                       |
 | `halow.mcs`             | int or null | 0 to 7, null for auto |
 | `wifi_2_4.channel`      | int         | 1 to 11               |
@@ -67,6 +67,10 @@ Base URL `http://<radio-ip>/api`
 | `wifi_5.channel`        | int         | US channels           |
 | `wifi_5.bw_mhz`         | int         | 20, 40, 80            |
 | `wifi_5.tx_power_dbm`   | int         |                       |
+
+- `halow.sub_band` is the competition sub-band, `low` 902 to 910, `mid` 911 to 919, `high` 920 to 928 MHz
+- the channel is centered in the sub-band at 906, 915 or 924 MHz
+- narrower widths trade throughput for range and leave more margin inside the sub-band edges
 
 ## ConfigPatch
 
@@ -80,7 +84,7 @@ Any subset* of config, as well as:
 | :------------------------------------------ | :-------------- | :------------- |
 | `role`, `net`                               | this radio only | on next reboot |
 | `link`                                      | both radios     | on next reboot |
-| `halow.center_khz`, `halow.bw_mhz`          | both radios     | immediately    |
+| `halow.sub_band`, `halow.bw_mhz`            | both radios     | immediately    |
 | `wifi_<band>.channel`, `wifi_<band>.bw_mhz` | both radios     | immediately    |
 | `halow.tx_power_dbm`, `halow.mcs`           | this radio only | immediately    |
 | `wifi_<band>.tx_power_dbm`                  | this radio only | immediately    |
@@ -115,8 +119,8 @@ sample:
 ```json
 {
   "error": "out_of_range",
-  "field": "halow.center_khz",
-  "reason": "channel 905000 to 913000 crosses a sub-band boundary"
+  "field": "halow.bw_mhz",
+  "reason": "expected 1, 2, 4 or 8"
 }
 ```
 

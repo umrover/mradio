@@ -1,5 +1,5 @@
 // Host check for the config patch rules:
-// g++ -std=c++23 -Wall -Wextra -Wpedantic -I CM7/Core/Inc CM7/test/config_test.cpp CM7/Core/Src/config.cpp -o /tmp/config_test && /tmp/config_test
+// g++ -std=c++23 -Wall -Wextra -Wpedantic -I CM7/Core/Inc -I CM7/mrover/Inc CM7/test/config_test.cpp CM7/mrover/Src/config.cpp -o /tmp/config_test && /tmp/config_test
 
 #include <cassert>
 #include <cstdio>
@@ -39,7 +39,7 @@ int main() {
     assert(config_json() ==
            R"({"role":"base","net":{"ip":"192.168.1.10","mask":"255.255.255.0"},)"
            R"("link":{"passphrase_set":false},)"
-           R"("halow":{"center_khz":915000,"bw_mhz":1,"tx_power_dbm":20,"mcs":null},)"
+           R"("halow":{"sub_band":"mid","bw_mhz":8,"tx_power_dbm":20,"mcs":null},)"
            R"("wifi_2_4":{"channel":6,"bw_mhz":20,"tx_power_dbm":20},)"
            R"("wifi_5":{"channel":149,"bw_mhz":80,"tx_power_dbm":20}})");
 
@@ -58,29 +58,30 @@ int main() {
                  "halow.tx_power_dbm");
     expect_error(R"({"role":"admin"})", 400, "out_of_range", "role");
     expect_error(R"({"net":{"mask":"255.0.255.0"}})", 400, "out_of_range", "net.mask");
+    expect_error(R"({"net":{"mask":"254.0.0.0"}})", 400, "out_of_range", "net.mask");
+    expect_error(R"({"net":{"mask":"255.255.255.254"}})", 400, "out_of_range", "net.mask");
     expect_error(R"({"net":{"ip":"192.168.1.255"}})", 400, "out_of_range", "net.ip");
     expect_error(R"({"net":{"ip":"192.168.1"}})", 400, "out_of_range", "net.ip");
     expect_error(R"({"link":{"passphrase_set":true}})", 400, "out_of_range", "link.passphrase_set");
     expect_error(R"({"link":{"passphrase":"short"}})", 400, "out_of_range", "link.passphrase");
     expect_error(R"({"link":{"passphrase":"Łukasz12"}})", 400, "out_of_range",
                  "link.passphrase");
-    expect_error(R"({"halow":{"center_khz":915250}})", 400, "out_of_range", "halow.center_khz");
-    expect_error(R"({"halow":{"center_khz":927800,"bw_mhz":8}})", 400, "out_of_range",
-                 "halow.center_khz");
-    expect_error(R"({"halow":{"center_khz":-2147483500}})", 400, "out_of_range", "halow.center_khz");
-    expect_error(R"({"halow":{"center_khz":2147483500,"bw_mhz":8}})", 400, "out_of_range",
-                 "halow.center_khz");
+    expect_error(R"({"halow":{"sub_band":"middle"}})", 400, "out_of_range", "halow.sub_band");
+    expect_error(R"({"halow":{"sub_band":1}})", 400, "bad_type", "halow.sub_band");
+    expect_error(R"({"halow":{"center_khz":915000}})", 400, "unknown_field", "halow.center_khz");
+    expect_error(R"({"halow":{"bw_mhz":3}})", 400, "out_of_range", "halow.bw_mhz");
     expect_error(R"({"wifi":{"channel":1}})", 400, "unknown_field", "wifi");
     expect_error(R"({"wifi_2_4":{"band":"5"}})", 400, "unknown_field", "wifi_2_4.band");
     expect_error(R"({"wifi_2_4":{"channel":36}})", 400, "out_of_range", "wifi_2_4.channel");
     expect_error(R"({"wifi_5":{"channel":6}})", 400, "out_of_range", "wifi_5.channel");
     expect_error(R"({"wifi_2_4":{"bw_mhz":80}})", 400, "out_of_range", "wifi_2_4.bw_mhz");
     expect_error(R"({"wifi_5":{"tx_power_dbm":31}})", 400, "out_of_range", "wifi_5.tx_power_dbm");
-    expect_error(R"({"halow":{"bw_mhz":2},"wifi_2_4":{"channel":1}})", 400, "both_links_changed",
+    expect_error(R"({"halow":{"bw_mhz":4},"wifi_2_4":{"channel":1}})", 400, "both_links_changed",
                  "");
     expect_error(R"({"wifi_2_4":{"channel":1},"wifi_5":{"channel":36}})", 400,
                  "both_links_changed", "");
-    expect_error(R"({"halow":{"bw_mhz":2}})", 409, "other_link_down", "halow.bw_mhz");
+    expect_error(R"({"halow":{"bw_mhz":4}})", 409, "other_link_down", "halow.bw_mhz");
+    expect_error(R"({"halow":{"sub_band":"low"}})", 409, "other_link_down", "halow.sub_band");
     expect_error(R"({"wifi_2_4":{"channel":1}})", 409, "other_link_down", "wifi_2_4.channel");
     expect_error(R"({"wifi_5":{"bw_mhz":40}})", 409, "other_link_down", "wifi_5.bw_mhz");
     expect_error(R"({"link":{"passphrase":"long enough"}})", 502, "peer_unreachable",
@@ -92,7 +93,7 @@ int main() {
 
     // Shared fields sent with their current value are not changes
     assert(!apply_patch(R"( {"role":"rover","net":{"ip":"10.0.0.2","mask":"255.0.0.0"},)"
-                        R"("halow":{"center_khz":915000,"tx_power_dbm":12,"mcs":3},)"
+                        R"("halow":{"sub_band":"mid","tx_power_dbm":12,"mcs":3},)"
                         R"("wifi_2_4":{"channel":6,"tx_power_dbm":5},"wifi_5":{"tx_power_dbm":7},)"
                         R"("link":{"passphrase_set":false}} )"));
     const auto& current = mrover::config::current();
