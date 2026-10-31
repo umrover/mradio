@@ -223,7 +223,7 @@ std::optional<ApiError> read_patch(JsonVariantConst root, Config &candidate,
     };
 
     const auto read_root = [&](std::string_view name, JsonVariantConst value,
-                              std::string_view path) -> std::optional<ApiError> {
+                               std::string_view path) -> std::optional<ApiError> {
         if (name == "role") {
             std::string_view text;
             if (auto error = read_string(value, path, text)) {
@@ -276,7 +276,7 @@ std::optional<ApiError> validate_net(const Net &net) {
     }
     const std::uint32_t first_octet = net.ip >> 24;
     const std::uint32_t host = net.ip & host_bits;
-    // 0.x, loopback and multicast or reserved ranges are never valid host addresses
+    // ip address validity check
     if (first_octet == 0 || first_octet == 127 || first_octet >= 224 || host == 0 ||
         host == host_bits) {
         return make_error(400, "out_of_range", "net.ip", "not a usable host address for the mask");
