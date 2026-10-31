@@ -11,7 +11,7 @@ Base URL `http://<radio-ip>/api`
 
 ## Status
 
-`<link>` is `halow` or `wifi`, and `<radio>` is `local` or `peer`.
+`<link>` is `halow`, `wifi_2_4` or `wifi_5`, and `<radio>` is `local` or `peer`.
 
 - read only, this is how the basestation gets telemetry
 - the radio keeps no history, so it reports running counts and the basestation computes rates from the change between polls
@@ -24,8 +24,7 @@ Base URL `http://<radio-ip>/api`
 | `links.<link>.state`              | string        | `down`, `associating`, `up`                                  |
 | `links.<link>.state_s`            | int           | seconds passed since current state                           |
 | `links.halow.center_khz`          | int           |                                                              |
-| `links.wifi.band`                 | string        | `2.4`, `5`                                                   |
-| `links.wifi.channel`              | int           | channel number, band dependent                               |
+| `links.wifi_<band>.channel`       | int           | channel number, band dependent                               |
 | `links.<link>.bw_mhz`             | int           |                                                              |
 | `links.<link>.rtt_ms`             | float or null | for heartbeats, null if none yet                             |
 | `links.<link>.heartbeats_sent`    | int           |                                                              |
@@ -52,20 +51,22 @@ Base URL `http://<radio-ip>/api`
 
 ## Config
 
-| Field                 | Type        | Values                                   |
-| :-------------------- | :---------- | :--------------------------------------- |
-| `role`                | string      | `base`, `rover`                          |
-| `net.ip`              | string      | IPv4                                     |
-| `net.mask`            | string      | IPv4 contiguous                          |
-| `link.passphrase_set` | bool        | read only                                |
-| `halow.center_khz`    | int         | multiple of 500                          |
-| `halow.bw_mhz`        | int         | 1, 2, 4, or 8                            |
-| `halow.tx_power_dbm`  | int         |                                          |
-| `halow.mcs`           | int or null | 0 to 7, null for auto                    |
-| `wifi.band`           | string      | `2.4`, `5`                               |
-| `wifi.channel`        | int         | 1 to 11 at 2.4 GHz, US channels at 5 GHz |
-| `wifi.bw_mhz`         | int         | 20, 40, 80. 80 at 5 GHz only             |
-| `wifi.tx_power_dbm`   | int         |                                          |
+| Field                   | Type        | Values                |
+| :---------------------- | :---------- | :-------------------- |
+| `role`                  | string      | `base`, `rover`       |
+| `net.ip`                | string      | IPv4                  |
+| `net.mask`              | string      | IPv4 contiguous       |
+| `link.passphrase_set`   | bool        | read only             |
+| `halow.center_khz`      | int         | multiple of 500       |
+| `halow.bw_mhz`          | int         | 1, 2, 4, or 8         |
+| `halow.tx_power_dbm`    | int         |                       |
+| `halow.mcs`             | int or null | 0 to 7, null for auto |
+| `wifi_2_4.channel`      | int         | 1 to 11               |
+| `wifi_2_4.bw_mhz`       | int         | 20, 40                |
+| `wifi_2_4.tx_power_dbm` | int         |                       |
+| `wifi_5.channel`        | int         | US channels           |
+| `wifi_5.bw_mhz`         | int         | 20, 40, 80            |
+| `wifi_5.tx_power_dbm`   | int         |                       |
 
 ## ConfigPatch
 
@@ -75,13 +76,14 @@ Any subset* of config, as well as:
 
 *see error handling below
 
-| Fields                                                 | Applied to      | Takes effect   |
-| :----------------------------------------------------- | :-------------- | :------------- |
-| `role`, `net`                                          | this radio only | on next reboot |
-| `link`                                                 | both radios     | on next reboot |
-| `halow.center_khz`, `halow.bw_mhz`                     | both radios     | immediately    |
-| `wifi.band`, `wifi.channel`, `wifi.bw_mhz`             | both radios     | immediately    |
-| `halow.tx_power_dbm`, `halow.mcs`, `wifi.tx_power_dbm` | this radio only | immediately    |
+| Fields                                      | Applied to      | Takes effect   |
+| :------------------------------------------ | :-------------- | :------------- |
+| `role`, `net`                               | this radio only | on next reboot |
+| `link`                                      | both radios     | on next reboot |
+| `halow.center_khz`, `halow.bw_mhz`          | both radios     | immediately    |
+| `wifi_<band>.channel`, `wifi_<band>.bw_mhz` | both radios     | immediately    |
+| `halow.tx_power_dbm`, `halow.mcs`           | this radio only | immediately    |
+| `wifi_<band>.tx_power_dbm`                  | this radio only | immediately    |
 
 - both radios must share a frequency and width for a link to come up, so those fields are synced
 - transmit power and MCS is scoped only to the local radio
@@ -92,9 +94,9 @@ Any subset* of config, as well as:
 - a field sent with its current value is not a change, and none of these rules apply to it
 - reject `net` values that are invalid with `400 out_of_range`
 - if it's a both radio change, and the peer is unreachable, reject with `502 peer_unreachable`
-- shared `halow` fields change only while `wifi` is up and vice versa, otherwise `409 other_link_down`
+- a link's shared fields change only while another link is up, otherwise `409 other_link_down`
   - a failed retune on the only working link would leave the radios unable to reach each other
-- do not allow changes to shared `halow` and `wifi` fields at the same time, reject with `400 both_links_changed`
+- do not allow changes to the shared fields of more than one link at a time, reject with `400 both_links_changed`
 
 ## Ok
 

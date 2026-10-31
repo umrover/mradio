@@ -75,16 +75,18 @@
       <button>Apply</button>
     </form>
 
-    <h3>Wifi Settings</h3>
+    <h3>Wifi 2.4 GHz Settings</h3>
 
-    <form data-section="wifi">
-      <p>
-        band
-        <select name="band">
-          <option>2.4</option>
-          <option>5</option>
-        </select>
-      </p>
+    <form data-section="wifi_2_4">
+      <p>channel <input name="channel" type="number" required /></p>
+      <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
+      <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
+      <button>Apply</button>
+    </form>
+
+    <h3>Wifi 5 GHz Settings</h3>
+
+    <form data-section="wifi_5">
       <p>channel <input name="channel" type="number" required /></p>
       <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
       <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>

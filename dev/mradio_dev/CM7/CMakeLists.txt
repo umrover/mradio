@@ -42,9 +42,9 @@ include("mx-generated.cmake")
 # Force C++ compiler for cross-compiling
 set(CMAKE_CXX_COMPILER_FORCED "true")
 
-# Glob ONLY .cpp files from Core and Common
+# Glob ONLY .cpp files from mrover and Common
 file(GLOB_RECURSE USER_SOURCES CONFIGURE_DEPENDS
-    "${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/mrover/Src/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Src/*.cpp"
 )
 
@@ -57,6 +57,7 @@ include("web.cmake")
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/mrover/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/.."
