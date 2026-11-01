@@ -37,7 +37,7 @@ ENTRY(Reset_Handler)
 /* Specify the memory areas */
 MEMORY
 {
-FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 768K /* reserving flash region 0x080C0000 to 0x080FFFFF for config save */
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 896K /* reserving flash region 0x080E0000 to 0x080FFFFF for config save */
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
 ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
 RAM_D2_ETH (xrw)      : ORIGIN = 0x30040000, LENGTH = 32K
