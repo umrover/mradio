@@ -49,8 +49,7 @@ struct ApiError {
     std::string reason;
 };
 
-ApiError make_error(int status, std::string_view code, std::string_view field,
-                    std::string_view reason);
+ApiError make_error(int status, std::string_view code, std::string_view field, std::string_view reason);
 
 void init(Net boot_net);
 const Config &current();

@@ -87,8 +87,7 @@ void write_error(JsonDocument &json, const config::ApiError &error) {
 }
 
 // Returns the header and body as one NUL terminated buffer for open_response to hand to httpd
-template <typename BodyWriter>
-std::unique_ptr<char[]> make_response(int status, BodyWriter &&write_body) {
+template <typename BodyWriter> std::unique_ptr<char[]> make_response(int status, BodyWriter &&write_body) {
     JsonDocument json;
     write_body(json);
     if (json.overflowed()) {
@@ -99,11 +98,10 @@ std::unique_ptr<char[]> make_response(int status, BodyWriter &&write_body) {
     const std::size_t body_size = measureJson(json);
 
     const auto write_header = [&](char *out, std::size_t size) {
-        return std::snprintf(
-            out, size,
-            "HTTP/1.0 %d %s\r\nContent-Type: application/json\r\nContent-Length: %u\r\n"
-            "Cache-Control: no-store\r\n\r\n",
-            status, reason_phrase(status).data(), static_cast<unsigned>(body_size));
+        return std::snprintf(out, size,
+                             "HTTP/1.0 %d %s\r\nContent-Type: application/json\r\nContent-Length: %u\r\n"
+                             "Cache-Control: no-store\r\n\r\n",
+                             status, reason_phrase(status).data(), static_cast<unsigned>(body_size));
     };
     const auto header_size = static_cast<std::size_t>(write_header(nullptr, 0));
     auto bytes = std::make_unique_for_overwrite<char[]>(header_size + body_size + 1);
@@ -203,13 +201,9 @@ void capture_reset_reasons() {
     };
     note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_PORRST) != 0U, "power_on");
     note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_PINRST) != 0U, "pin");
-    note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_SFTR1ST) != 0U ||
-             __HAL_RCC_C1_GET_FLAG(RCC_FLAG_SFTR2ST) != 0U,
-         "software");
-    note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_IWDG1RST) != 0U ||
-             __HAL_RCC_C1_GET_FLAG(RCC_FLAG_IWDG2RST) != 0U ||
-             __HAL_RCC_C1_GET_FLAG(RCC_FLAG_WWDG1RST) != 0U ||
-             __HAL_RCC_C1_GET_FLAG(RCC_FLAG_WWDG2RST) != 0U,
+    note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_SFTR1ST) != 0U || __HAL_RCC_C1_GET_FLAG(RCC_FLAG_SFTR2ST) != 0U, "software");
+    note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_IWDG1RST) != 0U || __HAL_RCC_C1_GET_FLAG(RCC_FLAG_IWDG2RST) != 0U ||
+             __HAL_RCC_C1_GET_FLAG(RCC_FLAG_WWDG1RST) != 0U || __HAL_RCC_C1_GET_FLAG(RCC_FLAG_WWDG2RST) != 0U,
          "watchdog");
     note(__HAL_RCC_C1_GET_FLAG(RCC_FLAG_BORRST) != 0U, "brownout");
     __HAL_RCC_C1_CLEAR_RESET_FLAGS();
@@ -226,14 +220,13 @@ std::unique_ptr<char[]> handle_post(bool reboot, std::string_view body) {
     if (const auto error = config::apply_patch(body)) {
         return error_response(*error);
     }
-    return make_response(200, [](JsonDocument &json) {
-        config::write_json(json.to<ArduinoJson::JsonVariant>(), config::current());
-    });
+    return make_response(
+        200, [](JsonDocument &json) { config::write_json(json.to<ArduinoJson::JsonVariant>(), config::current()); });
 }
 
 void set_response_uri(char *response_uri, u16_t response_uri_len) {
-    std::snprintf(response_uri, response_uri_len, "%.*s",
-                  static_cast<int>(POST_RESPONSE_URI.size()), POST_RESPONSE_URI.data());
+    std::snprintf(response_uri, response_uri_len, "%.*s", static_cast<int>(POST_RESPONSE_URI.size()),
+                  POST_RESPONSE_URI.data());
 }
 
 err_t reject_post(const config::ApiError &error, char *response_uri, u16_t response_uri_len) {
@@ -260,6 +253,13 @@ void init() {
     LOCK_TCPIP_CORE();
     config::init(config::Net{.ip = lwip_ntohl(ip4_addr_get_u32(netif_ip4_addr(&gnetif))),
                              .mask = lwip_ntohl(ip4_addr_get_u32(netif_ip4_netmask(&gnetif)))});
+    // a net saved to flash replaces the CubeMX static address
+    const config::Net &net = config::current().net;
+    ip4_addr_t ip;
+    ip4_addr_t mask;
+    ip4_addr_set_u32(&ip, lwip_htonl(net.ip));
+    ip4_addr_set_u32(&mask, lwip_htonl(net.mask));
+    netif_set_addr(&gnetif, &ip, &mask, netif_ip4_gw(&gnetif));
     httpd_init();
     UNLOCK_TCPIP_CORE();
 }
@@ -303,9 +303,8 @@ void fs_close_custom(struct fs_file *file) {
     }
 }
 
-err_t httpd_post_begin(void *connection, const char *uri, const char * /*http_request*/,
-                       u16_t /*http_request_len*/, int content_len, char *response_uri,
-                       u16_t response_uri_len, u8_t *post_auto_wnd) {
+err_t httpd_post_begin(void *connection, const char *uri, const char * /*http_request*/, u16_t /*http_request_len*/,
+                       int content_len, char *response_uri, u16_t response_uri_len, u8_t *post_auto_wnd) {
     using namespace mrover::web;
     const std::string_view path{uri};
     const bool reboot = path == "/api/reboot";
