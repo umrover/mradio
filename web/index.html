@@ -30,23 +30,12 @@
       button:not(:disabled) {
         cursor: pointer;
       }
-      /* stays visible while applying forms further down the page */
-      #message {
-        position: sticky;
-        top: 0;
-        margin: 0;
-        padding: 0.5em 0;
-        height: 1.2em;
-        background: #fff;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      output {
+        margin-left: 0.5em;
       }
     </style>
   </head>
   <body>
-    <p id="message"></p>
-
     <h2>Status</h2>
 
     <p>under construction</p>
@@ -61,7 +50,7 @@
           <option>rover</option>
         </select>
       </p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h3>Net Settings</h3>
@@ -69,7 +58,7 @@
     <form data-section="net">
       <p>ip <input name="ip" required /></p>
       <p>mask <input name="mask" required /></p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h3>Link Settings</h3>
@@ -86,7 +75,7 @@
         />
       </p>
       <p>passphrase_set <input name="passphrase_set" disabled /></p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h3>Halow Settings</h3>
@@ -124,7 +113,7 @@
           <option>7</option>
         </select>
       </p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h3>Wifi 2.4 GHz Settings</h3>
@@ -133,7 +122,7 @@
       <p>channel <input name="channel" type="number" required /></p>
       <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
       <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h3>Wifi 5 GHz Settings</h3>
@@ -142,38 +131,44 @@
       <p>channel <input name="channel" type="number" required /></p>
       <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
       <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
-      <button>Apply</button>
+      <button>Apply</button><output></output>
     </form>
 
     <h2>Reboot</h2>
-    <form id="reboot"><button>Reboot</button></form>
+    <form id="reboot"><button>Reboot</button><output></output></form>
 
     <script>
-      const message = document.getElementById("message");
       const configForms = document.querySelectorAll("form[data-section]");
 
-      async function request(method, path, body) {
+      function show(outputs, text) {
+        for (const output of outputs) output.textContent = text;
+      }
+
+      async function request(method, path, body, outputs) {
         const options = {
           method,
           headers: { "Content-Type": "application/json" },
         };
         if (body !== undefined) options.body = JSON.stringify(body);
+        show(outputs, "");
         try {
           const response = await fetch("/api" + path, options);
           const text = await response.text();
-          message.textContent = response.ok
-            ? "ok"
-            : `${response.status} ${text}`;
-          return response.ok ? JSON.parse(text) : null;
+          if (!response.ok) {
+            show(outputs, `${response.status} ${text}`);
+            return null;
+          }
+          show(outputs, method === "GET" ? "" : "ok");
+          return JSON.parse(text);
         } catch (error) {
-          message.textContent = error.message;
+          show(outputs, error.message);
           return null;
         }
       }
 
-      function fillForms(config) {
+      function fillForms(config, forms) {
         if (config === null) return;
-        for (const form of configForms) {
+        for (const form of forms) {
           const values = form.dataset.section
             ? config[form.dataset.section]
             : config;
@@ -206,16 +201,18 @@
       for (const form of configForms) {
         form.onsubmit = async (event) => {
           event.preventDefault();
-          fillForms(await request("POST", "/config", readForm(form)));
+          const outputs = form.querySelectorAll("output");
+          fillForms(await request("POST", "/config", readForm(form), outputs), [form]);
         };
       }
 
       document.getElementById("reboot").onsubmit = async (event) => {
         event.preventDefault();
-        await request("POST", "/reboot");
+        await request("POST", "/reboot", undefined, event.target.querySelectorAll("output"));
       };
 
-      request("GET", "/config").then(fillForms);
+      const loadOutputs = document.querySelectorAll("form[data-section] output");
+      request("GET", "/config", undefined, loadOutputs).then((config) => fillForms(config, configForms));
     </script>
   </body>
 </html>
