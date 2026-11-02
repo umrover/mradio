@@ -129,6 +129,8 @@
 #define HTTP_IS_DATA_VOLATILE(hs) TCP_WRITE_FLAG_COPY
 /* One pbuf per zero-copy header string overflows the 4 TX descriptors, and ethernetif then drops the frame */
 #define HTTP_IS_HDR_VOLATILE(hs, ptr) TCP_WRITE_FLAG_COPY
+/* The default pool fits only lwIP's own timers, so the deferred reboot timeout was silently dropped */
+#define MEMP_NUM_SYS_TIMEOUT (LWIP_NUM_SYS_TIMEOUT_INTERNAL + 1)
 /* USER CODE END 1 */
 
 #ifdef __cplusplus
