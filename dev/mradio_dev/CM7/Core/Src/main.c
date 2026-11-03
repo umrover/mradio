@@ -56,10 +56,10 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-/* Definitions for defaultTask */
-osThreadId_t defaultTaskHandle;
-const osThreadAttr_t defaultTask_attributes = {
-  .name = "defaultTask",
+/* Definitions for lwipTask */
+osThreadId_t lwipTaskHandle;
+const osThreadAttr_t lwipTask_attributes = {
+  .name = "lwipTask",
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -71,7 +71,7 @@ const osThreadAttr_t defaultTask_attributes = {
 void SystemClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
-void StartDefaultTask(void *argument);
+void startLwipTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -181,8 +181,8 @@ Error_Handler();
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  /* creation of lwipTask */
+  lwipTaskHandle = osThreadNew(startLwipTask, NULL, &lwipTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -199,7 +199,6 @@ Error_Handler();
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  // PostInit();
   while (1)
   {
     /* USER CODE END WHILE */
@@ -293,18 +292,20 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE END 4 */
 
-/* USER CODE BEGIN Header_StartDefaultTask */
+/* USER CODE BEGIN Header_startLwipTask */
 /**
-  * @brief  Function implementing the defaultTask thread.
+  * @brief  Function implementing the lwipTask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
+/* USER CODE END Header_startLwipTask */
+void startLwipTask(void *argument)
 {
   /* init code for LWIP */
   MX_LWIP_Init();
   /* USER CODE BEGIN 5 */
+  lwipInit();
+
   /* Infinite loop */
   for(;;)
   {
