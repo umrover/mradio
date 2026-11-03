@@ -76,6 +76,10 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE)
 
+# Additions to the CubeMX linker script
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/mrover.ld")
+set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/mrover.ld")
+
 # Remove wrong libob.a library dependency when using cpp files
 list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 

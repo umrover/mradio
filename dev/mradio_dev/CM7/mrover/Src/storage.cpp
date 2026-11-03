@@ -12,10 +12,9 @@ namespace mrover::storage {
 
 namespace {
 
-// must match the region cleared by the CM7 linker script
-constexpr std::uint32_t SECTOR = FLASH_SECTOR_7;
-constexpr std::uintptr_t SECTOR_ADDRESS = 0x080E0000;
-static_assert(SECTOR_ADDRESS == FLASH_BANK1_BASE + SECTOR * FLASH_SECTOR_SIZE);
+constexpr std::uint32_t SECTOR = FLASH_SECTOR_TOTAL - 1;
+constexpr std::uintptr_t SECTOR_ADDRESS = FLASH_BANK1_BASE + SECTOR * FLASH_SECTOR_SIZE;
+static_assert(FLASH_SECTOR_SIZE == 128 * 1024, "CM7/mrover.ld reserves exactly one 128K sector");
 
 constexpr std::uint32_t MAGIC = 0x4; // chosen by fair dice roll. guaranteed to be random.
 constexpr std::size_t FLASH_WORD_BYTES = 32;

@@ -37,10 +37,9 @@ ENTRY(Reset_Handler)
 /* Specify the memory areas */
 MEMORY
 {
-FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 896K /* reserving flash region 0x080E0000 to 0x080FFFFF for config save */
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 1024K
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
 ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
-RAM_D2_ETH (xrw)      : ORIGIN = 0x30040000, LENGTH = 32K
 }
 /* Highest address of the user mode stack */
 _estack = 0x20020000;    /* end of RAM */
@@ -167,14 +166,6 @@ SECTIONS
 
 
   
-  /* ETH DMA cannot reach DTCM, SRAM3 is reserved from CM4 for it */
-  .eth_dma (NOLOAD) : ALIGN(32)
-  {
-    *(.RxDescripSection)
-    *(.TxDescripSection)
-    *(.Rx_PoolSection)
-  } >RAM_D2_ETH
-
   /* Uninitialized data section */
   /* Uninitialized TLS data section */
   .tbss (NOLOAD) : ALIGN(4)
