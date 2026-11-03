@@ -39,6 +39,7 @@ CMakeUserPresets.json
 .idea
 .vscode
 .settings
+.clangd
 
 # from the stm32cube extensions in vscode
 src/**/.gitignore
