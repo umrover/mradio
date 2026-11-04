@@ -251,26 +251,32 @@ int open_response(fs_file *file, std::unique_ptr<char[]> response) {
 void init() {
     capture_reset_reasons();
     LOCK_TCPIP_CORE();
+
     config::init(config::Net{.ip = lwip_ntohl(ip4_addr_get_u32(netif_ip4_addr(&gnetif))),
                              .mask = lwip_ntohl(ip4_addr_get_u32(netif_ip4_netmask(&gnetif)))});
-    // a net saved to flash replaces the CubeMX static address
+
+    // a net saved to config takes precedence
     const config::Net &net = config::current().net;
+
     ip4_addr_t ip;
     ip4_addr_t mask;
     ip4_addr_set_u32(&ip, lwip_htonl(net.ip));
     ip4_addr_set_u32(&mask, lwip_htonl(net.mask));
     netif_set_addr(&gnetif, &ip, &mask, netif_ip4_gw(&gnetif));
     httpd_init();
+
     UNLOCK_TCPIP_CORE();
 }
 
 } // namespace mrover::web
 
-// lwIP httpd hooks, all called on the tcpip thread
+// lwIP httpd hooks
 
 int fs_open_custom(struct fs_file *file, const char *name) {
     using namespace mrover::web;
     const std::string_view path{name};
+
+    // "routing"
     if (path == "/index.html") {
         const std::string_view page = index_html();
         file->data = page.data();
