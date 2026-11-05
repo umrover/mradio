@@ -2,11 +2,13 @@
 
 #include "lwip.h"
 #include "lwip/udp.h"
+#include "lwip/tcp.h"
 #include "lwip/netif.h"
 #include "lwip/ip_addr.h"
 #include <cstdint>
 
 #define UDP_PORT 8080
+#define TCP_PORT 8082
 extern struct netif gnetif;
 
 // class for interfacing with ethernet peripherals
@@ -15,14 +17,20 @@ private:
     uint16_t udp_port = UDP_PORT;
     struct udp_pcb *upcb = nullptr;
 
+    uint16_t tcp_port = TCP_PORT;
+    struct tcp_pcb *tpcb = nullptr;
+
     // default constructor
     EthDriver() = default;
 
-    // receive callback for UDP packets
+    // UDP callback and packet handler
     static void udpRecvCallback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
-
-    // UDP packet handler
     void udpHandlePacket(struct pbuf *p, const ip_addr_t *addr, u16_t port);
+
+    // TCP callback and packet handler
+    static err_t tcpAcceptCallback(void *arg, struct tcp_pcb *new_tpcb, err_t err);
+    static err_t tcpRecvCallback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
+    err_t tcpHandlePacket(struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 
 public:
     // singleton access
@@ -41,5 +49,11 @@ public:
     void init();
 
     // transmit a UDP packet
-    bool udpTransmit(const ip_addr_t *addr, u16_t port, char* data, uint16_t len);
+    bool udpTransmit(const ip_addr_t *addr, u16_t port, const char* data, uint16_t len);
+
+    // transmit a TCP packet
+    bool tcpTransmit(struct tcp_pcb *tpcb, const char* data, uint16_t len);
+
+    // close the TCP connection
+    void closeTcpConnection(struct tcp_pcb *tpcb);
 };
