@@ -1,5 +1,7 @@
 #include <cstdio>
+#include <cstring>
 
+#include "link_test.hpp"
 #include "main.h"
 #include "mmhal_os.h"
 #include "mmlog.h"
@@ -13,15 +15,22 @@ namespace mrover {
 namespace {
 constexpr char COUNTRY_CODE[] = "US";
 
-void print_scan_result(const mmwlan_scan_result* result, void* /*arg*/) {
-    std::printf("  %.*s rssi %d dBm bw %u MHz\n", static_cast<int>(result->ssid_len),
-                reinterpret_cast<const char*>(result->ssid), static_cast<int>(result->rssi),
-                static_cast<unsigned>(result->op_bw_mhz));
+constexpr char HALOW_SSID[] = "mradio_range";
+constexpr char HALOW_PASSPHRASE[] = "12345678";
+
+const char *sta_state_name(mmwlan_sta_state state) {
+    switch (state) {
+    case MMWLAN_STA_DISABLED:
+        return "disabled";
+    case MMWLAN_STA_CONNECTING:
+        return "connecting";
+    case MMWLAN_STA_CONNECTED:
+        return "connected";
+    }
+    return "unknown";
 }
 
-void print_scan_complete(mmwlan_scan_state state, void* /*arg*/) {
-    std::printf("halow scan done, state %d\n", static_cast<int>(state));
-}
+void print_sta_state(mmwlan_sta_state state) { std::printf("halow: sta %s\n", sta_state_name(state)); }
 
 bool boot_halow() {
     mmwlan_init();
@@ -58,22 +67,35 @@ bool boot_halow() {
     return true;
 }
 
-void scan_halow() {
-    mmwlan_scan_req scan_req = MMWLAN_SCAN_REQ_INIT;
-    scan_req.scan_rx_cb = print_scan_result;
-    scan_req.scan_complete_cb = print_scan_complete;
-    const mmwlan_status status = mmwlan_scan_request(&scan_req);
+bool join_halow() {
+    mmwlan_sta_args args = MMWLAN_STA_ARGS_INIT;
+    static_assert(sizeof HALOW_SSID - 1 <= sizeof args.ssid);
+    static_assert(sizeof HALOW_PASSPHRASE <= sizeof args.passphrase);
+    std::memcpy(args.ssid, HALOW_SSID, sizeof HALOW_SSID - 1);
+    args.ssid_len = sizeof HALOW_SSID - 1;
+    args.security_type = MMWLAN_SAE;
+    std::memcpy(args.passphrase, HALOW_PASSPHRASE, sizeof HALOW_PASSPHRASE);
+    args.passphrase_len = sizeof HALOW_PASSPHRASE - 1;
+
+    mmwlan_status status = mmwlan_set_power_save_mode(MMWLAN_PS_DISABLED);
     if (status != MMWLAN_SUCCESS) {
-        std::printf("halow: scan request failed %d\n", static_cast<int>(status));
+        std::printf("halow: power save disable failed %d\n", static_cast<int>(status));
+        return false;
     }
+    status = mmwlan_sta_enable(&args, print_sta_state);
+    if (status != MMWLAN_SUCCESS) {
+        std::printf("halow: sta enable failed %d\n", static_cast<int>(status));
+        return false;
+    }
+    return true;
 }
 } // namespace
 
 void init() {
     mm_logging_init();
     mmhal_init();
-    if (boot_halow()) {
-        scan_halow();
+    if (boot_halow() && link_test::start()) {
+        static_cast<void>(join_halow());
     }
 }
 } // namespace mrover

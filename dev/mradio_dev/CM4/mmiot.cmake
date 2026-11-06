@@ -77,3 +77,39 @@ add_custom_command(
     WORKING_DIRECTORY ${MMIOT_FW}/mm6108/bcfs
     DEPENDS ${MMIOT_FW}/mm6108/bcfs/${MMIOT_BCF_MBIN}
 )
+
+file(GLOB MMIOT_LWIP_SRCS
+    ${MMIOT_ROOT}/src/lwip/src/core/*.c
+    ${MMIOT_ROOT}/src/lwip/src/core/ipv4/*.c
+    ${MMIOT_ROOT}/src/lwip/src/api/*.c
+)
+
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+    ${MMIOT_LWIP_SRCS}
+    ${MMIOT_ROOT}/src/lwip/src/netif/ethernet.c
+    ${MMIOT_ROOT}/src/lwip/port/arch/sys_arch.c
+    ${MMIOT_ROOT}/src/mmipal/lwip/mmipal_lwip.c
+    ${MMIOT_ROOT}/src/mmipal/lwip/mmnetif.c
+    ${MMIOT_ROOT}/src/mmping/mmping_lwip.c
+)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    ${MMIOT_ROOT}/src/lwip/src/include
+    ${MMIOT_ROOT}/src/lwip/src/include/compat/posix
+    ${MMIOT_ROOT}/src/lwip/port
+    ${MMIOT_ROOT}/src/mmipal
+    ${MMIOT_ROOT}/src/mmipal/lwip
+    ${MMIOT_ROOT}/src/mmping
+)
+
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+    LWIP_IPV4=1
+    LWIP_IPV6=0
+    MMIPAL_IPV4_ENABLED=1
+    MMIPAL_IPV6_ENABLED=0
+    MORSE_LWIP_TIMERS_ON_DEMAND=1
+)
+
+set_source_files_properties(${MMIOT_LWIP_SRCS} PROPERTIES COMPILE_OPTIONS -Wno-unused-parameter)
+
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -Wl,--wrap=mmint_5145db60)
