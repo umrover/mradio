@@ -15,7 +15,7 @@
 #include "mmpkt.h"
 #include "mmwlan.h"
 
-// Mirrors the leading fields of the internal struct in morselib/src/internal/mmdrv.h for SDK 2.13.1
+// Mirrors the leading fields of the internal struct in morselib/src/internal/mmdrv.h for SDK 2.14.3
 struct mmdrv_rx_metadata {
     int16_t rssi;
     uint16_t freq_100khz;
