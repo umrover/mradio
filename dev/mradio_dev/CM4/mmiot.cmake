@@ -47,6 +47,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     EXCLUDE_MMCONFIG
     INCLUDE_BCF_FILE_IN_APPLICATION
     LOOKAROUND_FAIL_MAX=50
+    # mmutils.h, included by mmlog.h, mmipal.h and lwipopts.h since SDK 2.14, calls POSIX strnlen, which strict C++ hides
+    $<$<COMPILE_LANGUAGE:CXX>:_POSIX_C_SOURCE=200809L>
 )
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
