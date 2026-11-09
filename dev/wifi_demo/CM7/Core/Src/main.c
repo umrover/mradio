@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "wifi_bt_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -156,7 +156,8 @@ Error_Handler();
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  SD_HandleTypeDef SDHandle = { .Instance = SDMMC1 };
+  cy_rslt_t result = stm32_cypal_wifi_sdio_init(&SDHandle);
   /* USER CODE END 2 */
 
   /* Init scheduler */
