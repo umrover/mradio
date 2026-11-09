@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "wifi_bt_if.h"
+#include "cy_wcm.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -156,8 +157,7 @@ Error_Handler();
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  SD_HandleTypeDef SDHandle = { .Instance = SDMMC1 };
-  cy_rslt_t result = stm32_cypal_wifi_sdio_init(&SDHandle);
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -389,7 +389,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+/***************************************************************************************************
+ * Function Name: SDMMC1_IRQHandler
+ ***************************************************************************************************
+ * Summary: This Function handles SDMMC Interrupt and calls STM hal layer
+ * function which handles interrupt masking and calling sdio event callback
+ * function.
+ *
+ * Parameters:
+ *  void
+ *
+ * Return:
+ *  void
+ *
+ **************************************************************************************************/
+void SDMMC1_IRQHandler(void)
+{
+    stm32_cyhal_sdio_irq_handler();
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -402,6 +419,15 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
+  cy_wcm_config_t wcm_config;
+  wcm_config.interface = CY_WCM_INTERFACE_TYPE_STA;
+
+  SD_HandleTypeDef SDHandle = { .Instance = SDMMC1 };
+  cy_rslt_t result = stm32_cypal_wifi_sdio_init(&SDHandle);
+  if (result != CY_RSLT_SUCCESS) while (1) {}
+
+  result = cy_wcm_init(&wcm_config);
+  if (result != CY_RSLT_SUCCESS) while (1) {}
   /* Infinite loop */
   for(;;)
   {
