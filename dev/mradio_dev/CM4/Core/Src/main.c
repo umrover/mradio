@@ -101,7 +101,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  postInit();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN SysInit */

@@ -54,6 +54,13 @@
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+volatile char* failed_task_name = NULL;
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+{
+  (void)xTask;
+  failed_task_name = pcTaskName;
+  taskDISABLE_INTERRUPTS();
+  while(1) {}
+}
 /* USER CODE END Application */
 

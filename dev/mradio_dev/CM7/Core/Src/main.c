@@ -126,7 +126,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  
+  postInit();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -309,6 +309,7 @@ void startLwipTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
+    checkRxBuf();
     osDelay(1);
   }
   /* USER CODE END 5 */
@@ -355,6 +356,15 @@ void MPU_Config(void)
   MPU_InitStruct.Number = MPU_REGION_NUMBER2;
   MPU_InitStruct.BaseAddress = 0x30020000;
   MPU_InitStruct.SubRegionDisable = 0x0;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER3;
+  MPU_InitStruct.BaseAddress = 0x38000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_64KB;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   /* Enables the MPU */

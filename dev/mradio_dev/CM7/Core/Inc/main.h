@@ -53,7 +53,9 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void postInit(void);
 void lwipInit(void);
+void checkRxBuf(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

@@ -42,6 +42,7 @@ MEMORY
   DTCMRAM (xrw)   : ORIGIN = 0x20000000, LENGTH = 128K
   ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
   RAM_D2 (xrw)      : ORIGIN = 0x30020000, LENGTH = 160K
+  RB_RAM (xrw)  : ORIGIN = 0x38000000, LENGTH = 64K
 }
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM);    /* end of RAM */
@@ -232,6 +233,15 @@ SECTIONS
     *(.Rx_PoolSection)
   } >RAM_D2
 
+
+  /* shared RAM for ring buffers */
+  .rb_ram (NOLOAD) :
+  {
+    . = ABSOLUTE(0x38000000);
+    KEEP(*(.RxRingBuffer))
+    . = ABSOLUTE(0x38008000);
+    KEEP(*(.TxRingBuffer))
+  } >RB_RAM
   
 
   /* Remove information from the standard libraries */

@@ -42,7 +42,8 @@
 /* Time to block waiting for transmissions to finish */
 #define ETHIF_TX_TIMEOUT (2000U)
 /* USER CODE BEGIN OS_THREAD_STACK_SIZE_WITH_RTOS */
-#define INTERFACE_THREAD_STACK_SIZE ( 1024 )
+/* Stack size of the interface thread */
+#define INTERFACE_THREAD_STACK_SIZE ( 512 * 4 )
 /* USER CODE END OS_THREAD_STACK_SIZE_WITH_RTOS */
 /* Network interface name */
 #define IFNAME0 's'

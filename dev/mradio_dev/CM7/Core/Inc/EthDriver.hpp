@@ -5,55 +5,64 @@
 #include "lwip/tcp.h"
 #include "lwip/netif.h"
 #include "lwip/ip_addr.h"
+#include "lwip/ip.h"
+#include "lwip/tcpip.h"
+#include "err.h"
+#include "PacketGrouper.hpp"
 #include <cstdint>
 
 #define UDP_PORT 8080
 #define TCP_PORT 8082
+
 extern struct netif gnetif;
 
-// class for interfacing with ethernet peripherals
-class EthDriver {
-private:
-    uint16_t udp_port = UDP_PORT;
-    struct udp_pcb *upcb = nullptr;
+namespace mrover {
+    extern PacketGrouper packet_grouper;
 
-    uint16_t tcp_port = TCP_PORT;
-    struct tcp_pcb *tpcb = nullptr;
+    // class for interfacing with ethernet peripherals
+    class EthDriver {
+    private:
+        uint16_t udp_port = UDP_PORT;
+        struct udp_pcb *upcb = nullptr;
 
-    // default constructor
-    EthDriver() = default;
+        uint16_t tcp_port = TCP_PORT;
+        struct tcp_pcb *tpcb = nullptr;
 
-    // UDP callback and packet handler
-    static void udpRecvCallback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
-    void udpHandlePacket(struct pbuf *p, const ip_addr_t *addr, u16_t port);
+        // default constructor
+        EthDriver() = default;
 
-    // TCP callback and packet handler
-    static err_t tcpAcceptCallback(void *arg, struct tcp_pcb *new_tpcb, err_t err);
-    static err_t tcpRecvCallback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
-    err_t tcpHandlePacket(struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
+        // UDP callback and packet handler
+        static void udpRecvCallback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
+        void udpHandlePacket(struct pbuf *p, const ip_addr_t *addr, u16_t port);
 
-public:
-    // singleton access
-    static EthDriver& getInstance() {
-        static EthDriver instance;
-        return instance;
-    }
+        // TCP callback and packet handler
+        static err_t tcpAcceptCallback(void *arg, struct tcp_pcb *new_tpcb, err_t err);
+        static err_t tcpRecvCallback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
+        err_t tcpHandlePacket(struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 
-    // delete copy and move constructors/assignments
-    EthDriver(const EthDriver&) = delete;
-    EthDriver& operator=(const EthDriver&) = delete;
-    EthDriver(EthDriver&&) = delete;
-    EthDriver& operator=(EthDriver&&) = delete;
+    public:
+        // singleton access
+        static EthDriver& getInstance() {
+            static EthDriver instance;
+            return instance;
+        }
 
-    // initialize EthDriver singleton instance
-    void init();
+        // delete copy and move constructors/assignments
+        EthDriver(const EthDriver&) = delete;
+        EthDriver& operator=(const EthDriver&) = delete;
+        EthDriver(EthDriver&&) = delete;
+        EthDriver& operator=(EthDriver&&) = delete;
 
-    // transmit a UDP packet
-    bool udpTransmit(const ip_addr_t *addr, u16_t port, const char* data, uint16_t len);
+        // initialize EthDriver singleton instance
+        void init();
 
-    // transmit a TCP packet
-    bool tcpTransmit(struct tcp_pcb *tpcb, const char* data, uint16_t len);
+        // transmit a UDP packet
+        bool udpTransmit(const ip_addr_t *addr, u16_t port, const uint8_t* data, uint16_t len);
 
-    // close the TCP connection
-    void closeTcpConnection(struct tcp_pcb *tpcb);
-};
+        // transmit a TCP packet
+        bool tcpTransmit(struct tcp_pcb *tpcb, const uint8_t* data, uint16_t len);
+
+        // close the TCP connection
+        void closeTcpConnection(struct tcp_pcb *tpcb);
+    };
+}
