@@ -416,18 +416,17 @@ int _write(int file, char* ptr, int len) {
   return len;
 }
 
-uint8_t uart_buf[1024];
-uint16_t uart_rx_size;
-SemaphoreHandle_t uart_sem = NULL;
 struct args {
 	int sock;
 	struct sockaddr_in other_addr;
 };
 
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
-	uart_rx_size = Size;
+uint8_t rx_byte;
+QueueHandle_t uart_queue;
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-	xSemaphoreGiveFromISR(uart_sem, &xHigherPriorityTaskWoken);
+	xQueueSendFromISR(uart_queue, &rx_byte, &xHigherPriorityTaskWoken);
+	HAL_UART_Receive_IT(huart, &rx_byte, 1);
 	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
@@ -436,17 +435,21 @@ void senderTask(void* arg) {
 	struct args* args = (struct args*)arg;
 	int sock = args->sock;
 	struct sockaddr_in other_addr = args->other_addr;
-	printf("here\n\r");
+	uint8_t byte;
+	uint8_t buf[1024];
+	size_t head = 0;
 
-	uart_sem = xSemaphoreCreateBinary();
-	HAL_UARTEx_ReceiveToIdle_IT(&huart1, uart_buf, sizeof(uart_buf));
+	uart_queue = xQueueCreate(10, sizeof(rx_byte));
+	HAL_UART_Receive_IT(&huart1, &rx_byte, 1);
 
 	for (;;) {
-		if (xSemaphoreTake(uart_sem, portMAX_DELAY) == pdTRUE) {
-			int bytes_sent = sendto(sock, uart_buf, uart_rx_size, 0, (struct sockaddr*)&other_addr, sizeof(other_addr));
-		    printf("sent %d bytes\n\r", bytes_sent);
-		    // re-enable the interrupt
-		    HAL_UARTEx_ReceiveToIdle_IT(&huart1, uart_buf, sizeof(uart_buf));
+		if (xQueueReceive(uart_queue, &byte, portMAX_DELAY) == pdPASS) {
+			buf[head] = byte;
+			head++;
+			if (byte == '\n' || byte == '\r') {
+				int bytes_sent = sendto(sock, buf, head, 0, (struct sockaddr*)&other_addr, sizeof(other_addr));
+			    printf("sent %d bytes\n\r", bytes_sent);
+			}
 		}
 	}
 }
@@ -487,22 +490,29 @@ void StartDefaultTask(void *argument)
 
   const int WIFI_CONN_RETRY_INTERVAL_MSEC = 100u;
   const uint32_t MAX_WIFI_RETRY_COUNT = 3;
-
+  int success = 0;
   /* Step 4: Connect with bounded retries. */
-//  for (uint32_t retry = 0; retry < MAX_WIFI_RETRY_COUNT; retry++)
-//  {
+  for (uint32_t retry = 0; retry < MAX_WIFI_RETRY_COUNT; retry++)
+  {
       result = cy_wcm_connect_ap(&connect_param, &ip_address);
       if (result == CY_RSLT_SUCCESS)
       {
           printf("Successfully connected to Wi-Fi network '%s'.\n",
                  connect_param.ap_credentials.SSID);
-//          break;
+          success = 1;
+          break;
       }
 
-//      printf("Connection to Wi-Fi network failed (error 0x%08X). Retrying in %d ms...\n",
-//             (unsigned int)result, WIFI_CONN_RETRY_INTERVAL_MSEC);
-//      cy_rtos_delay_milliseconds(WIFI_CONN_RETRY_INTERVAL_MSEC);
-//  }
+      printf("Connection to Wi-Fi network failed (error 0x%08X). Retrying in %d ms...\n",
+             (unsigned int)result, WIFI_CONN_RETRY_INTERVAL_MSEC);
+      cy_rtos_delay_milliseconds(WIFI_CONN_RETRY_INTERVAL_MSEC);
+  }
+
+  if (!success) {
+	  printf("couldn't connect to wifi\n");
+	  while (1) {};
+  }
+
   int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   struct sockaddr_in server_addr;
   memset(&server_addr, 0, sizeof(server_addr));
