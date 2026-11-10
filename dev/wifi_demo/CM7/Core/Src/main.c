@@ -25,6 +25,9 @@
 /* USER CODE BEGIN Includes */
 #include "wifi_bt_if.h"
 #include "cy_wcm.h"
+#include "cyabs_rtos.h"
+#include <stdio.h>
+#include "lwip/sockets.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -407,6 +410,46 @@ void SDMMC1_IRQHandler(void)
 {
     stm32_cyhal_sdio_irq_handler();
 }
+
+int _write(int file, char* ptr, int len) {
+  HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
+}
+
+uint8_t uart_buf[1024];
+uint16_t uart_rx_size;
+SemaphoreHandle_t uart_sem = NULL;
+struct args {
+	int sock;
+	struct sockaddr_in other_addr;
+};
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t Size) {
+	uart_rx_size = Size;
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+	xSemaphoreGiveFromISR(uart_sem, &xHigherPriorityTaskWoken);
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
+void senderTask(void* arg) {
+	// read from uart
+	struct args* args = (struct args*)arg;
+	int sock = args->sock;
+	struct sockaddr_in other_addr = args->other_addr;
+	printf("here\n\r");
+
+	uart_sem = xSemaphoreCreateBinary();
+	HAL_UARTEx_ReceiveToIdle_IT(&huart1, uart_buf, sizeof(uart_buf));
+
+	for (;;) {
+		if (xSemaphoreTake(uart_sem, portMAX_DELAY) == pdTRUE) {
+			int bytes_sent = sendto(sock, uart_buf, uart_rx_size, 0, (struct sockaddr*)&other_addr, sizeof(other_addr));
+		    printf("sent %d bytes\n\r", bytes_sent);
+		    // re-enable the interrupt
+		    HAL_UARTEx_ReceiveToIdle_IT(&huart1, uart_buf, sizeof(uart_buf));
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -423,15 +466,65 @@ void StartDefaultTask(void *argument)
   wcm_config.interface = CY_WCM_INTERFACE_TYPE_STA;
 
   SD_HandleTypeDef SDHandle = { .Instance = SDMMC1 };
+  printf("hello\n\r");
   cy_rslt_t result = stm32_cypal_wifi_sdio_init(&SDHandle);
   if (result != CY_RSLT_SUCCESS) while (1) {}
 
   result = cy_wcm_init(&wcm_config);
   if (result != CY_RSLT_SUCCESS) while (1) {}
+
+  cy_wcm_connect_params_t connect_param;
+  cy_wcm_ip_address_t ip_address;
+  cy_wcm_security_t security = CY_WCM_SECURITY_WPA2_AES_PSK;
+  const char WIFI_SSID[] = "Average android user";
+  const char WIFI_PASSWORD[] = "swkm1259";
+
+  memset(&connect_param, 0, sizeof(connect_param));
+  memset(&ip_address, 0, sizeof(ip_address));
+  memcpy(connect_param.ap_credentials.SSID, WIFI_SSID, sizeof(WIFI_SSID));
+  memcpy(connect_param.ap_credentials.password, WIFI_PASSWORD, sizeof(WIFI_PASSWORD));
+  connect_param.ap_credentials.security = security;
+
+  const int WIFI_CONN_RETRY_INTERVAL_MSEC = 100u;
+  const uint32_t MAX_WIFI_RETRY_COUNT = 3;
+
+  /* Step 4: Connect with bounded retries. */
+//  for (uint32_t retry = 0; retry < MAX_WIFI_RETRY_COUNT; retry++)
+//  {
+      result = cy_wcm_connect_ap(&connect_param, &ip_address);
+      if (result == CY_RSLT_SUCCESS)
+      {
+          printf("Successfully connected to Wi-Fi network '%s'.\n",
+                 connect_param.ap_credentials.SSID);
+//          break;
+      }
+
+//      printf("Connection to Wi-Fi network failed (error 0x%08X). Retrying in %d ms...\n",
+//             (unsigned int)result, WIFI_CONN_RETRY_INTERVAL_MSEC);
+//      cy_rtos_delay_milliseconds(WIFI_CONN_RETRY_INTERVAL_MSEC);
+//  }
+  int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  struct sockaddr_in server_addr;
+  memset(&server_addr, 0, sizeof(server_addr));
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(6767);
+  server_addr.sin_addr.s_addr = inet_addr("10.195.59.208");
+
+  struct args arg;
+  arg.sock = sock;
+  arg.other_addr = server_addr;
+  const osThreadAttr_t sender_attributes = {
+    .name = "sender",
+    .stack_size = 2048 * 4,
+    .priority = (osPriority_t) osPriorityNormal,
+  };
+
+  osThreadNew(senderTask, &arg, &sender_attributes);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+
+	osDelay(1000);
   }
   /* USER CODE END 5 */
 }
