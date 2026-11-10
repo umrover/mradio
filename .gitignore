@@ -46,3 +46,7 @@ starter-projects/**/.gitignore
 lib/**/.gitignore
 
 **/Middlewares
+
+# CubeMX output that fw/mradio builds against, tracked so a fresh clone can build
+!/fw/mradio/Drivers/
+!/fw/mradio/Middlewares
