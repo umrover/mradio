@@ -1,3 +1,6 @@
 [submodule "fw/stm32h7/STM32CubeH7"]
 	path = fw/stm32h7/STM32CubeH7
 	url = https://github.com/STMicroelectronics/STM32CubeH7.git
+[submodule "fw/mm-iot-sdk"]
+	path = fw/mm-iot-sdk
+	url = git@github.com:MorseMicro/mm-iot-sdk.git
