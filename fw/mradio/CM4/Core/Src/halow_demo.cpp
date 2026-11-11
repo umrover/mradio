@@ -194,7 +194,7 @@ bool start_halow() {
     if (!boot_halow() || !start_ip()) {
         return false;
     }
-    // the chip must never sleep, see mmhal_wlan_busy_is_asserted
+    // prevent sleep
     const mmwlan_status status = mmwlan_set_power_save_mode(MMWLAN_PS_DISABLED);
     if (status != MMWLAN_SUCCESS) {
         std::printf("halow: power save disable failed %d\n", static_cast<int>(status));
@@ -203,48 +203,46 @@ bool start_halow() {
     return is_ap() ? start_ap() : start_sta();
 }
 
-[[noreturn]] void ping_peer_forever() {
+bool start_ping() {
     mmping_args args = MMPING_ARGS_DEFAULT;
     std::strncpy(args.ping_src, local_ip(), sizeof args.ping_src - 1);
     std::strncpy(args.ping_target, peer_ip(), sizeof args.ping_target - 1);
     args.ping_interval_ms = PING_INTERVAL_MS;
+    if (mmping_start(&args) == 0) {
+        std::printf("halow: ping start failed\n");
+        return false;
+    }
     std::printf("halow: %s %s pinging %s every %lu ms\n", role_name(), local_ip(), peer_ip(),
                 static_cast<unsigned long>(PING_INTERVAL_MS));
+    return true;
+}
 
+[[noreturn]] void loop() {
+    uint32_t replies_seen = 0;
+    struct mmping_stats stats{};
     for (;;) {
-        // a count of zero runs the session to the SDK maximum, so restart whenever it ends
-        if (mmping_start(&args) == 0) {
-            std::printf("halow: ping start failed\n");
-            mmosal_task_sleep(PING_INTERVAL_MS);
+        mmosal_task_sleep(PING_POLL_MS);
+        mmping_stats(&stats);
+        if (stats.ping_recv_count == replies_seen) {
             continue;
         }
-
-        uint32_t replies_seen = 0;
-        struct mmping_stats stats{};
-        do {
-            mmosal_task_sleep(PING_POLL_MS);
-            mmping_stats(&stats);
-            if (stats.ping_recv_count == replies_seen) {
-                continue;
-            }
-            replies_seen = stats.ping_recv_count;
-            if (is_ap()) {
-                std::printf("halow: reply %lu/%lu avg %lu ms\n",
-                            static_cast<unsigned long>(replies_seen),
-                            static_cast<unsigned long>(stats.ping_total_count),
-                            static_cast<unsigned long>(stats.ping_avg_time_ms));
-            }
-            else {
-                std::printf("halow: reply %lu/%lu avg %lu ms rssi %ld dBm\n",
-                            static_cast<unsigned long>(replies_seen),
-                            static_cast<unsigned long>(stats.ping_total_count),
-                            static_cast<unsigned long>(stats.ping_avg_time_ms),
-                            static_cast<long>(mmwlan_get_rssi()));
-            }
-            set_status_led(true);
-            mmosal_task_sleep(BLINK_MS);
-            set_status_led(false);
-        } while (stats.ping_is_running);
+        replies_seen = stats.ping_recv_count;
+        if (is_ap()) {
+            std::printf("halow: reply %lu/%lu avg %lu ms\n",
+                        static_cast<unsigned long>(replies_seen),
+                        static_cast<unsigned long>(stats.ping_total_count),
+                        static_cast<unsigned long>(stats.ping_avg_time_ms));
+        }
+        else {
+            std::printf("halow: reply %lu/%lu avg %lu ms rssi %ld dBm\n",
+                        static_cast<unsigned long>(replies_seen),
+                        static_cast<unsigned long>(stats.ping_total_count),
+                        static_cast<unsigned long>(stats.ping_avg_time_ms),
+                        static_cast<long>(mmwlan_get_rssi()));
+        }
+        set_status_led(true);
+        mmosal_task_sleep(BLINK_MS);
+        set_status_led(false);
     }
 }
 } // namespace
@@ -253,12 +251,12 @@ void init() {
     mm_logging_init();
     mmhal_init();
     std::printf("\nmradio halow demo, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
-    if (!start_halow()) {
+    if (!start_halow() || !start_ping()) {
         // solid D1 means fail
         set_status_led(true);
         return;
     }
-    ping_peer_forever();
+    loop();
 }
 } // namespace mrover
 
