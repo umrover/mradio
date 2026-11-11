@@ -20,7 +20,7 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
-
+#include <string.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "wifi_bt_if.h"
@@ -453,6 +453,128 @@ void senderTask(void* arg) {
 		}
 	}
 }
+
+#define UDP_PORT 6767
+#define BOARD_ID 'A'  // CHANGE TO A OR B DEPENDING ON PCB
+#define BROADCAST_IP "10.42.0.255"
+
+volatile uint32_t udp_tx_count = 0;
+volatile uint32_t udp_rx_ping_count = 0;
+volatile uint32_t udp_rx_pong_count = 0;
+volatile int udp_rx_error = 0;
+volatile int udp_tx_error = 0;
+
+void udpReceiverTask(void *argument)
+{
+    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (sock < 0) {
+        udp_rx_error = 1;
+        vTaskDelete(NULL);
+    }
+    struct sockaddr_in local_addr = {0};
+
+    local_addr.sin_family = AF_INET;
+    local_addr.sin_port = htons(UDP_PORT);
+    local_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    if (bind(sock, (struct sockaddr *)&local_addr,
+             sizeof(local_addr)) < 0) {
+        udp_rx_error = 2;
+        closesocket(sock);
+        vTaskDelete(NULL);
+    }
+
+    char buf[128];
+
+    for (;;) {
+        struct sockaddr_in from = {0};
+        socklen_t from_len = sizeof(from);
+        int n = recvfrom(sock, buf, sizeof(buf) - 1, 0,
+                         (struct sockaddr *)&from, &from_len);
+        if (n <= 0) {
+            continue;
+        }
+        buf[n] = '\0';
+        // Respond to PING messages from the other board
+        if (n >= 6 && strncmp(buf, "PING ", 5) == 0 &&
+            buf[5] != BOARD_ID) {
+            udp_rx_ping_count++;
+            char reply[32];
+            int len = snprintf(reply, sizeof(reply),
+                               "PONG %c\n", BOARD_ID);
+            // Send response to the other board's UDP listener
+            from.sin_port = htons(UDP_PORT);
+            sendto(sock, reply, len, 0,
+                   (struct sockaddr *)&from, sizeof(from));
+        }
+        // Count PONG responses from the other board
+        else if (n >= 6 && strncmp(buf, "PONG ", 5) == 0 &&
+                 buf[5] != BOARD_ID) {
+            udp_rx_pong_count++;
+        }
+    }
+}
+
+void udpTransmitterTask(void *argument)
+{
+    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (sock < 0) {
+        udp_tx_error = 1;
+        vTaskDelete(NULL);
+    }
+    int enable = 1;
+    if (setsockopt(sock, SOL_SOCKET, SO_BROADCAST,
+                   &enable, sizeof(enable)) < 0) {
+        udp_tx_error = 2;
+        closesocket(sock);
+        vTaskDelete(NULL);
+    }
+
+    struct sockaddr_in dest = {0};
+    dest.sin_family = AF_INET;
+    dest.sin_port = htons(UDP_PORT);
+    dest.sin_addr.s_addr = inet_addr(BROADCAST_IP);
+
+    char msg[64];
+    uint32_t seq = 0;
+
+    for (;;) {
+        int len = snprintf(msg, sizeof(msg),
+                           "PING %c %lu\n",
+                           BOARD_ID, (unsigned long)seq++);
+        int sent = sendto(sock, msg, len, 0,
+                          (struct sockaddr *)&dest,
+                          sizeof(dest));
+        if (sent > 0) {
+            udp_tx_count++;
+        } else {
+            udp_tx_error = 3;
+        }
+        osDelay(1000);
+    }
+}
+
+//volatile uint32_t networks_found = 0;
+//volatile uint32_t mrover_found = 0;
+//volatile uint32_t scan_complete = 0;
+//
+//void scan_callback(cy_wcm_scan_result_t *result,
+//                   void *user_data,
+//                   cy_wcm_scan_status_t status)
+//{
+//    if (status == CY_WCM_SCAN_COMPLETE) {
+//        scan_complete = 1;
+//        return;
+//    }
+//
+//    if (status == CY_WCM_SCAN_INCOMPLETE && result != NULL) {
+//        networks_found++;
+//
+//        if (strcmp((char *)result->SSID, "mrover") == 0) {
+//            mrover_found = 1;
+//        }
+//    }
+//}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -465,7 +587,7 @@ void senderTask(void* arg) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-  cy_wcm_config_t wcm_config;
+  cy_wcm_config_t wcm_config = {0};
   wcm_config.interface = CY_WCM_INTERFACE_TYPE_STA;
 
   SD_HandleTypeDef SDHandle = { .Instance = SDMMC1 };
@@ -476,20 +598,44 @@ void StartDefaultTask(void *argument)
   result = cy_wcm_init(&wcm_config);
   if (result != CY_RSLT_SUCCESS) while (1) {}
 
+//  networks_found = 0;
+//  mrover_found = 0;
+//  scan_complete = 0;
+
+  // Scan available networks
+//  result = cy_wcm_start_scan(scan_callback, NULL, NULL);
+//
+//  if (result != CY_RSLT_SUCCESS) {
+//      while (1) {}
+//  }
+//
+//  // Wait for scan to finish
+//  uint32_t elapsed = 0;
+//
+//  while (!scan_complete && elapsed < 15000) {
+//      osDelay(100);
+//      elapsed += 100;
+//  }
+//
+//  if (!scan_complete || !mrover_found) {
+//      while (1) {}
+//  }
+
   cy_wcm_connect_params_t connect_param;
   cy_wcm_ip_address_t ip_address;
-  cy_wcm_security_t security = CY_WCM_SECURITY_WPA2_AES_PSK;
-  const char WIFI_SSID[] = "Average android user";
-  const char WIFI_PASSWORD[] = "swkm1259";
+  cy_wcm_security_t security = CY_WCM_SECURITY_UNKNOWN;
+  const char WIFI_SSID[] = "mrover";
+  const char WIFI_PASSWORD[] = "mrover_password";
 
   memset(&connect_param, 0, sizeof(connect_param));
   memset(&ip_address, 0, sizeof(ip_address));
   memcpy(connect_param.ap_credentials.SSID, WIFI_SSID, sizeof(WIFI_SSID));
   memcpy(connect_param.ap_credentials.password, WIFI_PASSWORD, sizeof(WIFI_PASSWORD));
   connect_param.ap_credentials.security = security;
+  connect_param.band = CY_WCM_WIFI_BAND_2_4GHZ;
 
   const int WIFI_CONN_RETRY_INTERVAL_MSEC = 100u;
-  const uint32_t MAX_WIFI_RETRY_COUNT = 3;
+  const uint32_t MAX_WIFI_RETRY_COUNT =	 3;
   int success = 0;
   /* Step 4: Connect with bounded retries. */
   for (uint32_t retry = 0; retry < MAX_WIFI_RETRY_COUNT; retry++)
@@ -513,29 +659,55 @@ void StartDefaultTask(void *argument)
 	  while (1) {};
   }
 
-  int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-  struct sockaddr_in server_addr;
-  memset(&server_addr, 0, sizeof(server_addr));
-  server_addr.sin_family = AF_INET;
-  server_addr.sin_port = htons(6767);
-  server_addr.sin_addr.s_addr = inet_addr("10.195.59.208");
-
-  struct args arg;
-  arg.sock = sock;
-  arg.other_addr = server_addr;
-  const osThreadAttr_t sender_attributes = {
-    .name = "sender",
-    .stack_size = 2048 * 4,
-    .priority = (osPriority_t) osPriorityNormal,
+  const osThreadAttr_t receiver_attributes = {
+      .name = "udpReceiver",
+      .stack_size = 2048 * 4,
+      .priority = (osPriority_t) osPriorityNormal,
   };
 
-  osThreadNew(senderTask, &arg, &sender_attributes);
-  /* Infinite loop */
-  for(;;)
-  {
+  const osThreadAttr_t transmitter_attributes = {
+      .name = "udpTransmitter",
+      .stack_size = 2048 * 4,
+      .priority = (osPriority_t) osPriorityNormal,
+  };
 
-	osDelay(1000);
+  // Start UDP receiver
+  osThreadNew(udpReceiverTask, NULL, &receiver_attributes);
+
+  // Start UDP transmitter
+  osThreadNew(udpTransmitterTask, NULL, &transmitter_attributes);
+
+  for (;;) {
+      osDelay(1000);
   }
+
+//  int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+//  struct sockaddr_in server_addr;
+//  memset(&server_addr, 0, sizeof(server_addr));
+//  server_addr.sin_family = AF_INET;
+//  server_addr.sin_port = htons(6767);
+//  server_addr.sin_addr.s_addr = inet_addr("10.42.0.1");
+//
+//  struct args arg;
+//  arg.sock = sock;
+//  arg.other_addr = server_addr;
+//  const osThreadAttr_t sender_attributes = {
+//    .name = "sender",
+//    .stack_size = 2048 * 4,
+//    .priority = (osPriority_t) osPriorityNormal,
+//  };
+//
+//  osThreadNew(senderTask, &arg, &sender_attributes);
+//  /* Infinite loop */
+//  for(;;)
+//  {
+//	  const char msg[] = "Hello from STM32!\n";
+//	  int sent = sendto(sock, msg, sizeof(msg) - 1, 0,
+//	                        (struct sockaddr*)&server_addr,
+//	                        sizeof(server_addr));
+//    printf("UDP sent: %d bytes\r\n", sent);
+//	osDelay(1000);
+//  }
   /* USER CODE END 5 */
 }
 
