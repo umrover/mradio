@@ -52,7 +52,7 @@ namespace mrover {
 
         // group new udp packet
         if (packet_tos < NUM_PACKET_TYPES) {
-            packet_grouper.groupPackets((uint8_t*)p->payload, p->len, static_cast<PacketType>(packet_tos), addr, port);
+            packet_handler.groupPackets((uint8_t*)p->payload, p->len, static_cast<PacketType>(packet_tos), addr, port);
         }
 
         // free pbuf

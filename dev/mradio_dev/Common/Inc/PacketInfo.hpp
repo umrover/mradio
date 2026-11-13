@@ -18,11 +18,4 @@ namespace mrover {
         UDP = 0,
         TCP = 1
 	};
-
-    // packet sub-header for grouping
-    struct PacketSubHeader {
-        uint32_t ip;
-        uint16_t port;
-        uint16_t len;
-    };
 }

@@ -8,7 +8,7 @@
 #include "lwip/ip.h"
 #include "lwip/tcpip.h"
 #include "err.h"
-#include "PacketGrouper.hpp"
+#include "PacketHandler.hpp"
 #include <cstdint>
 
 #define UDP_PORT 8080
@@ -17,7 +17,7 @@
 extern struct netif gnetif;
 
 namespace mrover {
-    extern PacketGrouper packet_grouper;
+    extern PacketHandler packet_handler;
 
     // class for interfacing with ethernet peripherals
     class EthDriver {

@@ -10,7 +10,7 @@ namespace mrover {
     __attribute__((section(".RxRingBuffer"))) RingBuffer rx_ring_buf;
     __attribute__((section(".TxRingBuffer"))) RingBuffer tx_ring_buf;
 
-    PacketGrouper packet_grouper;
+    PacketHandler packet_handler;
 
     void initRingBuffers() {
         rx_ring_buf.init();
@@ -31,7 +31,7 @@ namespace mrover {
 
             // flush groups exceeding deadline
             for (size_t i = 0; i < NUM_PACKET_TYPES; i++) {
-                packet_grouper.checkDeadline(static_cast<PacketType>(i));
+                packet_handler.checkDeadline(static_cast<PacketType>(i));
             }
 
             // check rx buffer
@@ -41,20 +41,12 @@ namespace mrover {
                         EthDriver::getInstance().tcpTransmit(static_cast<struct tcp_pcb*>(slot.tpcb), slot.packet, slot.len);
                     }
                 } else if (slot.protocol_type == ProtocolType::UDP) {
-                    size_t offset = 0;
-                    while (offset + sizeof(PacketSubHeader) <= slot.len) {
-                        const auto* sub_hdr = reinterpret_cast<const PacketSubHeader*>(slot.packet + offset);
-                        offset += sizeof(PacketSubHeader);
-
-                        if (offset + sub_hdr->len > slot.len) break; // sanity check
-
-                        const uint8_t* payload = slot.packet + offset;
+                    packet_handler.degroupPackets(slot.packet, slot.len, [](const DegroupedPacket& pkt) {
                         ip_addr_t dest_ip;
-                        ip_addr_set_ip4_u32(&dest_ip, sub_hdr->ip);
+                        ip_addr_set_ip4_u32(&dest_ip, pkt.header.dest_ip);
 
-                        EthDriver::getInstance().udpTransmit(&dest_ip, sub_hdr->port, payload, sub_hdr->len);
-                        offset += sub_hdr->len;
-                    }
+                        EthDriver::getInstance().udpTransmit(&dest_ip, pkt.header.dest_port, pkt.payload, pkt.header.len);
+                    });
                 }
             }
         }

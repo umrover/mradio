@@ -1,11 +1,11 @@
-#include "PacketGrouper.hpp"
+#include "PacketHandler.hpp"
 #include "PacketInfo.hpp"
 #include "stm32h7xx_hal.h"
 #include <cstdint>
 
 namespace mrover {
     // groups packet into group_buf slot of its type
-    void PacketGrouper::groupPackets(uint8_t* payload, uint16_t len, PacketType type, const ip_addr_t* addr, uint16_t port) {
+    void PacketHandler::groupPackets(uint8_t* payload, uint16_t len, PacketType type, const ip_addr_t* addr, uint16_t port) {
         size_t slot = static_cast<size_t>(type);
 
         // check if packet is valid
@@ -26,8 +26,8 @@ namespace mrover {
 
         // format sub-header
         PacketSubHeader sub_header;
-        sub_header.ip = ip_addr_get_ip4_u32(addr);
-        sub_header.port = port;
+        sub_header.dest_ip = ip_addr_get_ip4_u32(addr);
+        sub_header.dest_port = port;
         sub_header.len = len;
 
         // write length header
@@ -40,7 +40,7 @@ namespace mrover {
     }
 
     // check if a group has reached its deadline, flush the group if so
-    void PacketGrouper::checkDeadline(PacketType type) {
+    void PacketHandler::checkDeadline(PacketType type) {
         size_t slot = static_cast<size_t>(type);
         uint32_t current_time = HAL_GetTick();
 
@@ -50,7 +50,7 @@ namespace mrover {
     }
 
     // flushes a packet group to tx_buf
-    void PacketGrouper::flushGroup(PacketType type) {
+    void PacketHandler::flushGroup(PacketType type) {
         size_t slot = static_cast<size_t>(type);
 
         // check slot exists
