@@ -33,7 +33,7 @@
 
 /* Within 'USER CODE' section, code will be kept by default at each generation */
 /* USER CODE BEGIN 0 */
-
+extern void handleEthRx(const uint8_t* frame, uint16_t len);
 /* USER CODE END 0 */
 
 /* Private define ------------------------------------------------------------*/
@@ -345,7 +345,11 @@ static void low_level_init(struct netif *netif)
     netif_set_up(netif);
     netif_set_link_up(netif);
 /* USER CODE BEGIN PHY_POST_CONFIG */
-
+    ETH_MACFilterConfigTypeDef FilterConf;
+    HAL_ETH_GetMACFilterConfig(&heth, &FilterConf);
+    FilterConf.PromiscuousMode = ENABLE;
+    FilterConf.PassAllMulticast = ENABLE;
+    HAL_ETH_SetMACFilterConfig(&heth, &FilterConf);
 /* USER CODE END PHY_POST_CONFIG */
     }
 
@@ -481,6 +485,7 @@ void ethernetif_input(void* argument)
 {
   struct pbuf *p = NULL;
   struct netif *netif = (struct netif *) argument;
+  static uint8_t rx_frame_buf[ETH_RX_BUFFER_SIZE];
 
   for( ;; )
   {
@@ -491,10 +496,10 @@ void ethernetif_input(void* argument)
         p = low_level_input( netif );
         if (p != NULL)
         {
-          if (netif->input( p, netif) != ERR_OK )
-          {
-            pbuf_free(p);
-          }
+          // bridge raw eth frame
+          pbuf_copy_partial(p, rx_frame_buf, p->tot_len, 0);
+          handleEthRx(rx_frame_buf, p->tot_len);
+          pbuf_free(p);
         }
       } while(p!=NULL);
     }

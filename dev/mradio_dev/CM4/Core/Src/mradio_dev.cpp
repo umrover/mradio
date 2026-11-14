@@ -2,7 +2,6 @@
 #include "main.h"
 #include "RingBuffer.hpp"
 #include "stm32h7xx_hal.h"
-#include "stm32h7xx_hal_gpio.h"
 #include <cstdint>
 
 namespace mrover {
@@ -11,12 +10,16 @@ namespace mrover {
 
     extern "C" {
         void postInit() {
+            // initialize CM4 stuff
+        }
+
+        void cm4_loop() {
             static BufferSlot slot;
 
-            while (true) {
-                if (tx_ring_buf.pop(slot)) {
-                    rx_ring_buf.push(slot);
-                }
+            // pop next packet if available
+            if (tx_ring_buf.pop(slot)) {
+                // transmit packets
+                rx_ring_buf.push(slot);
             }
         }
     }

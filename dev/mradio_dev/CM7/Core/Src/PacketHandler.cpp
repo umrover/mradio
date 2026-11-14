@@ -2,20 +2,21 @@
 #include "PacketInfo.hpp"
 #include "stm32h7xx_hal.h"
 #include <cstdint>
+#include <cstring>
 
 namespace mrover {
-    // groups packet into group_buf slot of its type
-    void PacketHandler::groupPackets(uint8_t* payload, uint16_t len, PacketType type, const ip_addr_t* addr, uint16_t port) {
+    // groups ethernet frame into group_buf slot of its type
+    void PacketHandler::groupPacket(const uint8_t* frame, uint16_t len, PacketType type) {
         size_t slot = static_cast<size_t>(type);
+        uint16_t subframe_size = sizeof(len) + len;
 
         // check if packet is valid
-        uint16_t packet_size = sizeof(PacketSubHeader) + len;
-        if (packet_size > MTU) {
+        if (subframe_size > MTU) {
             return;
         }
 
         // check if flush is needed
-        if (packet_size + group_buf[slot].len > MTU) {
+        if (subframe_size + group_buf[slot].len > MTU) {
             flushGroup(type);
         }
 
@@ -24,18 +25,12 @@ namespace mrover {
             group_buf[slot].initial_time = HAL_GetTick();
         }
 
-        // format sub-header
-        PacketSubHeader sub_header;
-        sub_header.dest_ip = ip_addr_get_ip4_u32(addr);
-        sub_header.dest_port = port;
-        sub_header.len = len;
-
         // write length header
-        std::memcpy(group_buf[slot].payload + group_buf[slot].len, &sub_header, sizeof(sub_header));
-        group_buf[slot].len += sizeof(PacketSubHeader);
+        std::memcpy(group_buf[slot].payload + group_buf[slot].len, &len, sizeof(len));
+        group_buf[slot].len += sizeof(len);
 
-        // write packet payload
-        std::memcpy(group_buf[slot].payload + group_buf[slot].len, payload, len);
+        // write frame
+        std::memcpy(group_buf[slot].payload + group_buf[slot].len, frame, len);
         group_buf[slot].len += len;
     }
 
@@ -53,16 +48,14 @@ namespace mrover {
     void PacketHandler::flushGroup(PacketType type) {
         size_t slot = static_cast<size_t>(type);
 
-        // check slot exists
+        // check slot has data
         if (group_buf[slot].len == 0) {
             return;
         }
 
-        // flush grouped slot to tx_buf
         static BufferSlot buf_slot;
-        buf_slot.protocol_type = ProtocolType::UDP;
+        buf_slot.slot_type = SlotType::GROUPED_PACKET;
         buf_slot.len = group_buf[slot].len;
-        buf_slot.tpcb = nullptr;
 
         std::memcpy(buf_slot.packet, group_buf[slot].payload, group_buf[slot].len);
         tx_ring_buf.push(buf_slot);

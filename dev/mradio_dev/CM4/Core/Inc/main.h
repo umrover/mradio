@@ -54,6 +54,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 void postInit(void);
+void cm4_loop(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

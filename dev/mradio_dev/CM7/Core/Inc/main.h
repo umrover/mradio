@@ -56,6 +56,7 @@ void Error_Handler(void);
 void postInit(void);
 void lwipInit(void);
 void checkRxBuf(void);
+void handleEthRx(const uint8_t* frame, uint16_t len);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

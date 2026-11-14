@@ -4,9 +4,8 @@
 #include <cstring>
 #include "PacketInfo.hpp"
 #include "RingBuffer.hpp"
-#include "lwip/ip_addr.h"
 
-#define GROUPING_DEADLINE 1000 // deadline in ms before a group is flushed
+#define GROUPING_DEADLINE 10 // deadline in ms before a group is flushed
 
 namespace mrover {
     // struct for a slot in the grouping buffer
@@ -14,27 +13,12 @@ namespace mrover {
         uint32_t initial_time = 0;
         uint16_t len = 0;
         uint8_t payload[MTU] = {};
-        ip_addr_t remote_ip = {};
-	    uint16_t remote_port = 0;
     };
 
-    // packet sub-header for grouping
-    struct __attribute__((packed)) PacketSubHeader {
-        uint32_t dest_ip;
-        uint16_t dest_port;
-        uint16_t len;
-    };
-
-    // degrouped packet
-    struct DegroupedPacket {
-        const PacketSubHeader& header;
-        const uint8_t* payload;
-    };
-
-    // class for handling packing and parsing IP packets
+    // class for handling grouping and degrouping packets
     class PacketHandler {
     private:
-        // grouping buffer
+        // grouping buffer per packet type
         GroupSlot group_buf[NUM_PACKET_TYPES];
 
         // flushes a packet group to tx_buf
@@ -45,29 +29,26 @@ namespace mrover {
         PacketHandler() = default;
 
         // groups packet, flushes current group to tx_buf if size will exceed MTU
-        void groupPackets(uint8_t* payload, uint16_t len, PacketType type, const ip_addr_t* addr, uint16_t port);
+        void groupPacket(const uint8_t* frame, uint16_t len, PacketType type);
 
         // check if a group has reached its deadline, flush the group if so
         void checkDeadline(PacketType type);
 
-        // degroups packet into individual packets
+        // degroups container into individual ethernet frames
         template <typename Callback>
-        void degroupPackets(const uint8_t* grouped_buf, uint16_t len, Callback&& callback) {
+        void degroupPackets(const uint8_t* grouped_packet, uint16_t total_len, Callback&& callback) {
             size_t offset = 0;
 
-            while (offset + sizeof(PacketSubHeader) <= len) {
-                // get subheader
-                const auto* sub_hdr = reinterpret_cast<const PacketSubHeader*>(grouped_buf + offset);
-                offset += sizeof(PacketSubHeader);
+            while (offset + sizeof(uint16_t) <= total_len) {
+                uint16_t frame_len = *(grouped_packet + offset);
+                offset += sizeof(frame_len);
 
-                // ensure payload does not extend past the end of the buffer
-                if (offset + sub_hdr->len > len) {
+                if (offset + frame_len > total_len) {
                     break;
                 }
 
-                // call user function to handle degrouped packet, advance offset
-                callback(DegroupedPacket{*sub_hdr, grouped_buf + offset});
-                offset += sub_hdr->len;
+                callback(grouped_packet + offset, frame_len);
+                offset += frame_len;
             }
         }
     };

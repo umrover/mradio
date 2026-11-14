@@ -20,7 +20,7 @@ namespace mrover {
     }
 
     // pushes a packet into the end of the buffer using FIFO order, returns true for success and false for failure
-    bool RingBuffer::push(BufferSlot& slot) {
+    bool RingBuffer::push(const BufferSlot& slot) {
         // ensure there is space in the buffer
         if (slot.len > MTU || isFull()) {
             return false;
@@ -38,7 +38,7 @@ namespace mrover {
         return true;
     }
 
-    // pops the first packet in the buffer using FIFO order, returns the packet length, returns false on failure
+    // pops the first packet in the buffer using FIFO order, returns false on failure
     bool RingBuffer::pop(BufferSlot& slot) {
         // ensure there is a slot to pop
         if (isEmpty()) {

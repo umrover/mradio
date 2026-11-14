@@ -9,12 +9,9 @@
 namespace mrover {
     // struct for each slot in ring buffer
     struct BufferSlot {
-        uint8_t packet[MTU]; // raw eth packet (eth header + payload (payload will be an IP packet))
+        uint8_t packet[MTU]; // raw packet
         uint16_t len; // length of the packet
-        ProtocolType protocol_type; // protocol type for packet (udp or tcp)
-        uint32_t ip_addr; // ip address to return packet to
-        uint16_t port; // port to return packet to
-        void* tpcb; // tcp_pcb for tcp connections
+        SlotType slot_type; // single frame or grouped frames
     };
 
     // shared memory ring buffer implementation
@@ -38,9 +35,9 @@ namespace mrover {
         bool isEmpty();
 
         // pushes a packet into the end of the buffer using FIFO order, returns true for success and false for failure
-        bool push(BufferSlot& slot);
+        bool push(const BufferSlot& slot);
 
-        // pops the first packet in the buffer using FIFO order, returns the packet length, returns false on failure
+        // pops the first packet in the buffer using FIFO order, returns false on failure
         bool pop(BufferSlot& slot);
     };
 

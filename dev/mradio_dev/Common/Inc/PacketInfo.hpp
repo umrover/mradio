@@ -13,9 +13,9 @@ namespace mrover {
         COMMAND = 2
     };
 
-    // enum representing the protocol type for a packet
-    enum class ProtocolType : uint8_t {
-        UDP = 0,
-        TCP = 1
-	};
+    // enum representing the slot type for a packet
+    enum class SlotType : uint8_t {
+        SINGLE_FRAME = 0, // single ethernet frame
+        GROUPED_PACKET = 1 // grouped ethernet frames
+    };
 }
