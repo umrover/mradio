@@ -455,7 +455,7 @@ void senderTask(void* arg) {
 }
 
 #define UDP_PORT 6767
-#define BOARD_ID 'A'  // CHANGE TO A OR B DEPENDING ON PCB
+#define BOARD_ID 'B'  // CHANGE TO A OR B DEPENDING ON PCB
 #define BROADCAST_IP "10.42.0.255"
 
 volatile uint32_t udp_tx_count = 0;
@@ -571,7 +571,6 @@ void udpTransmitterTask(void *argument)
 //        networks_found++;
 //
 //        if (strcmp((char *)result->SSID, "mrover") == 0) {
-//            mrover_found = 1;
 //        }
 //    }
 //}
@@ -632,7 +631,7 @@ void StartDefaultTask(void *argument)
   memcpy(connect_param.ap_credentials.SSID, WIFI_SSID, sizeof(WIFI_SSID));
   memcpy(connect_param.ap_credentials.password, WIFI_PASSWORD, sizeof(WIFI_PASSWORD));
   connect_param.ap_credentials.security = security;
-  connect_param.band = CY_WCM_WIFI_BAND_2_4GHZ;
+  connect_param.band = CY_WCM_WIFI_BAND_ANY;
 
   const int WIFI_CONN_RETRY_INTERVAL_MSEC = 100u;
   const uint32_t MAX_WIFI_RETRY_COUNT =	 3;
