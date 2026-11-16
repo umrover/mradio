@@ -12,6 +12,10 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
@@ -44,22 +48,39 @@ include("mx-generated.cmake")
 set(CMAKE_CXX_COMPILER_FORCED "true")
 
 # Add project symbols (macros)
+set(LINK_TEST_FLOOD OFF CACHE BOOL "Flood UDP at the peer once it is up")
+set(LINK_TEST_PING ON CACHE BOOL "Ping the peer once a second during each window")
+set(LINK_TEST_RATE_KBPS 0 CACHE STRING "Flood UDP payload rate in kbps, 0 for as fast as the link takes it")
+set(HALOW_TX_POWER_DBM 0 CACHE STRING "Max TX power in dBm, 0 for the regulatory limit")
+
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined symbols
+    LINK_TEST_FLOOD=$<BOOL:${LINK_TEST_FLOOD}>
+    LINK_TEST_PING=$<BOOL:${LINK_TEST_PING}>
+    LINK_TEST_RATE_KBPS=${LINK_TEST_RATE_KBPS}
+    HALOW_TX_POWER_DBM=${HALOW_TX_POWER_DBM}
+    LINK_TEST_RX_HOOK=mmint_5145db60
 )
 
-# Enable CMake support for ASM and C languages
-enable_language(C ASM)
+# Enable CMake support for ASM, C, and C++
+enable_language(C CXX ASM)
+
+file(GLOB_RECURSE USER_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Src/*.cpp"
+)
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
+    "${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Inc"
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
+    ${USER_SOURCES}
 )
+
+include("mmiot.cmake")
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
@@ -78,12 +99,3 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 if((CMAKE_C_STANDARD EQUAL 90) OR (CMAKE_C_STANDARD EQUAL 99))
     message(ERROR "Generated code requires C11 or higher")
 endif()
-
-
-
-
-
-
-
-
-

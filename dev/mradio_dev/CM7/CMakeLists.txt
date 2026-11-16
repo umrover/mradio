@@ -42,20 +42,25 @@ include("mx-generated.cmake")
 # Force C++ compiler for cross-compiling
 set(CMAKE_CXX_COMPILER_FORCED "true")
 
-# Glob ONLY .cpp files from Core and Common
+# Glob ONLY .cpp files from mrover and Common
 file(GLOB_RECURSE USER_SOURCES CONFIGURE_DEPENDS
-    "${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/mrover/Src/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Src/*.cpp"
 )
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${USER_SOURCES}
+    # cubemx doesnt include for some reason
+    "${CMAKE_CURRENT_SOURCE_DIR}/../newlib_lock_glue.c"
 )
+include("web.cmake")
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/mrover/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Common/Inc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/.."
 )
 
 # Add project symbols (macros)
@@ -70,6 +75,10 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE)
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE)
+
+# Additions to the CubeMX linker script
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/mrover.ld")
+set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/mrover.ld")
 
 # Remove wrong libob.a library dependency when using cpp files
 list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)

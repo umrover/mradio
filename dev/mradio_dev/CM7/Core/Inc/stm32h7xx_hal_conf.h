@@ -74,7 +74,7 @@
 /* #define HAL_SPDIFRX_MODULE_ENABLED   */
 /* #define HAL_SPI_MODULE_ENABLED   */
 /* #define HAL_SWPMI_MODULE_ENABLED   */
-/* #define HAL_TIM_MODULE_ENABLED   */
+#define HAL_TIM_MODULE_ENABLED
 /* #define HAL_UART_MODULE_ENABLED   */
 /* #define HAL_USART_MODULE_ENABLED   */
 /* #define HAL_IRDA_MODULE_ENABLED   */
@@ -221,7 +221,7 @@
 
 /* ########################### Ethernet Configuration ######################### */
 #define ETH_TX_DESC_CNT         4U  /* number of Ethernet Tx DMA descriptors */
-#define ETH_RX_DESC_CNT         4U  /* number of Ethernet Rx DMA descriptors */
+#define ETH_RX_DESC_CNT         12U  /* number of Ethernet Rx DMA descriptors */
 
 #define ETH_MAC_ADDR0    (0x02UL)
 #define ETH_MAC_ADDR1    (0x00UL)

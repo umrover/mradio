@@ -405,6 +405,25 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 1 */
   LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
   LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
+
+  /* PLL3 is otherwise unused, so the radio clock can move without touching pll1_q users */
+  RCC_PeriphCLKInitTypeDef spi_clock = {0};
+  spi_clock.PeriphClockSelection = RCC_PERIPHCLK_SPI1;
+  spi_clock.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL3;
+  spi_clock.PLL3.PLL3M = 4;
+  spi_clock.PLL3.PLL3N = 50;
+  spi_clock.PLL3.PLL3P = HALOW_SPI_PLL3_P;
+  spi_clock.PLL3.PLL3Q = 2;
+  spi_clock.PLL3.PLL3R = 2;
+  spi_clock.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_3;
+  spi_clock.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
+  spi_clock.PLL3.PLL3FRACN = 0;
+  if (HAL_RCCEx_PeriphCLKConfig(&spi_clock) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  LL_GPIO_SetPinSpeed(GPIOG, LL_GPIO_PIN_11, HALOW_SPI_PIN_SPEED);
+  LL_GPIO_SetPinSpeed(SPI1_MOSI_GPIO_Port, SPI1_MOSI_Pin, HALOW_SPI_PIN_SPEED);
   /* USER CODE END SPI1_Init 1 */
   /* SPI1 parameter configuration*/
   SPI_InitStruct.TransferDirection = LL_SPI_FULL_DUPLEX;
@@ -422,7 +441,7 @@ static void MX_SPI1_Init(void)
   LL_SPI_SetFIFOThreshold(SPI1, LL_SPI_FIFO_TH_01DATA);
   LL_SPI_EnableNSSPulseMgt(SPI1);
   /* USER CODE BEGIN SPI1_Init 2 */
-
+  LL_SPI_SetBaudRatePrescaler(SPI1, HALOW_SPI_PRESCALER);
   /* USER CODE END SPI1_Init 2 */
 
 }

@@ -2,12 +2,12 @@
 #include <cstdio>
 #include <cstring>
 
+#include "link_test.hpp"
 #include "main.h"
 #include "mmhal_os.h"
 #include "mmipal.h"
 #include "mmlog.h"
 #include "mmosal.h"
-#include "mmping.h"
 #include "mmwlan.h"
 
 extern "C" {
@@ -32,10 +32,6 @@ constexpr uint16_t AP_S1G_CHANNEL = 44;
 constexpr char AP_IP[] = "192.168.1.1";
 constexpr char STA_IP[] = "192.168.1.2";
 constexpr char NETMASK[] = "255.255.255.0";
-
-constexpr uint32_t PING_INTERVAL_MS = 1000;
-constexpr uint32_t PING_POLL_MS = 50;
-constexpr uint32_t BLINK_MS = 100;
 
 bool is_ap() { return halow_role == HalowRole::ap; }
 const char *role_name() { return is_ap() ? "ap" : "sta"; }
@@ -87,11 +83,16 @@ void print_ap_sta_status(const mmwlan_ap_sta_status *sta_status, void * /*arg*/)
     std::printf("halow: station %02x:%02x:%02x:%02x:%02x:%02x aid %u %s\n", mac[0], mac[1], mac[2],
                 mac[3], mac[4], mac[5], static_cast<unsigned>(sta_status->aid),
                 ap_sta_state_name(sta_status->state));
+    link_test::set_peer_up(sta_status->state == MMWLAN_AP_STA_AUTHORIZED);
 }
 
 void print_link_status(const mmipal_link_status *link_status) {
     std::printf("halow: link %s, ip %s\n",
                 link_status->link_state == MMIPAL_LINK_UP ? "up" : "down", link_status->ip_addr);
+    // the ap side tracks its peer through the station status callback instead
+    if (!is_ap()) {
+        link_test::set_peer_up(link_status->link_state == MMIPAL_LINK_UP);
+    }
 }
 
 bool boot_halow() {
@@ -126,6 +127,11 @@ bool boot_halow() {
     std::printf("halow: morselib %s fw %s chip 0x%04lx %s\n", version.morselib_version,
                 version.morse_fw_version, static_cast<unsigned long>(version.morse_chip_id),
                 version.morse_chip_id_string);
+
+    if (HALOW_TX_POWER_DBM != 0) {
+        status = mmwlan_override_max_tx_power(HALOW_TX_POWER_DBM);
+        std::printf("halow: max tx power %d dBm, status %d\n", HALOW_TX_POWER_DBM, static_cast<int>(status));
+    }
 
     mmwlan_bcf_metadata bcf{};
     if (mmwlan_get_bcf_metadata(&bcf) == MMWLAN_SUCCESS) {
@@ -203,60 +209,22 @@ bool start_halow() {
     return is_ap() ? start_ap() : start_sta();
 }
 
-bool start_ping() {
-    mmping_args args = MMPING_ARGS_DEFAULT;
-    std::strncpy(args.ping_src, local_ip(), sizeof args.ping_src - 1);
-    std::strncpy(args.ping_target, peer_ip(), sizeof args.ping_target - 1);
-    args.ping_interval_ms = PING_INTERVAL_MS;
-    if (mmping_start(&args) == 0) {
-        std::printf("halow: ping start failed\n");
-        return false;
-    }
-    std::printf("halow: %s %s pinging %s every %lu ms\n", role_name(), local_ip(), peer_ip(),
-                static_cast<unsigned long>(PING_INTERVAL_MS));
-    return true;
-}
-
-[[noreturn]] void loop() {
-    uint32_t replies_seen = 0;
-    struct mmping_stats stats{};
-    for (;;) {
-        mmosal_task_sleep(PING_POLL_MS);
-        mmping_stats(&stats);
-        if (stats.ping_recv_count == replies_seen) {
-            continue;
-        }
-        replies_seen = stats.ping_recv_count;
-        if (is_ap()) {
-            std::printf("halow: reply %lu/%lu avg %lu ms\n",
-                        static_cast<unsigned long>(replies_seen),
-                        static_cast<unsigned long>(stats.ping_total_count),
-                        static_cast<unsigned long>(stats.ping_avg_time_ms));
-        }
-        else {
-            std::printf("halow: reply %lu/%lu avg %lu ms rssi %ld dBm\n",
-                        static_cast<unsigned long>(replies_seen),
-                        static_cast<unsigned long>(stats.ping_total_count),
-                        static_cast<unsigned long>(stats.ping_avg_time_ms),
-                        static_cast<long>(mmwlan_get_rssi()));
-        }
-        set_status_led(true);
-        mmosal_task_sleep(BLINK_MS);
-        set_status_led(false);
-    }
+unsigned long spi_clock_khz() {
+    const uint32_t kernel_hz = HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_SPI1);
+    const uint32_t divider = 2U << (LL_SPI_GetBaudRatePrescaler(SPI1) >> SPI_CFG1_MBR_Pos);
+    return kernel_hz / divider / 1000;
 }
 } // namespace
 
 void init() {
     mm_logging_init();
     mmhal_init();
-    std::printf("\nmradio halow demo, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
-    if (!start_halow() || !start_ping()) {
+    std::printf("\nmradio halow link test, role %s, spi %lu kHz, built " __DATE__ " " __TIME__ "\n", role_name(),
+                spi_clock_khz());
+    if (!start_halow() || !link_test::start(local_ip(), peer_ip(), LINK_TEST_FLOOD != 0)) {
         // solid D1 means fail
         set_status_led(true);
-        return;
     }
-    loop();
 }
 } // namespace mrover
 

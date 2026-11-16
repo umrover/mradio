@@ -29,6 +29,20 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
+#include "stm32h7xx_ll_dma.h"
+#include "stm32h7xx_ll_rtc.h"
+#include "stm32h7xx_ll_rcc.h"
+#include "stm32h7xx_ll_spi.h"
+#include "stm32h7xx_ll_usart.h"
+#include "stm32h7xx_ll_system.h"
+#include "stm32h7xx_ll_gpio.h"
+#include "stm32h7xx_ll_exti.h"
+#include "stm32h7xx_ll_bus.h"
+#include "stm32h7xx_ll_cortex.h"
+#include "stm32h7xx_ll_utils.h"
+#include "stm32h7xx_ll_pwr.h"
+#include "stm32h7xx_ll_hsem.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -46,6 +60,21 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+#define SPI_PERIPH              (SPI1)
+#define SPI_DMA_PERIPH          (DMA1)
+#define SPI_RX_DMA_STREAM       (LL_DMA_STREAM_1)
+#define SPI_TX_DMA_STREAM       (LL_DMA_STREAM_0)
+
+#define SPI_IRQn                (EXTI2_IRQn)
+#define SPI_IRQ_LINE            (LL_EXTI_LINE_2)
+#define SPI_IRQ_HANDLER         EXTI2_IRQHandler
+#define BUSY_IRQn               (EXTI3_IRQn)
+#define BUSY_IRQ_LINE           (LL_EXTI_LINE_3)
+#define BUSY_IRQ_HANDLER        EXTI3_IRQHandler
+
+#define LOG_USART               (USART3)
+#define LOG_USART_IRQ           (USART3_IRQn)
+#define LOG_USART_IRQ_HANDLER   USART3_IRQHandler
 
 /* USER CODE END EM */
 
@@ -53,10 +82,23 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void PostInit(void);
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define WAKE_Pin LL_GPIO_PIN_0
+#define WAKE_GPIO_Port GPIOC
+#define SPI_IRQ_Pin LL_GPIO_PIN_2
+#define SPI_IRQ_GPIO_Port GPIOC
+#define BUSY_Pin LL_GPIO_PIN_3
+#define BUSY_GPIO_Port GPIOC
+#define RESET_N_Pin LL_GPIO_PIN_3
+#define RESET_N_GPIO_Port GPIOA
+#define SPI_CS_Pin LL_GPIO_PIN_14
+#define SPI_CS_GPIO_Port GPIOD
+#define SPI_MOSI_Pin LL_GPIO_PIN_5
+#define SPI_MOSI_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

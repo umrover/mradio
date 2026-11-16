@@ -18,6 +18,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/mmhal_os.c
     ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/mmhal_wlan.c
     ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/libc_file_stubs.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib_probe.c
     ${MMIOT_SHIMS}/mm_logging.c
     ${MMIOT_SHIMS}/mmhal_core.c
     ${MMIOT_SHIMS}/mmhal_wlan_binaries.c
@@ -199,3 +200,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 set_source_files_properties(${MMIOT_LWIP_SRCS} PROPERTIES COMPILE_OPTIONS -Wno-unused-parameter)
+
+# The link test counts rssi on every received frame by wrapping the driver's rx entry point
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE LINK_TEST_RX_HOOK=mmdrv_host_process_rx_frame)
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -Wl,--wrap=mmdrv_host_process_rx_frame
+    -Wl,--wrap=mmdrv_host_set_tx_paused -Wl,--wrap=mmdrv_host_update_tx_paused)
