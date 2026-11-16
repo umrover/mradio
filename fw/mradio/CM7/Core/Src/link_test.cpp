@@ -301,7 +301,7 @@ void report_windows(void * /*arg*/) {
             measured_frames == 0 ? 0 : static_cast<long>(window_rssi_sum / static_cast<int32_t>(measured_frames));
         const long noise_dbm = frames == 0 ? 0 : static_cast<long>(window_noise_sum / static_cast<int32_t>(frames));
 
-        // the kernel clocks idle time with DWT cycles, and both counters wrap every 21 s at 200 MHz, which unsigned deltas over a 5 s window survive
+        // the kernel clocks idle time with DWT cycles, and both counters wrap every 10.7 s at 400 MHz, which unsigned deltas over a 5 s window survive
         const uint32_t cycles = DWT->CYCCNT;
         const uint32_t idle = ulTaskGetIdleRunTimeCounter();
         const uint32_t window_cycles = cycles - previous_cycles;

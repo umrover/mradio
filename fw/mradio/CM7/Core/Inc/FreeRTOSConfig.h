@@ -69,7 +69,9 @@ extern uint32_t SystemCoreClock;
 #define configUSE_SB_COMPLETED_CALLBACK          ( 0 )
 #define configUSE_MINI_LIST_ITEM                ( 1 )
 #define configMINIMAL_STACK_SIZE                 ((uint16_t)1024)
-#define configTOTAL_HEAP_SIZE                    ((size_t)65536)
+#ifndef configTOTAL_HEAP_SIZE
+#define configTOTAL_HEAP_SIZE                    ((size_t)262144)
+#endif
 #define configMAX_TASK_NAME_LEN                  ( 16 )
 #define configHEAP_CLEAR_MEMORY_ON_FREE          0
 #define configUSE_TRACE_FACILITY                 1
@@ -128,7 +130,7 @@ to exclude the API function. */
  * The CMSIS-RTOS V2 FreeRTOS wrapper is dependent on the heap implementation used
  * by the application thus the correct define need to be enabled below
  */
-#define USE_FreeRTOS_HEAP_4
+#define USE_FreeRTOS_HEAP_5
 
 /* Cortex-M specific definitions. */
 #ifdef __NVIC_PRIO_BITS
@@ -170,6 +172,14 @@ standard names. */
  #define USE_CUSTOM_SYSTICK_HANDLER_IMPLEMENTATION 0
 
 /* USER CODE BEGIN Defines */
+/* the DWT cycle counter clocks run time stats so the link test can report CPU idle time */
+#if defined(__GNUC__)
+#include "stm32h7xx.h"
+#define configGENERATE_RUN_TIME_STATS 1
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() \
+    do { CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk; DWT->CYCCNT = 0; DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk; } while (0)
+#define portGET_RUN_TIME_COUNTER_VALUE() (DWT->CYCCNT)
+#endif
 /* Section where parameter definitions can be added (for instance, to override default ones in FreeRTOS.h) */
 /* USER CODE END Defines */
 

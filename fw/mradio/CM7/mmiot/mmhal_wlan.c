@@ -34,86 +34,59 @@ static struct mmosal_semb *dma_semb_handle;
 /** SPI hw interrupt handler. Must be set before enabling irq */
 static mmhal_irq_handler_t spi_irq_handler = NULL;
 
-void mmhal_wlan_hard_reset(void)
-{
+void mmhal_wlan_hard_reset(void) {
     mmhal_wlan_assert_reset(true);
     mmosal_task_sleep(5);
     mmhal_wlan_assert_reset(false);
     mmosal_task_sleep(20);
 }
 
-void mmhal_wlan_assert_reset(bool assert_reset)
-{
-    if (assert_reset)
-    {
+void mmhal_wlan_assert_reset(bool assert_reset) {
+    if (assert_reset) {
         LL_GPIO_ResetOutputPin(WM_RESET_GPIO_Port, WM_RESET_Pin);
     }
-    else
-    {
+    else {
         LL_GPIO_SetOutputPin(WM_RESET_GPIO_Port, WM_RESET_Pin);
     }
 }
 
 #if defined(ENABLE_EXT_XTAL_INIT) && ENABLE_EXT_XTAL_INIT
-bool mmhal_wlan_ext_xtal_init_is_required(void)
-{
-    return true;
-}
+bool mmhal_wlan_ext_xtal_init_is_required(void) { return true; }
 #endif
 
-void mmhal_wlan_spi_cs_assert(void)
-{
-    LL_GPIO_ResetOutputPin(SPI1_CS_GPIO_Port, SPI1_CS_Pin);
-}
+void mmhal_wlan_spi_cs_assert(void) { LL_GPIO_ResetOutputPin(SPI1_CS_GPIO_Port, SPI1_CS_Pin); }
 
-void mmhal_wlan_spi_cs_deassert(void)
-{
-    LL_GPIO_SetOutputPin(SPI1_CS_GPIO_Port, SPI1_CS_Pin);
-}
+void mmhal_wlan_spi_cs_deassert(void) { LL_GPIO_SetOutputPin(SPI1_CS_GPIO_Port, SPI1_CS_Pin); }
 
-uint8_t mmhal_wlan_spi_rw(uint8_t data)
-{
-    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-    {
-    }
+uint8_t mmhal_wlan_spi_rw(uint8_t data) {
+    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
     LL_SPI_TransmitData8(SPI_PERIPH, data);
-    while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH))
-    {
-    }
+    while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH)) {}
     uint8_t readval = LL_SPI_ReceiveData8(SPI_PERIPH);
     return readval;
 }
 
-static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len)
-{
+static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len) {
     uint32_t spi_tx_data = 0xFF; /* Write dummy data */
 
     /* Ensure DMA Channels are disabled before configuration */
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 
-    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM))
-    {
-    }
+    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM)) {}
 
-    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM))
-    {
-    }
+    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM)) {}
 
     /* Configure DMA */
     LL_DMA_SetMemoryIncMode(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, LL_DMA_MEMORY_INCREMENT);
     LL_DMA_SetMemoryIncMode(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, LL_DMA_MEMORY_NOINCREMENT);
 
-    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH,
-                           SPI_RX_DMA_STREAM,
-                           LL_SPI_DMA_GetRxRegAddr(SPI_PERIPH),
+    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, LL_SPI_DMA_GetRxRegAddr(SPI_PERIPH),
                            (uint32_t)buf,
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, (uint32_t)len);
 
-    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH,
-                           SPI_TX_DMA_STREAM,
-                           (uint32_t)&spi_tx_data,
+    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)&spi_tx_data,
                            LL_SPI_DMA_GetTxRegAddr(SPI_PERIPH),
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)len);
@@ -139,60 +112,43 @@ static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len)
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 }
 
-void mmhal_wlan_spi_read_buf(uint8_t *buf, unsigned len)
-{
-    if (len < DMA_TRANSFER_MIN_LENGTH)
-    {
+void mmhal_wlan_spi_read_buf(uint8_t *buf, unsigned len) {
+    if (len < DMA_TRANSFER_MIN_LENGTH) {
         unsigned ii;
-        for (ii = 0; ii < len; ii++)
-        {
-            while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-            {
-            }
+        for (ii = 0; ii < len; ii++) {
+            while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
             LL_SPI_TransmitData8(SPI_PERIPH, 0xFF);
-            while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH))
-            {
-            }
+            while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH)) {}
             *buf++ = LL_SPI_ReceiveData8(SPI_PERIPH);
         }
     }
-    else
-    {
+    else {
         mmhal_wlan_spi_read_buf_dma(buf, len);
     }
 }
 
-static void mmhal_wlan_spi_write_buf_dma(const uint8_t *buf, unsigned len)
-{
+static void mmhal_wlan_spi_write_buf_dma(const uint8_t *buf, unsigned len) {
     uint32_t spi_rx_data; /* Dummy Read */
 
     /* Ensure DMA Channels are disabled before configuration */
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 
-    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM))
-    {
-    }
+    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM)) {}
 
-    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM))
-    {
-    }
+    while (LL_DMA_IsEnabledStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM)) {}
 
     /* Configure DMA */
     LL_DMA_SetMemoryIncMode(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, LL_DMA_MEMORY_NOINCREMENT);
     LL_DMA_SetMemoryIncMode(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, LL_DMA_MEMORY_INCREMENT);
 
     /* Configure Transaction */
-    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH,
-                           SPI_RX_DMA_STREAM,
-                           LL_SPI_DMA_GetRxRegAddr(SPI_PERIPH),
+    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, LL_SPI_DMA_GetRxRegAddr(SPI_PERIPH),
                            (uint32_t)&spi_rx_data,
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, (uint32_t)len);
 
-    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH,
-                           SPI_TX_DMA_STREAM,
-                           (uint32_t)buf,
+    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)buf,
                            LL_SPI_DMA_GetTxRegAddr(SPI_PERIPH),
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)len);
@@ -218,31 +174,22 @@ static void mmhal_wlan_spi_write_buf_dma(const uint8_t *buf, unsigned len)
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 }
 
-void mmhal_wlan_spi_write_buf(const uint8_t *buf, unsigned len)
-{
-    if (len < DMA_TRANSFER_MIN_LENGTH)
-    {
+void mmhal_wlan_spi_write_buf(const uint8_t *buf, unsigned len) {
+    if (len < DMA_TRANSFER_MIN_LENGTH) {
         unsigned ii;
-        for (ii = 0; ii < len; ii++)
-        {
-            while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-            {
-            }
+        for (ii = 0; ii < len; ii++) {
+            while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
             LL_SPI_TransmitData8(SPI_PERIPH, *buf++);
-            while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH))
-            {
-            }
+            while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH)) {}
             LL_SPI_ReceiveData8(SPI_PERIPH);
         }
     }
-    else
-    {
+    else {
         mmhal_wlan_spi_write_buf_dma(buf, len);
     }
 }
 
-void mmhal_wlan_send_training_seq(void)
-{
+void mmhal_wlan_send_training_seq(void) {
     uint8_t i;
 
     mmhal_wlan_spi_cs_deassert();
@@ -258,144 +205,101 @@ void mmhal_wlan_send_training_seq(void)
      * It results is a reduction in the time between bytes of ~85% (316ns -> 48ns).
      * Could not get this to work for the other transactions however.
      */
-    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-    {
-    }
+    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
     LL_SPI_TransmitData8(SPI_PERIPH, 0xFF);
-    for (i = 0; i < BYTE_TRAIN; i++)
-    {
-        while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-        {
-        }
+    for (i = 0; i < BYTE_TRAIN; i++) {
+        while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
         LL_SPI_TransmitData8(SPI_PERIPH, 0xFF);
-        while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH))
-        {
-        }
+        while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH)) {}
         LL_SPI_ReceiveData8(SPI_PERIPH);
     }
-    while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH))
-    {
-    }
+    while (!LL_SPI_IsActiveFlag_RXP(SPI_PERIPH)) {}
     LL_SPI_ReceiveData8(SPI_PERIPH);
 
-    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH))
-    {
-    }
+    while (!LL_SPI_IsActiveFlag_TXP(SPI_PERIPH)) {}
 
     /* Configure SPI MOSI line back to orginal config */
     LL_GPIO_ResetOutputPin(SPI1_MOSI_GPIO_Port, SPI1_MOSI_Pin);
     LL_GPIO_SetPinMode(SPI1_MOSI_GPIO_Port, SPI1_MOSI_Pin, LL_GPIO_MODE_ALTERNATE);
 }
 
-void mmhal_wlan_register_spi_irq_handler(mmhal_irq_handler_t handler)
-{
-    spi_irq_handler = handler;
-}
+void mmhal_wlan_register_spi_irq_handler(mmhal_irq_handler_t handler) { spi_irq_handler = handler; }
 
-bool mmhal_wlan_spi_irq_is_asserted(void)
-{
+bool mmhal_wlan_spi_irq_is_asserted(void) {
     return !LL_GPIO_IsInputPinSet(SPI_INT_GPIO_Port, SPI_INT_Pin);
 }
 
-void mmhal_wlan_set_spi_irq_enabled(bool enabled)
-{
-    if (enabled)
-    {
-        LL_C2_EXTI_EnableIT_0_31(SPI_IRQ_LINE);
-        LL_C2_EXTI_EnableEvent_0_31(SPI_IRQ_LINE);
+void mmhal_wlan_set_spi_irq_enabled(bool enabled) {
+    if (enabled) {
+        LL_EXTI_EnableIT_0_31(SPI_IRQ_LINE);
+        LL_EXTI_EnableEvent_0_31(SPI_IRQ_LINE);
 
         /* The transiver will hold the IRQ line low if there is additional information
          * to be retrived. Ideally the interrupt pin would be configured as a low level
          * interrupt.
          */
-        if (mmhal_wlan_spi_irq_is_asserted())
-        {
-            if (spi_irq_handler != NULL)
-            {
+        if (mmhal_wlan_spi_irq_is_asserted()) {
+            if (spi_irq_handler != NULL) {
                 spi_irq_handler();
             }
         }
         NVIC_EnableIRQ(SPI_IRQn);
     }
-    else
-    {
+    else {
         NVIC_DisableIRQ(SPI_IRQn);
 
-        LL_C2_EXTI_DisableIT_0_31(SPI_IRQ_LINE);
-        LL_C2_EXTI_DisableEvent_0_31(SPI_IRQ_LINE);
+        LL_EXTI_DisableIT_0_31(SPI_IRQ_LINE);
+        LL_EXTI_DisableEvent_0_31(SPI_IRQ_LINE);
     }
 }
 
-void mmhal_wlan_init(void)
-{
+void mmhal_wlan_init(void) {
     dma_semb_handle = mmosal_semb_create("dma_semb_handle");
     mmhal_wlan_assert_reset(false);
 }
 
-void mmhal_wlan_deinit(void)
-{
+void mmhal_wlan_deinit(void) {
     mmosal_semb_delete(dma_semb_handle);
     mmhal_wlan_assert_reset(true);
 }
 
-void mmhal_wlan_wake_assert(void)
-{
-    LL_GPIO_SetOutputPin(WM_WAKE_GPIO_Port, WM_WAKE_Pin);
-}
+void mmhal_wlan_wake_assert(void) { LL_GPIO_SetOutputPin(WM_WAKE_GPIO_Port, WM_WAKE_Pin); }
 
-void mmhal_wlan_wake_deassert(void)
-{
-    LL_GPIO_ResetOutputPin(WM_WAKE_GPIO_Port, WM_WAKE_Pin);
-}
+void mmhal_wlan_wake_deassert(void) { LL_GPIO_ResetOutputPin(WM_WAKE_GPIO_Port, WM_WAKE_Pin); }
 
-/* Power save stays disabled so the chip never sleeps, matching the dev board where BUSY was unconnected */
-bool mmhal_wlan_busy_is_asserted(void)
-{
-    return true;
-}
+/* Power save stays disabled so the chip never sleeps, matching the dev board where BUSY was
+ * unconnected */
+bool mmhal_wlan_busy_is_asserted(void) { return true; }
 
-void mmhal_wlan_register_busy_irq_handler(mmhal_irq_handler_t handler)
-{
-    MM_UNUSED(handler);
-}
+void mmhal_wlan_register_busy_irq_handler(mmhal_irq_handler_t handler) { MM_UNUSED(handler); }
 
-void mmhal_wlan_set_busy_irq_enabled(bool enabled)
-{
-    MM_UNUSED(enabled);
-}
+void mmhal_wlan_set_busy_irq_enabled(bool enabled) { MM_UNUSED(enabled); }
 
 /**
  * @brief This function handles SPI IRQ interrupts.
+ * NOTE: renamed
  */
-void SPI_IRQ_HANDLER(void)
-{
-    if (LL_C2_EXTI_IsActiveFlag_0_31(SPI_IRQ_LINE) != RESET)
-    {
-        LL_C2_EXTI_ClearFlag_0_31(SPI_IRQ_LINE);
-        if (spi_irq_handler != NULL)
-        {
-            spi_irq_handler();
-        }
+void mmhal_wlan_spi_irq(void) {
+    if (spi_irq_handler != NULL) {
+        spi_irq_handler();
     }
 }
 
+
 /**
  * @brief This function handles DMA1 Stream 1 global interrupt.
+ * NOTE: renamed
  */
-void DMA1_Stream1_IRQHandler(void)
-{
+void mmhal_wlan_dma_rx_irq(void) {
     LL_DMA_ClearFlag_TC1(SPI_DMA_PERIPH);
     mmosal_semb_give_from_isr(dma_semb_handle);
 }
 
 /**
  * @brief This function handles DMA1 Stream 0 global interrupt.
+ * NOTE: renamed
  */
-void DMA1_Stream0_IRQHandler(void)
-{
-    /* We do not expect to get interrupts on the SPI TX DMA channel. */
-    LL_DMA_ClearFlag_TC0(SPI_DMA_PERIPH);
-}
+void mmhal_wlan_dma_tx_irq(void) { LL_DMA_ClearFlag_TC0(SPI_DMA_PERIPH); }
 
 /**
  * Generate a stable, device-unique MAC address based on the MCU UID. This address is not globally
@@ -404,8 +308,7 @@ void DMA1_Stream0_IRQHandler(void)
  *
  * @param mac_addr Location where the MAC address will be stored.
  */
-static void generate_stable_mac_addr_from_uid(uint8_t *mac_addr)
-{
+static void generate_stable_mac_addr_from_uid(uint8_t *mac_addr) {
     /* Shorten the UID */
     uint32_t uid = LL_GetUID_Word0() ^ LL_GetUID_Word1() ^ LL_GetUID_Word2();
 
@@ -423,42 +326,30 @@ static void generate_stable_mac_addr_from_uid(uint8_t *mac_addr)
  *                 mmconfig persistent storage.
  */
 #ifndef EXCLUDE_MMCONFIG
-static void get_mmconfig_mac_addr(uint8_t *mac_addr)
-{
+static void get_mmconfig_mac_addr(uint8_t *mac_addr) {
     char strval[32];
-    if (mmconfig_read_string("wlan.macaddr", strval, sizeof(strval)) <= 0)
-    {
+    if (mmconfig_read_string("wlan.macaddr", strval, sizeof(strval)) <= 0) {
         return; /* No value successfully read from mmconfig */
     }
 
     /* Need to provide an array of ints to sscanf otherwise it will overflow */
     int temp[MMWLAN_MAC_ADDR_LEN];
-    int ret = sscanf(strval,
-                     "%x:%x:%x:%x:%x:%x",
-                     &temp[0],
-                     &temp[1],
-                     &temp[2],
-                     &temp[3],
-                     &temp[4],
+    int ret = sscanf(strval, "%x:%x:%x:%x:%x:%x", &temp[0], &temp[1], &temp[2], &temp[3], &temp[4],
                      &temp[5]);
-    if (ret != MMWLAN_MAC_ADDR_LEN)
-    {
+    if (ret != MMWLAN_MAC_ADDR_LEN) {
         return; /* Invalid size */
     }
 
     uint8_t validated_mac[MMWLAN_MAC_ADDR_LEN];
-    for (int i = 0; i < MMWLAN_MAC_ADDR_LEN; i++)
-    {
-        if (temp[i] > UINT8_MAX || temp[i] < 0)
-        {
+    for (int i = 0; i < MMWLAN_MAC_ADDR_LEN; i++) {
+        if (temp[i] > UINT8_MAX || temp[i] < 0) {
             MMLOG_PRINTF("Invalid MAC address found in [wlan.macaddr: %s], rejecting!\n", strval);
             return;
         }
         validated_mac[i] = (uint8_t)temp[i];
     }
 
-    if (!mm_mac_addr_is_valid_sta(validated_mac))
-    {
+    if (!mm_mac_addr_is_valid_sta(validated_mac)) {
         MMLOG_PRINTF("Invalid MAC address found in [wlan.macaddr: %s], rejecting!\n", strval);
         return;
     }
@@ -469,8 +360,7 @@ static void get_mmconfig_mac_addr(uint8_t *mac_addr)
 }
 #endif
 
-void mmhal_read_mac_addr(uint8_t *mac_addr)
-{
+void mmhal_read_mac_addr(uint8_t *mac_addr) {
     /*
      * MAC address is determined using the following precedence:
      *
@@ -489,16 +379,14 @@ void mmhal_read_mac_addr(uint8_t *mac_addr)
     get_mmconfig_mac_addr(mac_addr);
 #endif
 
-    if (mm_mac_addr_is_valid_sta(mac_addr))
-    {
+    if (mm_mac_addr_is_valid_sta(mac_addr)) {
         return;
     }
 
     generate_stable_mac_addr_from_uid(mac_addr);
 }
 
-const struct mmhal_chip *mmhal_get_chip(void)
-{
+const struct mmhal_chip *mmhal_get_chip(void) {
     /* This is a define that is set by the build system in the platform-xxx.mk file to select the
      * Morse chip type. See the API documentation for mmhal_get_chip() for more information. */
     return &MMHAL_CHIP_TYPE;

@@ -12,6 +12,10 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
@@ -43,13 +47,48 @@ include("mx-generated.cmake")
 # In order to use CMake for cross-compiling
 set(CMAKE_CXX_COMPILER_FORCED "true")
 
+# TODO: for demo purposes, runs either ap or station code, remove later
+set(HALOW_DEFAULT_ROLE "ap" CACHE STRING "HaLow role at boot, ap or sta")
+set_property(CACHE HALOW_DEFAULT_ROLE PROPERTY STRINGS ap sta)
+if(NOT HALOW_DEFAULT_ROLE MATCHES "^(ap|sta)$")
+    message(FATAL_ERROR "HALOW_DEFAULT_ROLE must be ap or sta, got '${HALOW_DEFAULT_ROLE}'")
+endif()
+message("HaLow default role: " ${HALOW_DEFAULT_ROLE})
+
 # Add project symbols (macros)
+set(LINK_TEST_FLOOD OFF CACHE BOOL "Flood UDP at the peer once it is up")
+set(LINK_TEST_PING ON CACHE BOOL "Ping the peer once a second during each window")
+set(LINK_TEST_RATE_KBPS 0 CACHE STRING "Flood UDP payload rate in kbps, 0 for as fast as the link takes it")
+set(HALOW_TX_POWER_DBM 0 CACHE STRING "Max TX power in dBm, 0 for the regulatory limit")
+# SCK is 800 MHz / HALOW_SPI_PLL3_P / the prescaler, 40 MHz by default
+set(HALOW_SPI_PLL3_P 10 CACHE STRING "PLL3 P divider for the radio SPI kernel clock")
+set(HALOW_SPI_PRESCALER LL_SPI_BAUDRATEPRESCALER_DIV2 CACHE STRING "Radio SPI baud rate prescaler")
+# each TX block holds one frame until the chip reports its TX status, so this caps frames in flight
+set(HALOW_TX_POOL 20 CACHE STRING "Radio TX packet pool size in frames")
+set(HEAP_SIZE 262144 CACHE STRING "FreeRTOS heap size in bytes, which holds the radio packet pools")
+set(MORSELIB_TUNING "" CACHE STRING "Extra morselib defines for throughput experiments, semicolon separated")
+set(HALOW_SPI_PIN_SPEED LL_GPIO_SPEED_FREQ_HIGH CACHE STRING "Radio SCK and MOSI slew rate")
+
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined symbols
+    HALOW_DEFAULT_ROLE_AP=$<STREQUAL:${HALOW_DEFAULT_ROLE},ap>
+    LINK_TEST_FLOOD=$<BOOL:${LINK_TEST_FLOOD}>
+    LINK_TEST_PING=$<BOOL:${LINK_TEST_PING}>
+    LINK_TEST_RATE_KBPS=${LINK_TEST_RATE_KBPS}
+    HALOW_TX_POWER_DBM=${HALOW_TX_POWER_DBM}
+    HALOW_SPI_PLL3_P=${HALOW_SPI_PLL3_P}
+    HALOW_SPI_PRESCALER=${HALOW_SPI_PRESCALER}
+    HALOW_SPI_PIN_SPEED=${HALOW_SPI_PIN_SPEED}
+    MMPKTMEM_TX_POOL_N_BLOCKS=${HALOW_TX_POOL}
+    configTOTAL_HEAP_SIZE=${HEAP_SIZE}
+    ${MORSELIB_TUNING}
 )
+# cmsis_os2.c, which owns ucHeap, builds in the generated FreeRTOS library rather than the app target
+target_compile_definitions(FreeRTOS PRIVATE configTOTAL_HEAP_SIZE=${HEAP_SIZE})
 
 # Enable CMake support for ASM and C languages
-enable_language(C ASM)
+enable_language(C CXX ASM)
+
+file(GLOB USER_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.cpp")
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
@@ -58,8 +97,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
+    ${USER_SOURCES}
 )
+
+include("mmiot.cmake")
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE

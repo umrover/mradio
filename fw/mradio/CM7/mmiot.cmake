@@ -56,6 +56,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Built from source as the SDK does by default, since the deprecated prebuilt libmorse.a has no supplicant AP support
 file(GLOB_RECURSE MORSELIB_SRCS ${MMIOT_ROOT}/morselib/src/*.c ${MMIOT_ROOT}/morselib/mmrc/*.c)
+list(REMOVE_ITEM MORSELIB_SRCS ${MMIOT_ROOT}/morselib/src/driver/driver.c)
+list(APPEND MORSELIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib_driver.c)
 
 set(HOSTAP_DIR ${MMIOT_ROOT}/src/hostap)
 set(HOSTAP_SRCS
