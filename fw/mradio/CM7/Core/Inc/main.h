@@ -29,9 +29,9 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
-#include "stm32h7xx_ll_dma.h"
-#include "stm32h7xx_ll_usart.h"
+#include "stm32h7xx_ll_rtc.h"
 #include "stm32h7xx_ll_rcc.h"
+#include "stm32h7xx_ll_spi.h"
 #include "stm32h7xx_ll_system.h"
 #include "stm32h7xx_ll_gpio.h"
 #include "stm32h7xx_ll_exti.h"
@@ -39,6 +39,7 @@ extern "C" {
 #include "stm32h7xx_ll_cortex.h"
 #include "stm32h7xx_ll_utils.h"
 #include "stm32h7xx_ll_pwr.h"
+#include "stm32h7xx_ll_dma.h"
 #include "stm32h7xx_ll_hsem.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -63,13 +64,18 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define WM_RESET_Pin LL_GPIO_PIN_2
+#define WM_RESET_GPIO_Port GPIOE
+#define WM_WAKE_Pin LL_GPIO_PIN_3
+#define WM_WAKE_GPIO_Port GPIOE
+#define WM_BUSY_Pin LL_GPIO_PIN_4
+#define WM_BUSY_GPIO_Port GPIOE
 #define M7_DBG1_Pin LL_GPIO_PIN_9
 #define M7_DBG1_GPIO_Port GPIOF
 #define M7_DBG2_Pin LL_GPIO_PIN_10
@@ -78,10 +84,21 @@ void MX_USART1_UART_Init(void);
 #define ETH_RESET_GPIO_Port GPIOA
 #define ETH_INT_Pin LL_GPIO_PIN_5
 #define ETH_INT_GPIO_Port GPIOA
-#define STLINK_TX_Pin LL_GPIO_PIN_14
-#define STLINK_TX_GPIO_Port GPIOB
-#define STLINK_RX_Pin LL_GPIO_PIN_15
-#define STLINK_RX_GPIO_Port GPIOB
+#define ETH_INT_EXTI_IRQn EXTI9_5_IRQn
+#define WL_REG_ON_Pin LL_GPIO_PIN_6
+#define WL_REG_ON_GPIO_Port GPIOD
+#define WL_DEV_WAKE_Pin LL_GPIO_PIN_7
+#define WL_DEV_WAKE_GPIO_Port GPIOD
+#define WL_HOST_WAKE_Pin LL_GPIO_PIN_9
+#define WL_HOST_WAKE_GPIO_Port GPIOG
+#define WL_HOST_WAKE_EXTI_IRQn EXTI9_5_IRQn
+#define SPI1_CS_Pin LL_GPIO_PIN_14
+#define SPI1_CS_GPIO_Port GPIOG
+#define SPI1_MOSI_Pin LL_GPIO_PIN_5
+#define SPI1_MOSI_GPIO_Port GPIOB
+#define SPI_INT_Pin LL_GPIO_PIN_6
+#define SPI_INT_GPIO_Port GPIOB
+#define SPI_INT_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
 
