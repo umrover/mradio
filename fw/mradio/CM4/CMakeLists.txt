@@ -47,17 +47,9 @@ include("mx-generated.cmake")
 # In order to use CMake for cross-compiling
 set(CMAKE_CXX_COMPILER_FORCED "true")
 
-# TODO: for demo purposes, runs either ap or station code, remove later
-set(HALOW_DEFAULT_ROLE "ap" CACHE STRING "HaLow role at boot, ap or sta")
-set_property(CACHE HALOW_DEFAULT_ROLE PROPERTY STRINGS ap sta)
-if(NOT HALOW_DEFAULT_ROLE MATCHES "^(ap|sta)$")
-    message(FATAL_ERROR "HALOW_DEFAULT_ROLE must be ap or sta, got '${HALOW_DEFAULT_ROLE}'")
-endif()
-message("HaLow default role: " ${HALOW_DEFAULT_ROLE})
-
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    HALOW_DEFAULT_ROLE_AP=$<STREQUAL:${HALOW_DEFAULT_ROLE},ap>
+    # Add user defined symbols
 )
 
 # Enable CMake support for ASM, C, and C++
@@ -74,8 +66,6 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${USER_SOURCES}
 )
-
-include("mmiot.cmake")
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE

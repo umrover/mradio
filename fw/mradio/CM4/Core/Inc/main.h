@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.h
+ * @brief          : Header for main.c file.
+ *                   This file contains the common defines of the application.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -32,6 +32,7 @@ extern "C" {
 #include "stm32h7xx_ll_rtc.h"
 #include "stm32h7xx_ll_rcc.h"
 #include "stm32h7xx_ll_spi.h"
+#include "stm32h7xx_ll_usart.h"
 #include "stm32h7xx_ll_system.h"
 #include "stm32h7xx_ll_gpio.h"
 #include "stm32h7xx_ll_exti.h"
@@ -59,25 +60,13 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#define SPI_PERIPH              (SPI1)
-#define SPI_DMA_PERIPH          (DMA1)
-#define SPI_RX_DMA_STREAM       (LL_DMA_STREAM_1)
-#define SPI_TX_DMA_STREAM       (LL_DMA_STREAM_0)
 
-#define SPI_IRQn                (EXTI9_5_IRQn)
-#define SPI_IRQ_LINE            (LL_EXTI_LINE_6)
-#define SPI_IRQ_HANDLER         EXTI9_5_IRQHandler
-
-#define LOG_USART               (USART1)
-#define LOG_USART_IRQ           (USART1_IRQn)
-#define LOG_USART_IRQ_HANDLER   USART1_IRQHandler
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void PostInit(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
