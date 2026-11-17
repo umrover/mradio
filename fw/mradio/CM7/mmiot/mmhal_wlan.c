@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include <string.h>
+
 #include "mmhal_wlan.h"
 #include "mmlog.h"
 #include "mmosal.h"
@@ -66,9 +68,14 @@ uint8_t mmhal_wlan_spi_rw(uint8_t data) {
     return readval;
 }
 
-static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len) {
-    uint32_t spi_tx_data = 0xFF; /* Write dummy data */
+/* in flash, since a cached stack copy could hold the value only in the D-cache where DMA cannot see it */
+static const uint8_t spi_tx_dummy = 0xFF;
 
+/* DMA lands here rather than in the caller's buffer, whose cache lines may share live neighbouring data */
+#define DMA_RX_BOUNCE_SIZE 2048
+static uint8_t dma_rx_bounce[DMA_RX_BOUNCE_SIZE] __attribute__((aligned(__SCB_DCACHE_LINE_SIZE)));
+
+static void mmhal_wlan_spi_read_chunk_dma(uint8_t *buf, unsigned len) {
     /* Ensure DMA Channels are disabled before configuration */
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
@@ -86,7 +93,7 @@ static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len) {
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM, (uint32_t)len);
 
-    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)&spi_tx_data,
+    LL_DMA_ConfigAddresses(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)&spi_tx_dummy,
                            LL_SPI_DMA_GetTxRegAddr(SPI_PERIPH),
                            LL_DMA_GetDataTransferDirection(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM));
     LL_DMA_SetDataLength(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM, (uint32_t)len);
@@ -112,6 +119,18 @@ static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len) {
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
 }
 
+static void mmhal_wlan_spi_read_buf_dma(uint8_t *buf, unsigned len) {
+    while (len > 0) {
+        const unsigned chunk = len < DMA_RX_BOUNCE_SIZE ? len : DMA_RX_BOUNCE_SIZE;
+        mmhal_wlan_spi_read_chunk_dma(dma_rx_bounce, chunk);
+        /* after the transfer, since speculative reads may have refilled lines while it ran */
+        SCB_InvalidateDCache_by_Addr(dma_rx_bounce, (int32_t)chunk);
+        memcpy(buf, dma_rx_bounce, chunk);
+        buf += chunk;
+        len -= chunk;
+    }
+}
+
 void mmhal_wlan_spi_read_buf(uint8_t *buf, unsigned len) {
     if (len < DMA_TRANSFER_MIN_LENGTH) {
         unsigned ii;
@@ -128,7 +147,10 @@ void mmhal_wlan_spi_read_buf(uint8_t *buf, unsigned len) {
 }
 
 static void mmhal_wlan_spi_write_buf_dma(const uint8_t *buf, unsigned len) {
-    uint32_t spi_rx_data; /* Dummy Read */
+    /* only ever written by DMA and never read, so its cache line going stale is harmless */
+    uint32_t spi_rx_data;
+
+    SCB_CleanDCache_by_Addr((void *)buf, (int32_t)len);
 
     /* Ensure DMA Channels are disabled before configuration */
     LL_DMA_DisableStream(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);

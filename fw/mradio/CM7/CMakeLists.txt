@@ -65,7 +65,6 @@ set(HALOW_SPI_PLL3_P 10 CACHE STRING "PLL3 P divider for the radio SPI kernel cl
 set(HALOW_SPI_PRESCALER LL_SPI_BAUDRATEPRESCALER_DIV2 CACHE STRING "Radio SPI baud rate prescaler")
 # each TX block holds one frame until the chip reports its TX status, so this caps frames in flight
 set(HALOW_TX_POOL 20 CACHE STRING "Radio TX packet pool size in frames")
-set(HEAP_SIZE 262144 CACHE STRING "FreeRTOS heap size in bytes, which holds the radio packet pools")
 set(MORSELIB_TUNING "" CACHE STRING "Extra morselib defines for throughput experiments, semicolon separated")
 set(HALOW_SPI_PIN_SPEED LL_GPIO_SPEED_FREQ_HIGH CACHE STRING "Radio SCK and MOSI slew rate")
 
@@ -79,11 +78,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     HALOW_SPI_PRESCALER=${HALOW_SPI_PRESCALER}
     HALOW_SPI_PIN_SPEED=${HALOW_SPI_PIN_SPEED}
     MMPKTMEM_TX_POOL_N_BLOCKS=${HALOW_TX_POOL}
-    configTOTAL_HEAP_SIZE=${HEAP_SIZE}
     ${MORSELIB_TUNING}
 )
-# cmsis_os2.c, which owns ucHeap, builds in the generated FreeRTOS library rather than the app target
-target_compile_definitions(FreeRTOS PRIVATE configTOTAL_HEAP_SIZE=${HEAP_SIZE})
 
 # Enable CMake support for ASM and C languages
 enable_language(C CXX ASM)
