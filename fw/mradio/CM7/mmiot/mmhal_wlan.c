@@ -255,6 +255,9 @@ void mmhal_wlan_set_spi_irq_enabled(bool enabled) {
 
 void mmhal_wlan_init(void) {
     dma_semb_handle = mmosal_semb_create("dma_semb_handle");
+    /* the transfer complete interrupts give dma_semb_handle, which every DMA transfer waits on */
+    LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_RX_DMA_STREAM);
+    LL_DMA_EnableIT_TC(SPI_DMA_PERIPH, SPI_TX_DMA_STREAM);
     mmhal_wlan_assert_reset(false);
 }
 

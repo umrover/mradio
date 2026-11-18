@@ -51,7 +51,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_BCF_MBIN}.o
 )
 
-# Appended after the Cube paths so the SDK's FreeRTOSConfig.h does not shadow ours
+# Cube's paths arrive later through stm32cubemx
+# without this the SDK's FreeRTOSConfig.h shadows the one the kernel builds with
+target_include_directories(${CMAKE_PROJECT_NAME} BEFORE PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc)
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${MMIOT_ROOT}/morselib/include
     ${MMIOT_SHIMS}
@@ -65,11 +67,11 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     MMHAL_CHIP_TYPE=mmhal_mm6108
     EXCLUDE_MMCONFIG
     INCLUDE_BCF_FILE_IN_APPLICATION
-    LOOKAROUND_FAIL_MAX=50
     # each block holds a frame until the chip reports TX status
     # 20 left the pool full with the radio underfed
     MMPKTMEM_TX_POOL_N_BLOCKS=40
-    # mmutils.h, included by mmlog.h, mmipal.h and lwipopts.h since SDK 2.14, calls POSIX strnlen, which strict C++ hides
+    # mmutils.h, included by mmlog.h, mmipal.h and lwipopts.h since SDK 2.14
+    # calls POSIX strnlen, which strict C++ hides
     $<$<COMPILE_LANGUAGE:CXX>:_POSIX_C_SOURCE=200809L>
 )
 
@@ -152,18 +154,40 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 
 # The radio stack runs at -Os like Morse's production builds, since -O3 grows it past the 1 MB bank
 set_source_files_properties(${MORSELIB_SRCS} PROPERTIES COMPILE_OPTIONS "-Os")
-set_source_files_properties(${HOSTAP_SRCS} PROPERTIES COMPILE_OPTIONS
-    "-Os;-Wno-unused-but-set-variable;-Wno-unused-function;-Wno-unused-parameter;-Wno-unused-variable;-Wno-format;-Wno-maybe-uninitialized;-Wno-dangling-else;-Wno-type-limits;-Wno-sign-compare;-Wno-parentheses;-Wno-packed-not-aligned;-Wno-misleading-indentation"
+set(HOSTAP_COMPILE_OPTIONS
+    -Os
+    -Wno-unused-but-set-variable
+    -Wno-unused-function
+    -Wno-unused-parameter
+    -Wno-unused-variable
+    -Wno-format
+    -Wno-maybe-uninitialized
+    -Wno-dangling-else
+    -Wno-type-limits
+    -Wno-sign-compare
+    -Wno-parentheses
+    -Wno-packed-not-aligned
+    -Wno-misleading-indentation
 )
-set_source_files_properties(${MBEDTLS_SRCS} PROPERTIES COMPILE_OPTIONS "-Os;-Wno-sign-compare;-Wno-unused-but-set-variable")
+set_source_files_properties(${HOSTAP_SRCS} PROPERTIES COMPILE_OPTIONS "${HOSTAP_COMPILE_OPTIONS}")
+set(MBEDTLS_COMPILE_OPTIONS
+    -Os
+    -Wno-sign-compare
+    -Wno-unused-but-set-variable
+)
+set_source_files_properties(${MBEDTLS_SRCS} PROPERTIES COMPILE_OPTIONS "${MBEDTLS_COMPILE_OPTIONS}")
+
+# objcopy names the symbols after the file, so derive them to keep the file variables swappable
+string(MAKE_C_IDENTIFIER ${MMIOT_FW_MBIN} MMIOT_FW_SYM)
+string(MAKE_C_IDENTIFIER ${MMIOT_BCF_MBIN} MMIOT_BCF_SYM)
 
 # Same objcopy rules as the SDK's morsefirmware.mk
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_FW_MBIN}.o
     COMMAND ${CMAKE_OBJCOPY} -I binary -O elf32-littlearm -B arm
         ${MMIOT_FW_MBIN} ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_FW_MBIN}.o
-        --redefine-sym _binary_mm6108_mbin_start=firmware_binary_start
-        --redefine-sym _binary_mm6108_mbin_end=firmware_binary_end
+        --redefine-sym _binary_${MMIOT_FW_SYM}_start=firmware_binary_start
+        --redefine-sym _binary_${MMIOT_FW_SYM}_end=firmware_binary_end
         --rename-section .data=.rodata._fw_mbin,contents,alloc,load,readonly,data
         --set-section-alignment .data=4
     WORKING_DIRECTORY ${MMIOT_FW}
@@ -174,8 +198,8 @@ add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_BCF_MBIN}.o
     COMMAND ${CMAKE_OBJCOPY} -I binary -O elf32-littlearm -B arm
         ${MMIOT_BCF_MBIN} ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_BCF_MBIN}.o
-        --redefine-sym _binary_bcf_mf16858_mbin_start=bcf_binary_start
-        --redefine-sym _binary_bcf_mf16858_mbin_end=bcf_binary_end
+        --redefine-sym _binary_${MMIOT_BCF_SYM}_start=bcf_binary_start
+        --redefine-sym _binary_${MMIOT_BCF_SYM}_end=bcf_binary_end
         --rename-section .data=.rodata,contents,alloc,load,readonly,data
         --set-section-alignment .data=4
     WORKING_DIRECTORY ${MMIOT_FW}/mm6108/bcfs
@@ -212,8 +236,6 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     LWIP_IPV6=0
     # The radio link only carries UDP and ping, so TCP is dead weight in flash
     LWIP_TCP=0
-    MMIPAL_IPV4_ENABLED=1
-    MMIPAL_IPV6_ENABLED=0
     # Morse's on-demand timer patch assumes TCP, and plain periodic timers cost nothing with power save off
     MORSE_LWIP_TIMERS_ON_DEMAND=0
 )
