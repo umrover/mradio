@@ -5,6 +5,23 @@ set(MMIOT_FW_MBIN mm6108.mbin)
 # Calibration for the MM6108-MF16858 module on the Wio-WM6108, the same card the dev board used
 set(MMIOT_BCF_MBIN bcf_mf16858.mbin)
 
+# morselib wakes only one blocked TX sender per unpause, which halves throughput with a second sender
+# directly patch submodule to fix
+set(MORSELIB_TX_WAKE_PATCH ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib-tx-wake.patch)
+execute_process(COMMAND git apply --reverse --check ${MORSELIB_TX_WAKE_PATCH}
+    WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_TX_WAKE_MISSING OUTPUT_QUIET ERROR_QUIET)
+if(NOT MORSELIB_TX_WAKE_MISSING EQUAL 0)
+    execute_process(COMMAND git apply ${MORSELIB_TX_WAKE_PATCH}
+        WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_TX_WAKE_FAILED)
+    if(NOT MORSELIB_TX_WAKE_FAILED EQUAL 0)
+        message(FATAL_ERROR "could not apply ${MORSELIB_TX_WAKE_PATCH} to the SDK")
+    endif()
+    message("Applied morselib TX wake fix")
+endif()
+# reapply on submodule reset
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${MORSELIB_TX_WAKE_PATCH}
+    ${MMIOT_ROOT}/morselib/src/umac/datapath/umac_datapath.c)
+
 # Replaced by mmosal_shim_libc_stubs.c and the SDK heap, which adds the realloc mmosal needs
 set_source_files_properties(
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/syscalls.c

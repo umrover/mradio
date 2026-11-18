@@ -1,0 +1,35 @@
+diff --git a/framework/morselib/src/umac/datapath/umac_datapath.c b/framework/morselib/src/umac/datapath/umac_datapath.c
+index 576969db..3970c2ec 100644
+--- a/framework/morselib/src/umac/datapath/umac_datapath.c
++++ b/framework/morselib/src/umac/datapath/umac_datapath.c
+@@ -77,11 +77,13 @@ enum mmwlan_status umac_datapath_wait_for_tx_ready_(struct umac_datapath_data *d
+                                                     uint32_t timeout_ms,
+                                                     uint16_t mask)
+ {
++    bool waited = false;
+     if (timeout_ms == UINT32_MAX)
+     {
+         while (umac_datapath_tx_is_paused(data, mask))
+         {
+             mmosal_semb_wait(data->tx_flowcontrol_sem, UINT32_MAX);
++            waited = true;
+         }
+     }
+     else
+@@ -97,9 +99,16 @@ enum mmwlan_status umac_datapath_wait_for_tx_ready_(struct umac_datapath_data *d
+             }
+ 
+             mmosal_semb_wait(data->tx_flowcontrol_sem, sleep_time_ms);
++            waited = true;
+         }
+     }
+ 
++    /* the unpause gives this binary semaphore once, so pass it on to any other blocked sender */
++    if (waited)
++    {
++        mmosal_semb_give(data->tx_flowcontrol_sem);
++    }
++
+     return MMWLAN_SUCCESS;
+ }
+ 

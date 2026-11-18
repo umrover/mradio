@@ -4,3 +4,4 @@
 [submodule "fw/mm-iot-sdk"]
 	path = fw/mm-iot-sdk
 	url = git@github.com:MorseMicro/mm-iot-sdk.git
+    ignore = dirty
