@@ -2,7 +2,7 @@ set(MMIOT_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../mm-iot-sdk/framework)
 set(MMIOT_SHIMS ${MMIOT_ROOT}/src/platforms/mm-ekh08-h753/mm_shims)
 set(MMIOT_FW ${MMIOT_ROOT}/morsefirmware)
 set(MMIOT_FW_MBIN mm6108.mbin)
-# Calibration for the MM6108-MF16858 module on the Wio-WM6108, the same card the dev board used
+# Calibration for the MM6108-MF16858 module
 set(MMIOT_BCF_MBIN bcf_mf16858.mbin)
 
 # morselib wakes only one blocked TX sender per unpause, which halves throughput with a second sender
@@ -66,11 +66,14 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     EXCLUDE_MMCONFIG
     INCLUDE_BCF_FILE_IN_APPLICATION
     LOOKAROUND_FAIL_MAX=50
+    # each block holds a frame until the chip reports TX status
+    # 20 left the pool full with the radio underfed
+    MMPKTMEM_TX_POOL_N_BLOCKS=40
     # mmutils.h, included by mmlog.h, mmipal.h and lwipopts.h since SDK 2.14, calls POSIX strnlen, which strict C++ hides
     $<$<COMPILE_LANGUAGE:CXX>:_POSIX_C_SOURCE=200809L>
 )
 
-# Built from source as the SDK does by default, since the deprecated prebuilt libmorse.a has no supplicant AP support
+# Built from source as the SDK does by default, libmorse.a deprecated
 file(GLOB_RECURSE MORSELIB_SRCS ${MMIOT_ROOT}/morselib/src/*.c ${MMIOT_ROOT}/morselib/mmrc/*.c)
 
 set(HOSTAP_DIR ${MMIOT_ROOT}/src/hostap)
