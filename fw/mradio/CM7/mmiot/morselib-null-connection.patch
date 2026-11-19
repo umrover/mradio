@@ -1,0 +1,16 @@
+diff --git a/framework/morselib/src/umac/interface/umac_interface.c b/framework/morselib/src/umac/interface/umac_interface.c
+index c8ce2696..4b6fc9c3 100644
+--- a/framework/morselib/src/umac/interface/umac_interface.c
++++ b/framework/morselib/src/umac/interface/umac_interface.c
+@@ -528,6 +528,11 @@ const uint8_t *umac_interface_peek_mac_addr(struct umac_sta_data *stad)
+ 
+ bool umac_interface_addr_matches_mac_addr(struct umac_sta_data *stad, const uint8_t *addr)
+ {
++    /* umac_connection_get_stad() returns NULL once the STA vif is gone, as on an AP after mmwlan_shutdown() */
++    if (stad == NULL)
++    {
++        return false;
++    }
+     const uint8_t *stad_addr = umac_interface_peek_mac_addr(stad);
+     if (stad_addr == NULL)
+     {

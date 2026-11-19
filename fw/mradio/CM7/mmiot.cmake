@@ -5,22 +5,29 @@ set(MMIOT_FW_MBIN mm6108.mbin)
 # Calibration for the MM6108-MF16858 module
 set(MMIOT_BCF_MBIN bcf_mf16858.mbin)
 
-# morselib wakes only one blocked TX sender per unpause, which halves throughput with a second sender
-# directly patch submodule to fix
-set(MORSELIB_TX_WAKE_PATCH ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib-tx-wake.patch)
-execute_process(COMMAND git apply --reverse --check ${MORSELIB_TX_WAKE_PATCH}
-    WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_TX_WAKE_MISSING OUTPUT_QUIET ERROR_QUIET)
-if(NOT MORSELIB_TX_WAKE_MISSING EQUAL 0)
-    execute_process(COMMAND git apply ${MORSELIB_TX_WAKE_PATCH}
-        WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_TX_WAKE_FAILED)
-    if(NOT MORSELIB_TX_WAKE_FAILED EQUAL 0)
-        message(FATAL_ERROR "could not apply ${MORSELIB_TX_WAKE_PATCH} to the SDK")
+# morselib fixes, patched directly into the submodule
+set(MORSELIB_PATCHES
+    # one blocked TX sender woken per unpause, which halves throughput with a second sender
+    ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib-tx-wake.patch
+    # an AP restarted with mmwlan_shutdown() asserts on a NULL station once traffic resumes
+    ${CMAKE_CURRENT_SOURCE_DIR}/mmiot/morselib-null-connection.patch
+)
+foreach(MORSELIB_PATCH IN LISTS MORSELIB_PATCHES)
+    execute_process(COMMAND git apply --reverse --check ${MORSELIB_PATCH}
+        WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_PATCH_MISSING OUTPUT_QUIET ERROR_QUIET)
+    if(NOT MORSELIB_PATCH_MISSING EQUAL 0)
+        execute_process(COMMAND git apply ${MORSELIB_PATCH}
+            WORKING_DIRECTORY ${MMIOT_ROOT}/.. RESULT_VARIABLE MORSELIB_PATCH_FAILED)
+        if(NOT MORSELIB_PATCH_FAILED EQUAL 0)
+            message(FATAL_ERROR "could not apply ${MORSELIB_PATCH} to the SDK")
+        endif()
+        message("Applied ${MORSELIB_PATCH}")
     endif()
-    message("Applied morselib TX wake fix")
-endif()
+endforeach()
 # reapply on submodule reset
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${MORSELIB_TX_WAKE_PATCH}
-    ${MMIOT_ROOT}/morselib/src/umac/datapath/umac_datapath.c)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${MORSELIB_PATCHES}
+    ${MMIOT_ROOT}/morselib/src/umac/datapath/umac_datapath.c
+    ${MMIOT_ROOT}/morselib/src/umac/interface/umac_interface.c)
 
 # Replaced by mmosal_shim_libc_stubs.c and the SDK heap, which adds the realloc mmosal needs
 set_source_files_properties(
@@ -46,7 +53,6 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${MMIOT_ROOT}/src/mmutils/mmbuf.c
     ${MMIOT_ROOT}/src/mmutils/mmcrc.c
     ${MMIOT_ROOT}/src/mmpktmem/mmpktmem_heap.c
-    ${MMIOT_ROOT}/src/mmregdb/mmregdb.c
     ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_FW_MBIN}.o
     ${CMAKE_CURRENT_BINARY_DIR}/${MMIOT_BCF_MBIN}.o
 )
@@ -60,7 +66,6 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${MMIOT_ROOT}/src/freertos/mmiot/include
     ${MMIOT_ROOT}/src/mmutils
     ${MMIOT_ROOT}/src/mmpktmem
-    ${MMIOT_ROOT}/src/mmregdb
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
