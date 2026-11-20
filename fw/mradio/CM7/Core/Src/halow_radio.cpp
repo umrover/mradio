@@ -22,9 +22,7 @@ bool config_valid(const HalowRadio::Config &config) {
            fits_c_string(config.passphrase, MMWLAN_PASSPHRASE_MAXLEN + 1) &&
            fits_c_string(config.local_ip, MMIPAL_IPADDR_STR_MAXLEN) &&
            fits_c_string(config.netmask, MMIPAL_IPADDR_STR_MAXLEN) &&
-           fits_c_string(config.gateway, MMIPAL_IPADDR_STR_MAXLEN) &&
-           // TODO: remove after getting BCF
-           halow::is_supported(config.sub_band, config.bandwidth);
+           fits_c_string(config.gateway, MMIPAL_IPADDR_STR_MAXLEN);
 }
 
 // abstraction over mmwlan_ap_args and mmwlan_sta_args
@@ -115,7 +113,7 @@ bool HalowRadio::start(const Config &config) {
 }
 
 bool HalowRadio::set_band(halow::SubBand sub_band, halow::Bandwidth bandwidth) {
-    if (m_state != State::on || !halow::is_supported(sub_band, bandwidth)) {
+    if (m_state != State::on) {
         return false;
     }
     if (sub_band == m_sub_band && bandwidth == m_bandwidth) {

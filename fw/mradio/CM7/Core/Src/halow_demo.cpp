@@ -59,7 +59,6 @@ constexpr HalowRadio::Config RADIO_CONFIG = {
     .local_ip = local_ip(),
     .gateway = AP_IP,
 };
-static_assert(halow::is_supported(RADIO_CONFIG.sub_band, RADIO_CONFIG.bandwidth));
 
 // the channel comes from the saved wifi_5 config in start_wifi
 constexpr WifiRadio::Config WIFI_CONFIG = {

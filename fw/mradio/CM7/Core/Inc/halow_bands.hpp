@@ -37,7 +37,7 @@ constexpr mmwlan_s1g_channel ch(uint32_t center_khz, uint8_t width_mhz) {
 inline constexpr std::array LOW_1 = {ch(906000, 1)};
 inline constexpr std::array LOW_2 = {ch(906000, 2), ch(905500, 1)};
 inline constexpr std::array LOW_4 = {ch(906000, 4), ch(905000, 2), ch(904500, 1)};
-inline constexpr std::array LOW_8 = {ch(906000, 8), ch(903000, 2), ch(902500, 1)};
+inline constexpr std::array LOW_8 = {ch(906500, 8), ch(903500, 2), ch(903000, 1)};
 
 inline constexpr std::array MID_1 = {ch(915000, 1)};
 inline constexpr std::array MID_2 = {ch(915000, 2), ch(914500, 1)};
@@ -63,13 +63,6 @@ inline constexpr std::array<std::array<mmwlan_s1g_channel_list, 4>, 3> LISTS = {
 }};
 
 } // namespace detail
-
-// TODO:
-// morse firmware currently rejects LOW_8
-// remove when they provide BCF and we can enable
-constexpr bool is_supported(SubBand band, Bandwidth bandwidth) {
-    return !(band == SubBand::low && bandwidth == Bandwidth::mhz8);
-}
 
 constexpr const mmwlan_s1g_channel_list &channel_list(SubBand band, Bandwidth bandwidth) {
     return detail::LISTS[static_cast<size_t>(band)][static_cast<size_t>(bandwidth)];
