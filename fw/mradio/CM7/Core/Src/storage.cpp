@@ -12,7 +12,8 @@ namespace mrover::storage {
 
 namespace {
 
-// last sector of bank 2, since CM7's image fills nearly all of bank 1
+// last sector of bank 2
+// running out of flash
 constexpr std::uint32_t SECTOR = FLASH_SECTOR_TOTAL - 1;
 constexpr std::uintptr_t SECTOR_ADDRESS = FLASH_BANK2_BASE + SECTOR * FLASH_SECTOR_SIZE;
 

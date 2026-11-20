@@ -206,10 +206,10 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(GPIOF, M4_DBG1_Pin|M4_DBG2_Pin);
 
   /**/
-  LL_GPIO_ResetOutputPin(SoS_LED1_GPIO_Port, SoS_LED1_Pin);
+  LL_GPIO_ResetOutputPin(LED_WIFI_5_GPIO_Port, LED_WIFI_5_Pin);
 
   /**/
-  LL_GPIO_ResetOutputPin(GPIOG, SoS_LED2_Pin|SoS_LED3_Pin|SoS_LED4_Pin);
+  LL_GPIO_ResetOutputPin(GPIOG, LED_WIFI_2_4_Pin|LED_HALOW_Pin|LED_SYSTEM_Pin);
 
   /**/
   GPIO_InitStruct.Pin = M4_DBG1_Pin|M4_DBG2_Pin;
@@ -220,15 +220,15 @@ static void MX_GPIO_Init(void)
   LL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /**/
-  GPIO_InitStruct.Pin = SoS_LED1_Pin;
+  GPIO_InitStruct.Pin = LED_WIFI_5_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  LL_GPIO_Init(SoS_LED1_GPIO_Port, &GPIO_InitStruct);
+  LL_GPIO_Init(LED_WIFI_5_GPIO_Port, &GPIO_InitStruct);
 
   /**/
-  GPIO_InitStruct.Pin = SoS_LED2_Pin|SoS_LED3_Pin|SoS_LED4_Pin;
+  GPIO_InitStruct.Pin = LED_WIFI_2_4_Pin|LED_HALOW_Pin|LED_SYSTEM_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;

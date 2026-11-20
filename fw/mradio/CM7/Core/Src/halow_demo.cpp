@@ -57,13 +57,13 @@ constexpr osThreadAttr_t LINK_MONITOR_ATTRIBUTES = {
 
 HalowRadio radio;
 
-// D1, only one soldered (at least on this pcb)
+// D1 is the only LED fitted on these boards, so HaLow status borrows the system LED
 void set_status_led(bool on) {
     if (on) {
-        LL_GPIO_SetOutputPin(SoS_LED4_GPIO_Port, SoS_LED4_Pin);
+        LL_GPIO_SetOutputPin(LED_SYSTEM_GPIO_Port, LED_SYSTEM_Pin);
     }
     else {
-        LL_GPIO_ResetOutputPin(SoS_LED4_GPIO_Port, SoS_LED4_Pin);
+        LL_GPIO_ResetOutputPin(LED_SYSTEM_GPIO_Port, LED_SYSTEM_Pin);
     }
 }
 

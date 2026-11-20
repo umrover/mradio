@@ -74,14 +74,14 @@ void Error_Handler(void);
 #define M4_DBG1_GPIO_Port GPIOF
 #define M4_DBG2_Pin LL_GPIO_PIN_8
 #define M4_DBG2_GPIO_Port GPIOF
-#define SoS_LED1_Pin LL_GPIO_PIN_15
-#define SoS_LED1_GPIO_Port GPIOD
-#define SoS_LED2_Pin LL_GPIO_PIN_6
-#define SoS_LED2_GPIO_Port GPIOG
-#define SoS_LED3_Pin LL_GPIO_PIN_7
-#define SoS_LED3_GPIO_Port GPIOG
-#define SoS_LED4_Pin LL_GPIO_PIN_8
-#define SoS_LED4_GPIO_Port GPIOG
+#define LED_WIFI_5_Pin LL_GPIO_PIN_15
+#define LED_WIFI_5_GPIO_Port GPIOD
+#define LED_WIFI_2_4_Pin LL_GPIO_PIN_6
+#define LED_WIFI_2_4_GPIO_Port GPIOG
+#define LED_HALOW_Pin LL_GPIO_PIN_7
+#define LED_HALOW_GPIO_Port GPIOG
+#define LED_SYSTEM_Pin LL_GPIO_PIN_8
+#define LED_SYSTEM_GPIO_Port GPIOG
 
 /* USER CODE BEGIN Private defines */
 
