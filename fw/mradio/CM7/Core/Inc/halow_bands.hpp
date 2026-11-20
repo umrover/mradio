@@ -55,7 +55,7 @@ constexpr mmwlan_s1g_channel_list list(const std::array<mmwlan_s1g_channel, N> &
     return {.country_code = {'U', 'S', '\0'}, .num_channels = N, .channels = channels.data()};
 }
 
-// indexed by SubBand then Bandwidth
+// indexed by subband then bandwidth
 inline constexpr std::array<std::array<mmwlan_s1g_channel_list, 4>, 3> LISTS = {{
     {list(LOW_1), list(LOW_2), list(LOW_4), list(LOW_8)},
     {list(MID_1), list(MID_2), list(MID_4), list(MID_8)},
@@ -64,18 +64,17 @@ inline constexpr std::array<std::array<mmwlan_s1g_channel_list, 4>, 3> LISTS = {
 
 } // namespace detail
 
+// TODO:
 // morse firmware currently rejects LOW_8
 // remove when they provide BCF and we can enable
 constexpr bool is_supported(SubBand band, Bandwidth bandwidth) {
     return !(band == SubBand::low && bandwidth == Bandwidth::mhz8);
 }
 
-// list for mmwlan_set_channel_list(), one width each since same-center channels share a number
 constexpr const mmwlan_s1g_channel_list &channel_list(SubBand band, Bandwidth bandwidth) {
     return detail::LISTS[static_cast<size_t>(band)][static_cast<size_t>(bandwidth)];
 }
 
-// the AP's channel, first in its list, whose op class and number go into mmwlan_ap_args
 constexpr const mmwlan_s1g_channel &operating_channel(SubBand band, Bandwidth bandwidth) {
     return channel_list(band, bandwidth).channels[0];
 }
