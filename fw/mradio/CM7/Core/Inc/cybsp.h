@@ -1,0 +1,37 @@
+#pragma once
+
+// board config for the Infineon Wi-Fi middleware, which CubeMX generates in wifi_demo
+
+#define CYBSP_SDIO_INTERFACE (0)
+#define CYBSP_SPI_INTERFACE (1)
+#define CYBSP_M2M_INTERFACE (2)
+#define CYBSP_USB_INTERFACE (3)
+#define CYBSP_WIFI_INTERFACE_TYPE (CYBSP_SDIO_INTERFACE)
+
+#define CYBSP_WIFI_WL_REG_ON PD6
+#define CYBSP_WIFI_HOST_WAKE NC
+#define CYBSP_WIFI_HOST_WAKE_IRQ_EVENT CYHAL_GPIO_IRQ_RISE
+
+#define CYBSP_BT_UART_TX NC
+#define CYBSP_BT_UART_RX NC
+#define CYBSP_BT_UART_CTS NC
+#define CYBSP_BT_UART_RTS NC
+#define CYBSP_BT_POWER NC
+#define CYBSP_BT_DEVICE_WAKE NC
+#define CYBSP_BT_HOST_WAKE NC
+#define CYBSP_USER_BTN NC
+#define COMMAND_CONSOLE_UART_TX NC
+#define COMMAND_CONSOLE_UART_RX NC
+#define CYHAL_UART_MAX_INSTANCES 3
+
+// below configMAX_SYSCALL_INTERRUPT_PRIORITY, so the SDIO ISR may signal FreeRTOS
+#define CYHAL_ISR_PRIORITY_DEFAULT 7
+#define SDMMC_CLK_FREQ_OVERRIDE 0
+
+// 1 for a board whose SDIO D1 to D3 lines fail 4-bit block writes, set by WIFI_SDIO_1BIT in CMake
+#ifndef CYBSP_WIFI_SDIO_1BIT
+#define CYBSP_WIFI_SDIO_1BIT 0
+#endif
+#define _CYHAL_SDIO_DMA_BUFFER_SIZE 0
+
+#define CY_WIFI_COUNTRY WHD_COUNTRY_UNITED_STATES

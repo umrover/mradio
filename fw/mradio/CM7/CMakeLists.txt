@@ -30,7 +30,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(STM32_MCU_FLAGS  "-mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard " )
 
 #Linker options
-set(STM32_LINKER_SCRIPT stm32h745xx_flash_CM7.ld)
+set(STM32_LINKER_SCRIPT mradio_CM7.ld)
 set(STM32_LINKER_OPTION  )
 
 # Set the project name
@@ -77,9 +77,13 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 
 include("mmiot.cmake")
 include("web.cmake")
+include("wifi.cmake")
 
-target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/eth.ld")
-set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/eth.ld")
+# mradio_CM7.ld INCLUDEs these by name
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-L${CMAKE_CURRENT_SOURCE_DIR}")
+foreach(script mradio_CM7.ld wifi.ld eth.ld stm32h745xx_flash_CM7.ld)
+    set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/${script}")
+endforeach()
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE

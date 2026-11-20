@@ -15,6 +15,7 @@
 #include "FreeRTOS.h"
 #include "config.hpp"
 #include "eth.hpp"
+#include "link_status.hpp"
 #include "lwip/apps/fs.h"
 #include "lwip/apps/httpd.h"
 #include "lwip/def.h"
@@ -126,19 +127,30 @@ std::string_view eth_state() {
     return full_duplex ? "10F" : "10H";
 }
 
-void write_link_state(JsonObject link_json, config::Link link, std::uint64_t uptime_ms) {
-    link_json["state"] = config::link_up(link) ? "up" : "down";
-    link_json["state_s"] = uptime_ms / 1000;
+void write_link_state(JsonObject link_json, const link_status::Snapshot &link,
+                      std::uint32_t now_ms) {
+    link_json["state"] = link.up ? "up" : "down";
+    link_json["state_s"] = (now_ms - link.changed_ms) / 1000;
 }
 
-void write_heartbeats(JsonObject link_json) {
-    link_json["rtt_ms"] = nullptr;
-    link_json["heartbeats_sent"] = 0;
-    link_json["heartbeats_acked"] = 0;
+void write_heartbeats(JsonObject link_json, const link_status::Snapshot &link) {
+    if (link.rtt_ms) {
+        link_json["rtt_ms"] = *link.rtt_ms;
+    }
+    else {
+        link_json["rtt_ms"] = nullptr;
+    }
+    link_json["heartbeats_sent"] = link.heartbeats_sent;
+    link_json["heartbeats_acked"] = link.heartbeats_acked;
 }
 
-void write_local_link(JsonObject link_json) {
-    link_json["rssi_dbm"] = nullptr;
+void write_local_link(JsonObject link_json, const link_status::Snapshot &link) {
+    if (link.rssi_dbm) {
+        link_json["rssi_dbm"] = *link.rssi_dbm;
+    }
+    else {
+        link_json["rssi_dbm"] = nullptr;
+    }
     link_json["mcs"] = nullptr;
     link_json["tx_bytes"] = 0;
     link_json["rx_bytes"] = 0;
@@ -150,22 +162,24 @@ void write_local_link(JsonObject link_json) {
 
 void write_status(JsonDocument &json) {
     const config::Config &current = config::current();
-    const std::uint64_t uptime_ms = HAL_GetTick();
+    const std::uint32_t uptime_ms = HAL_GetTick();
+    const link_status::Snapshot halow_link = link_status::snapshot(config::Link::halow);
 
     const JsonObject halow = json["links"]["halow"].to<JsonObject>();
-    write_link_state(halow, config::Link::halow, uptime_ms);
+    write_link_state(halow, halow_link, uptime_ms);
     halow["sub_band"] = config::sub_band_name(current.halow.sub_band);
     halow["bw_mhz"] = current.halow.bw_mhz;
-    write_heartbeats(halow);
+    write_heartbeats(halow, halow_link);
 
     const auto wifi_links = {std::tuple{"wifi_2_4", config::Link::wifi_2_4, current.wifi_2_4},
                              std::tuple{"wifi_5", config::Link::wifi_5, current.wifi_5}};
     for (const auto &[name, link, settings] : wifi_links) {
+        const link_status::Snapshot wifi_link = link_status::snapshot(link);
         const JsonObject wifi = json["links"][name].to<JsonObject>();
-        write_link_state(wifi, link, uptime_ms);
+        write_link_state(wifi, wifi_link, uptime_ms);
         wifi["channel"] = settings.channel;
         wifi["bw_mhz"] = settings.bw_mhz;
-        write_heartbeats(wifi);
+        write_heartbeats(wifi, wifi_link);
     }
 
     const JsonObject local = json["local"].to<JsonObject>();
@@ -174,9 +188,11 @@ void write_status(JsonDocument &json) {
         config::format_ipv4(lwip_ntohl(ip4_addr_get_u32(netif_ip4_addr(&eth::interface())))).data();
     local["uptime_ms"] = uptime_ms;
     local["fw"] = MRADIO_FW_VERSION;
-    write_local_link(local["links"]["halow"].to<JsonObject>());
-    write_local_link(local["links"]["wifi_2_4"].to<JsonObject>());
-    write_local_link(local["links"]["wifi_5"].to<JsonObject>());
+    write_local_link(local["links"]["halow"].to<JsonObject>(), halow_link);
+    write_local_link(local["links"]["wifi_2_4"].to<JsonObject>(),
+                     link_status::snapshot(config::Link::wifi_2_4));
+    write_local_link(local["links"]["wifi_5"].to<JsonObject>(),
+                     link_status::snapshot(config::Link::wifi_5));
 
     const JsonObject system = local["system"].to<JsonObject>();
     // TODO: wait a second do we need a separate temp sensor

@@ -1,4 +1,4 @@
-/* Extends stm32h745xx_flash_CM7.ld, which stays as CubeMX generates it */
+/* Included by mradio_CM7.ld */
 /* SRAM3 is free since CM4 uses only SRAM1 and SRAM2, and MPU region 1 maps it uncached */
 MEMORY
 {

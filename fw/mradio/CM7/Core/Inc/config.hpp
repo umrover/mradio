@@ -55,6 +55,7 @@ ApiError make_error(int status, std::string_view code, std::string_view field,
 void init(Net boot_net);
 const Config &current();
 Role boot_role();
+// defined in link_status.cpp, which the radio monitor tasks keep current
 bool link_up(Link link);
 
 [[nodiscard]] std::optional<ApiError> apply_patch(std::string_view body);

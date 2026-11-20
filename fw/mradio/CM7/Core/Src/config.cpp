@@ -447,9 +447,6 @@ const Config &current() { return current_config; }
 
 Role boot_role() { return booted_role; }
 
-// TODO: not implemented
-bool link_up(Link /*link*/) { return false; }
-
 std::optional<ApiError> apply_patch(std::string_view body) {
     const Config &previous = current_config;
     Config candidate;

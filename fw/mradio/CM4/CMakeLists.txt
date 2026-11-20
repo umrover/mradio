@@ -67,6 +67,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${USER_SOURCES}
 )
 
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/flash_limit.ld")
+set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/flash_limit.ld")
+
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths

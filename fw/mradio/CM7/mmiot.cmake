@@ -215,8 +215,15 @@ file(GLOB MMIOT_LWIP_SRCS
     ${MMIOT_ROOT}/src/lwip/src/core/*.c
     ${MMIOT_ROOT}/src/lwip/src/core/ipv4/*.c
 )
-# Only the tcpip thread, since nothing here uses the netconn or socket APIs
-list(APPEND MMIOT_LWIP_SRCS ${MMIOT_ROOT}/src/lwip/src/api/tcpip.c)
+# netconn and netifapi for the Wi-Fi glue in wifi.cmake, which builds sockets.c itself
+list(APPEND MMIOT_LWIP_SRCS
+    ${MMIOT_ROOT}/src/lwip/src/api/tcpip.c
+    ${MMIOT_ROOT}/src/lwip/src/api/api_lib.c
+    ${MMIOT_ROOT}/src/lwip/src/api/api_msg.c
+    ${MMIOT_ROOT}/src/lwip/src/api/err.c
+    ${MMIOT_ROOT}/src/lwip/src/api/netbuf.c
+    ${MMIOT_ROOT}/src/lwip/src/api/netifapi.c
+)
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${MMIOT_LWIP_SRCS}

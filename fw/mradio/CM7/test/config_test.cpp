@@ -39,6 +39,9 @@ std::optional<std::string> mrover::storage::load() { return std::nullopt; }
 
 bool mrover::storage::save(std::string_view) { return true; }
 
+// the firmware tracks this in link_status.cpp, which needs FreeRTOS
+bool mrover::config::link_up(mrover::config::Link) { return false; }
+
 int main() {
     mrover::config::init({.ip = 0xC0A8010A, .mask = 0xFFFFFF00});
 
