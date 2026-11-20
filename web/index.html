@@ -54,7 +54,12 @@
 
     <form data-section="halow">
       <p>
-        center_khz <input name="center_khz" type="number" step="500" required />
+        sub_band
+        <select name="sub_band">
+          <option>low</option>
+          <option>mid</option>
+          <option>high</option>
+        </select>
       </p>
       <p>bw_mhz <input name="bw_mhz" type="number" required /></p>
       <p>tx_power_dbm <input name="tx_power_dbm" type="number" required /></p>
