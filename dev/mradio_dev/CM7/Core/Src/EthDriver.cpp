@@ -29,7 +29,6 @@ extern "C" {
     }
 
     void HAL_ETH_RxCpltCallback(ETH_HandleTypeDef *handlerEth) {
-        (void)handlerEth;
         mrover::EthDriver::getInstance().notifyRxFromISR();
     }
 
@@ -83,7 +82,6 @@ namespace mrover {
 
     // entry function for rx monitor task
     void EthDriver::rxTaskEntry(void* argument) {
-        (void)argument;
         EthDriver& driver = EthDriver::getInstance();
         uint8_t* frame_ptr = nullptr;
 
