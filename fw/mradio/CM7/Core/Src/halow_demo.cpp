@@ -4,20 +4,24 @@
 
 #include "cmsis_os2.h"
 #include "halow_radio.hpp"
+#include "lwip/def.h"
 #include "main.h"
 #include "mmhal_os.h"
 #include "mmlog.h"
 #include "mmosal.h"
 #include "mmping.h"
+#include "web.hpp"
 
 namespace mrover {
 namespace {
 
 // TODO: demo only, from the cmake, remove later
-constexpr HalowRadio::Role ROLE = HALOW_DEFAULT_ROLE_AP != 0 ? HalowRadio::Role::ap : HalowRadio::Role::sta;
+constexpr HalowRadio::Role ROLE =
+    HALOW_DEFAULT_ROLE_AP != 0 ? HalowRadio::Role::ap : HalowRadio::Role::sta;
 
-constexpr char AP_IP[] = "192.168.1.1";
-constexpr char STA_IP[] = "192.168.1.2";
+// off the PC's 192.168.1.0/24 dev port, which the Ethernet side uses
+constexpr char AP_IP[] = "192.168.2.1";
+constexpr char STA_IP[] = "192.168.2.2";
 
 constexpr uint32_t PING_INTERVAL_MS = 1000;
 constexpr uint32_t PING_POLL_MS = 50;
@@ -27,6 +31,11 @@ constexpr bool is_ap() { return ROLE == HalowRadio::Role::ap; }
 constexpr const char *role_name() { return is_ap() ? "ap" : "sta"; }
 constexpr const char *local_ip() { return is_ap() ? AP_IP : STA_IP; }
 constexpr const char *peer_ip() { return is_ap() ? STA_IP : AP_IP; }
+
+constexpr config::Net ETH_NET = {
+    .ip = LWIP_MAKEU32(192, 168, 1, is_ap() ? 10 : 11),
+    .mask = LWIP_MAKEU32(255, 255, 255, 0),
+};
 
 constexpr HalowRadio::Config RADIO_CONFIG = {
     .role = ROLE,
@@ -101,8 +110,16 @@ void init() {
     mm_logging_init();
     mmhal_init();
     std::printf("\nmradio halow demo, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
-    if (!radio.start(RADIO_CONFIG) || !start_ping()) {
+    if (!radio.start(RADIO_CONFIG)) {
         // solid D1 means fail
+        set_status_led(true);
+        return;
+    }
+    // radio.start brings up tcpip, which web needs
+    if (!web::init(ETH_NET)) {
+        std::printf("web: not started\n");
+    }
+    if (!start_ping()) {
         set_status_led(true);
         return;
     }

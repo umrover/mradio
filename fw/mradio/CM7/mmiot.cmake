@@ -239,10 +239,9 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     LWIP_IPV4=1
     LWIP_IPV6=0
-    # The radio link only carries UDP and ping, so TCP is dead weight in flash
-    LWIP_TCP=0
-    # Morse's on-demand timer patch assumes TCP, and plain periodic timers cost nothing with power save off
+    # plain periodic timers cost nothing with power save off
     MORSE_LWIP_TIMERS_ON_DEMAND=0
 )
 
-set_source_files_properties(${MMIOT_LWIP_SRCS} PROPERTIES COMPILE_OPTIONS -Wno-unused-parameter)
+# -Os like the radio stack, since a Debug build at -O0 overflows the bank once TCP and httpd are in
+set_source_files_properties(${MMIOT_LWIP_SRCS} PROPERTIES COMPILE_OPTIONS "-Os;-Wno-unused-parameter")

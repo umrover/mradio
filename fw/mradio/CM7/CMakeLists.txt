@@ -76,6 +76,10 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 include("mmiot.cmake")
+include("web.cmake")
+
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-T${CMAKE_CURRENT_SOURCE_DIR}/eth.ld")
+set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/eth.ld")
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
