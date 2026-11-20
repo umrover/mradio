@@ -41,7 +41,7 @@ MEMORY
   RAM (xrw)      : ORIGIN = 0x24000000, LENGTH = 512K
   DTCMRAM (xrw)   : ORIGIN = 0x20000000, LENGTH = 128K
   ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
-  RAM_D2 (xrw)      : ORIGIN = 0x30020000, LENGTH = 160K
+  SRAM3 (xrw)       : ORIGIN = 0x30040000, LENGTH = 32K
   RB_RAM (xrw)  : ORIGIN = 0x38000000, LENGTH = 64K
 }
 /* Highest address of the user mode stack */
@@ -223,7 +223,7 @@ SECTIONS
 
 
   /* D2RAM stuff */
-  .lwip_sec (NOLOAD) :
+  .eth_sec (NOLOAD) :
   {
     . = ABSOLUTE(0x30040000);
     *(.RxDescripSection)
@@ -231,7 +231,7 @@ SECTIONS
     *(.TxDescripSection)
     . = ABSOLUTE(0x30040180);
     *(.Rx_PoolSection)
-  } >RAM_D2
+  } >SRAM3
 
 
   /* shared RAM for ring buffers */

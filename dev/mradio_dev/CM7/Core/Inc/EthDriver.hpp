@@ -2,6 +2,7 @@
 
 #include "stm32h7xx_hal.h"
 #include "PacketInfo.hpp"
+#include "cmsis_os2.h"
 #include <cstdint>
 
 extern ETH_HandleTypeDef heth;
@@ -11,6 +12,13 @@ namespace mrover {
     class EthDriver {
     private:
         EthDriver() = default;
+
+        // rtos task and semaphore
+        osThreadId_t rx_task = nullptr;
+        osSemaphoreId_t rx_semaphore = nullptr;
+
+        // entry function for rx task
+        static void rxTaskEntry(void* argument);
 
     public:
         // singleton access
@@ -29,5 +37,8 @@ namespace mrover {
 
         // transmit an ethernet frame
         bool sendFrame(const uint8_t* frame, uint16_t len);
+
+        // signal incoming packet
+        void notifyRxFromISR();
     };
 }

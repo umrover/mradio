@@ -26,7 +26,7 @@ namespace mrover {
             eth_tx_mutex = osMutexNew(nullptr);
         }
 
-        void lwipInit() {
+        void ethInit() {
             EthDriver::getInstance().init();
         }
 
