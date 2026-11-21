@@ -10,12 +10,15 @@
 #include "lwip/tcpip.h"
 #include "stm32h7xx_hal.h"
 #include "whd_types.h"
+#include "whd_wifi_api.h"
 #include "wifi_bt_if.h"
 
 extern "C" {
 // main.c keeps the handle but never calls MX_SDMMC1_SD_Init, the pal sets SDMMC1 up itself
 extern SD_HandleTypeDef hsd1;
 void stm32_cyhal_sdio_irq_handler(void);
+// defined in cy_wcm.c but missing from its public header
+cy_rslt_t cy_wcm_get_whd_interface(cy_wcm_interface_t interface_type, whd_interface_t *whd_iface);
 }
 
 static_assert(PBUF_LINK_ENCAPSULATION_HLEN >= WHD_LINK_HEADER,
@@ -124,6 +127,15 @@ bool WifiRadio::start(const Config &config) {
     if (!succeeded(cy_wcm_init(&wcm_config), "init")) {
         return false;
     }
+    if (!is_ap()) {
+        // the connection manager only toggles power save on 43907-class chips, so call WHD directly
+        whd_interface_t interface = nullptr;
+        if (!succeeded(cy_wcm_get_whd_interface(CY_WCM_INTERFACE_TYPE_STA, &interface),
+                       "get whd interface") ||
+            !succeeded(whd_wifi_disable_powersave(interface), "disable powersave")) {
+            return false;
+        }
+    }
     instance = this;
     if (!succeeded(cy_wcm_register_event_callback(on_event), "event callback")) {
         return false;
@@ -150,8 +162,7 @@ bool WifiRadio::start_ap(const Config &config) {
         return false;
     }
     std::printf("wifi: ap %.*s on %s channel %u\n", static_cast<int>(config.local_ip.size()),
-                config.local_ip.data(),
-                config.band == Band::ghz5 ? "5 GHz" : "2.4 GHz",
+                config.local_ip.data(), config.band == Band::ghz5 ? "5 GHz" : "2.4 GHz",
                 static_cast<unsigned>(config.channel));
     return true;
 }
@@ -162,8 +173,7 @@ bool WifiRadio::start_join_task(const Config &config) {
         return false;
     }
     std::printf("wifi: sta %.*s joining on %s\n", static_cast<int>(config.local_ip.size()),
-                config.local_ip.data(),
-                config.band == Band::ghz5 ? "5 GHz" : "2.4 GHz");
+                config.local_ip.data(), config.band == Band::ghz5 ? "5 GHz" : "2.4 GHz");
     return true;
 }
 

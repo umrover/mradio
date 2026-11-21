@@ -313,7 +313,7 @@ whd_result_t whd_bus_sdio_send_buffer(whd_driver_t whd_driver, whd_buffer_t buff
     retval =
         whd_bus_transfer_bytes(whd_driver, BUS_WRITE, WLAN_FUNCTION, 0,
                                (uint16_t)(whd_buffer_get_current_piece_size(whd_driver,
-                                                                            buffer) - sizeof(whd_buffer_t) ),
+                                                                            buffer) - sizeof(whd_buffer_header_t) ),
                                (whd_transfer_bytes_packet_t *)(whd_buffer_get_current_piece_data_pointer(whd_driver,
                                                                                                          buffer) +
                                                                sizeof(whd_buffer_t) ) );

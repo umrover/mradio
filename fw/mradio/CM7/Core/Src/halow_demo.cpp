@@ -60,6 +60,9 @@ constexpr HalowRadio::Config RADIO_CONFIG = {
     .gateway = AP_IP,
 };
 
+// off while the Sona card connectors are unreliable, a failed bring-up starves HaLow and Ethernet
+constexpr bool WIFI_ENABLED = false;
+
 // the channel comes from the saved wifi_5 config in start_wifi
 constexpr WifiRadio::Config WIFI_CONFIG = {
     .role = is_ap() ? WifiRadio::Role::ap : WifiRadio::Role::sta,
@@ -205,8 +208,9 @@ void init() {
     if (!web::init(ETH_NET)) {
         std::printf("web: not started\n");
     }
-    // a Wi-Fi failure leaves HaLow and Ethernet running
-    start_wifi();
+    if (WIFI_ENABLED) {
+        start_wifi();
+    }
     if (!start_ping()) {
         set_status_led(true);
         return;
