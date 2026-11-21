@@ -100,7 +100,7 @@ constexpr osThreadAttr_t WIFI_MONITOR_ATTRIBUTES = {
 HalowRadio radio;
 WifiRadio wifi;
 
-// D1 is the only LED fitted on these boards, so HaLow status borrows the system LED
+// hardcoded to system led for now
 void set_status_led(bool on) {
     if (on) {
         LL_GPIO_SetOutputPin(LED_SYSTEM_GPIO_Port, LED_SYSTEM_Pin);
@@ -213,6 +213,9 @@ void start_wifi() {
 } // namespace
 
 void init() {
+    LL_GPIO_SetOutputPin(LED_HALOW_GPIO_Port, LED_HALOW_Pin);
+    LL_GPIO_SetOutputPin(LED_WIFI_2_4_GPIO_Port, LED_WIFI_2_4_Pin);
+    LL_GPIO_SetOutputPin(LED_WIFI_5_GPIO_Port, LED_WIFI_5_Pin);
     mm_logging_init();
     mmhal_init();
     std::printf("\nmradio, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
