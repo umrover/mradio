@@ -14,3 +14,4 @@ The subset of Infineon's [AIROC-Wi-Fi-Bluetooth-STM32](https://github.com/Infine
   - `stm32_cyhal_sdio_irq_handler` treats data and command timeouts as errors, since otherwise the flag stays set and the ISR re-enters forever
   - The raw lwIP calls in `cy_network_mw_core.c` and `cy_nw_helper.c` take `LOCK_TCPIP_CORE`, since the morselib lwIP port asserts the core lock
   - `CYBSP_WIFI_SDIO_1BIT` from `cybsp.h` picks a 1-bit bus in `cybsp_wifi.c` and `stm32_cyhal_sdio.c`, for a board whose D1 to D3 lines fail
+  - `whd_bus_sdio_send_buffer` subtracts `sizeof(whd_buffer_header_t)` instead of `sizeof(whd_buffer_t)`, since the old length sent 4 bytes past the end of every packet
