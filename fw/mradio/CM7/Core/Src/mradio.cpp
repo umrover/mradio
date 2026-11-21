@@ -5,6 +5,7 @@
 #include "cmsis_os2.h"
 #include "halow_radio.hpp"
 #include "link_status.hpp"
+#include "link_test.hpp"
 #include "lwip/def.h"
 #include "main.h"
 #include "mmhal_os.h"
@@ -20,6 +21,13 @@ namespace {
 // TODO: demo only, from the cmake, remove later
 constexpr HalowRadio::Role ROLE =
     HALOW_DEFAULT_ROLE_AP != 0 ? HalowRadio::Role::ap : HalowRadio::Role::sta;
+constexpr auto SUB_BAND = static_cast<halow::SubBand>(HALOW_SUB_BAND_INDEX);
+// cmake only allows 1, 2, 4 and 8
+constexpr halow::Bandwidth BANDWIDTH = HALOW_BW_MHZ == 1   ? halow::Bandwidth::mhz1
+                                       : HALOW_BW_MHZ == 2 ? halow::Bandwidth::mhz2
+                                       : HALOW_BW_MHZ == 4 ? halow::Bandwidth::mhz4
+                                                           : halow::Bandwidth::mhz8;
+constexpr bool LINK_TEST_ENABLED = LINK_TEST != 0;
 
 // off the PC's 192.168.1.0/24 dev port, which the Ethernet side uses
 constexpr char AP_IP[] = "192.168.2.1";
@@ -54,10 +62,11 @@ constexpr HalowRadio::Config RADIO_CONFIG = {
     .role = ROLE,
     .ssid = "mradio_range",
     .passphrase = "12345678",
-    .sub_band = halow::SubBand::mid,
-    .bandwidth = halow::Bandwidth::mhz8,
+    .sub_band = SUB_BAND,
+    .bandwidth = BANDWIDTH,
     .local_ip = local_ip(),
     .gateway = AP_IP,
+    .max_tx_power_dbm = HALOW_TX_POWER_DBM,
 };
 
 // off while the Sona card connectors are unreliable, a failed bring-up starves HaLow and Ethernet
@@ -117,15 +126,23 @@ bool start_ping() {
 
 [[noreturn]] void link_monitor_task(void * /*argument*/) {
     uint32_t replies_seen = 0;
+    uint32_t pings_seen = 0;
     std::optional<uint32_t> last_reply_ms;
     struct mmping_stats stats{};
     for (;;) {
         mmosal_task_sleep(PING_POLL_MS);
+        link_test::set_peer_up(radio.is_peer_up());
         mmping_stats(&stats);
+        // the link test starts a new ping session every window, which zeroes the counts
+        if (stats.ping_total_count < pings_seen) {
+            replies_seen = 0;
+        }
+        pings_seen = stats.ping_total_count;
         if (stats.ping_recv_count != replies_seen) {
             last_reply_ms = HAL_GetTick();
         }
-        link_status::set_up(config::Link::halow, radio.is_peer_up() && heard_recently(last_reply_ms));
+        link_status::set_up(config::Link::halow,
+                            radio.is_peer_up() && heard_recently(last_reply_ms));
         link_status::record_heartbeats(
             config::Link::halow, stats.ping_total_count, stats.ping_recv_count,
             stats.ping_recv_count > 0 ? std::optional{stats.ping_avg_time_ms} : std::nullopt);
@@ -198,7 +215,7 @@ void start_wifi() {
 void init() {
     mm_logging_init();
     mmhal_init();
-    std::printf("\nmradio halow demo, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
+    std::printf("\nmradio, role %s, built " __DATE__ " " __TIME__ "\n", role_name());
     if (!radio.start(RADIO_CONFIG)) {
         // solid D1 means fail
         set_status_led(true);
@@ -211,7 +228,15 @@ void init() {
     if (WIFI_ENABLED) {
         start_wifi();
     }
-    if (!start_ping()) {
+    // the link test pings in its own windows, and mmping runs one session at a time
+    const bool pinging = LINK_TEST_ENABLED
+                             ? link_test::start({.local_ip = local_ip(),
+                                                 .peer_ip = peer_ip(),
+                                                 .is_ap = is_ap(),
+                                                 .flood = LINK_TEST_FLOOD != 0,
+                                                 .flood_rate_kbps = LINK_TEST_RATE_KBPS})
+                             : start_ping();
+    if (!pinging) {
         set_status_led(true);
         return;
     }

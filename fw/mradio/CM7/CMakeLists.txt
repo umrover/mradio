@@ -55,9 +55,39 @@ if(NOT HALOW_DEFAULT_ROLE MATCHES "^(ap|sta)$")
 endif()
 message("HaLow default role: " ${HALOW_DEFAULT_ROLE})
 
+set(HALOW_SUB_BAND "mid" CACHE STRING "HaLow sub-band at boot, low, mid or high")
+set(HALOW_SUB_BANDS_ORDER low mid high)
+set_property(CACHE HALOW_SUB_BAND PROPERTY STRINGS ${HALOW_SUB_BANDS_ORDER})
+list(FIND HALOW_SUB_BANDS_ORDER "${HALOW_SUB_BAND}" HALOW_SUB_BAND_INDEX)
+if(HALOW_SUB_BAND_INDEX EQUAL -1)
+    message(FATAL_ERROR "HALOW_SUB_BAND must be low, mid or high, got '${HALOW_SUB_BAND}'")
+endif()
+set(HALOW_BW_MHZ 8 CACHE STRING "HaLow channel width at boot in MHz, 1, 2, 4 or 8")
+if(NOT HALOW_BW_MHZ MATCHES "^(1|2|4|8)$")
+    message(FATAL_ERROR "HALOW_BW_MHZ must be 1, 2, 4 or 8, got '${HALOW_BW_MHZ}'")
+endif()
+set(HALOW_TX_POWER_DBM 0 CACHE STRING "HaLow max TX power in dBm, 0 for the regulatory limit")
+if(NOT HALOW_TX_POWER_DBM MATCHES "^([0-9]|[12][0-9]|30)$")
+    message(FATAL_ERROR "HALOW_TX_POWER_DBM must be 0 to 30, got '${HALOW_TX_POWER_DBM}'")
+endif()
+
+set(LINK_TEST OFF CACHE BOOL "Run the HaLow link test, a UDP receiver with 5 s reports, instead of the plain ping")
+set(LINK_TEST_FLOOD OFF CACHE BOOL "With LINK_TEST, also flood UDP at the peer once it is up")
+set(LINK_TEST_RATE_KBPS 0 CACHE STRING "Flood payload rate in kbps, 0 for as fast as the link takes it")
+if(NOT LINK_TEST_RATE_KBPS MATCHES "^[0-9]+$")
+    message(FATAL_ERROR "LINK_TEST_RATE_KBPS must be a whole number, got '${LINK_TEST_RATE_KBPS}'")
+endif()
+message("HaLow ${HALOW_SUB_BAND} sub-band at ${HALOW_BW_MHZ} MHz, link test ${LINK_TEST}, flood ${LINK_TEST_FLOOD}")
+
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     HALOW_DEFAULT_ROLE_AP=$<STREQUAL:${HALOW_DEFAULT_ROLE},ap>
+    HALOW_SUB_BAND_INDEX=${HALOW_SUB_BAND_INDEX}
+    HALOW_BW_MHZ=${HALOW_BW_MHZ}
+    HALOW_TX_POWER_DBM=${HALOW_TX_POWER_DBM}
+    LINK_TEST=$<BOOL:${LINK_TEST}>
+    LINK_TEST_FLOOD=$<BOOL:${LINK_TEST_FLOOD}>
+    LINK_TEST_RATE_KBPS=${LINK_TEST_RATE_KBPS}U
 )
 
 # Enable CMake support for ASM and C languages

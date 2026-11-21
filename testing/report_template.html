@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+__REFRESH__
+<title>__TITLE__</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #fafafa; --surface: #ffffff; --border: #e5e5e5; --grid: #efefef;
+  --text: #171717; --muted: #737373;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1f9e6e; --s4: #8a5cd1; --critical: #e34948; --warning: #b77900;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0a; --surface: #171717; --border: #262626; --grid: #222222;
+    --text: #f5f5f5; --muted: #a3a3a3;
+    --s1: #3987e5; --s2: #d95926; --s3: #2bb583; --s4: #9d74e0; --critical: #e66767; --warning: #c98500;
+  }
+}
+* { box-sizing: border-box; border-radius: 0; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 system-ui, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+h1 { font-size: 16px; margin: 0; }
+h2 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0; }
+.meta { color: var(--muted); font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.panel { background: var(--surface); border: 1px solid var(--border); padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.readout { position: sticky; top: 0; z-index: 1; background: var(--surface); border: 1px solid var(--border); padding: 6px 10px;
+  font: 12px ui-monospace, monospace; height: 3.4em; overflow: hidden; color: var(--muted); }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; color: var(--muted); }
+.legend > span { white-space: nowrap; }
+.swatch { display: inline-block; width: 12px; height: 0; border-top: 2px solid; vertical-align: middle; margin-right: 4px; }
+.swatch.dashed { border-top-style: dashed; }
+.plot { width: 100%; height: 150px; }
+.plot svg { display: block; touch-action: none; }
+svg text { fill: var(--muted); font: 11px ui-monospace, monospace; }
+.scroll { overflow-x: auto; max-height: 420px; }
+table { border-collapse: collapse; font: 12px ui-monospace, monospace; width: 100%; }
+th, td { border-bottom: 1px solid var(--border); padding: 3px 8px; text-align: right; white-space: nowrap; }
+td.text, th.text { text-align: left; white-space: normal; }
+th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+summary { cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <div class="row"><h1>__TITLE__</h1><span class="meta" id="started"></span></div>
+  <div class="meta" id="meta"></div>
+  <div class="panel">
+    <h2>Stops</h2>
+    <div class="scroll"><table id="segments"></table></div>
+  </div>
+  <div class="readout" id="readout">Hover a chart to read the 5 s windows at that time.</div>
+  <div id="charts" style="display:flex;flex-direction:column;gap:12px"></div>
+  <div class="panel">
+    <h2>Events</h2>
+    <div class="scroll"><table id="events"></table></div>
+  </div>
+  <details class="panel">
+    <summary><h2 style="display:inline">Windows</h2></summary>
+    <div class="scroll"><table id="windows"></table></div>
+  </details>
+</main>
+<script type="application/json" id="run-data">__RUN_DATA__</script>
+<script>
+const run = JSON.parse(document.getElementById("run-data").textContent);
+const meta = run.meta;
+const windows = run.windows;
+const xMax = Math.max(meta.captured_s, ...windows.map(w => w.t), 1);
+const byRole = role => windows.filter(w => w.role === role);
+const roleWindows = { ap: byRole("ap"), sta: byRole("sta") };
+
+const LINES = [
+  ...run.marks.map(m => ({ t: m.t, color: "var(--text)", label: m.text })),
+  ...run.events.filter(e => e.kind === "link down" || e.kind === "station left")
+    .map(e => ({ t: e.t, color: "var(--warning)", label: `${e.board} ${e.kind}` })),
+  ...run.events.filter(e => e.kind === "boot" || e.kind === "console lost" || e.kind === "error")
+    .map(e => ({ t: e.t, color: "var(--critical)", label: `${e.board} ${e.kind}` })),
+];
+
+const ALL_CHARTS = [
+  { title: "Throughput", unit: "Mbps", digits: 2, zero: true, series: [
+    { name: "AP rx", role: "ap", color: "var(--s1)", value: w => w.rx_kbps / 1000 },
+    { name: "STA tx", role: "sta", color: "var(--s2)", value: w => w.tx_kbps / 1000 },
+    { name: "STA rx", role: "sta", color: "var(--s3)", value: w => w.rx_kbps / 1000 },
+    { name: "AP tx", role: "ap", color: "var(--s4)", value: w => w.tx_kbps / 1000 },
+  ] },
+  { title: "RSSI at the STA", unit: "dBm", digits: 0, zero: false, series: [
+    { name: "RSSI", role: "sta", color: "var(--s1)", value: w => w.rssi_dbm },
+  ] },
+  { title: "Ping RTT", unit: "ms", digits: 0, zero: true, series: [
+    { name: "AP", role: "ap", color: "var(--s1)", value: w => w.rtt_ms },
+    { name: "STA", role: "sta", color: "var(--s2)", value: w => w.rtt_ms },
+  ] },
+  { title: "Flood loss", unit: "%", digits: 1, zero: true, series: [
+    { name: "AP rx", role: "ap", color: "var(--s1)", value: w => w.loss_pct },
+    { name: "STA rx", role: "sta", color: "var(--s2)", value: w => w.loss_pct },
+  ] },
+  { title: "STA rate", unit: "MCS", digits: 0, zero: true, series: [
+    { name: "MCS", role: "sta", color: "var(--s1)", value: w => w.mcs },
+  ] },
+];
+// a series that never carried data, such as AP tx when only the STA floods, only adds noise
+const hasData = s => roleWindows[s.role].some(w => { const v = s.value(w); return v !== null && v !== 0; });
+const CHARTS = ALL_CHARTS.map(c => ({ ...c, series: c.series.filter(hasData) })).filter(c => c.series.length);
+
+const fmt = (v, digits, unit) => v === null || v === undefined ? "n/a" : `${v.toFixed(digits)}${unit}`;
+const escape = text => text.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const clock = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+
+function el(tag, attrs = {}, text = "") {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+  if (text) node.textContent = text;
+  return node;
+}
+
+function renderHeader() {
+  document.getElementById("started").textContent = meta.started;
+  const items = [`${meta.captured_s.toFixed(0)} s captured`, `${meta.consoles.length} console(s)`];
+  if (meta.reset) items.push("boards reset at start");
+  for (const f of meta.flashes) {
+    const flood = f.flood ? `flooding${f.rate_kbps ? ` at ${f.rate_kbps} kbps` : ""}` : "receiving";
+    const power = f.tx_power_dbm ? `${f.tx_power_dbm} dBm` : "power at the limit";
+    items.push(`last ${f.role} flash from this PC: ${f.sub_band} ${f.bw_mhz} MHz, ${power}, ${flood}, ${f.flashed}`);
+  }
+  if (meta.name) items.push(meta.name);
+  const host = document.getElementById("meta");
+  for (const item of items) host.appendChild(el("span", {}, item));
+}
+
+function niceStep(span) {
+  const raw = span / 4;
+  const power = Math.pow(10, Math.floor(Math.log10(raw)));
+  const f = raw / power;
+  return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * power;
+}
+
+function timeStep(span) {
+  for (const step of [5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600]) if (span / step <= 8) return step;
+  return 7200;
+}
+
+function buildCharts() {
+  const host = document.getElementById("charts");
+  for (const chart of CHARTS) {
+    const panel = el("div", { class: "panel" });
+    const row = el("div", { class: "row" });
+    row.appendChild(el("h2", {}, `${chart.title}, ${chart.unit}`));
+    const legend = el("div", { class: "legend" });
+    for (const s of chart.series) {
+      const item = el("span");
+      const swatch = el("span", { class: "swatch" });
+      swatch.style.borderColor = s.color;
+      item.append(swatch, s.name);
+      legend.appendChild(item);
+    }
+    for (const [color, label] of [["var(--text)", "stop mark"], ["var(--warning)", "link down"], ["var(--critical)", "reboot or error"]]) {
+      const item = el("span");
+      const swatch = el("span", { class: "swatch dashed" });
+      swatch.style.borderColor = color;
+      item.append(swatch, label);
+      legend.appendChild(item);
+    }
+    row.appendChild(legend);
+    chart.plot = el("div", { class: "plot" });
+    panel.append(row, chart.plot);
+    host.appendChild(panel);
+  }
+}
+
+function draw(chart) {
+  const width = Math.max(chart.plot.clientWidth, 280);
+  const height = 150;
+  const m = { l: 48, r: 12, t: 8, b: 22 };
+  const pw = width - m.l - m.r;
+  const ph = height - m.t - m.b;
+
+  const values = [];
+  for (const s of chart.series) for (const w of roleWindows[s.role]) { const v = s.value(w); if (v !== null) values.push(v); }
+  let lo = values.length ? Math.min(...values) : 0;
+  let hi = values.length ? Math.max(...values) : 1;
+  if (chart.zero) lo = Math.min(0, lo);
+  if (hi - lo < 1e-9) hi = lo + 1;
+  const step = niceStep(hi - lo);
+  lo = Math.floor(lo / step) * step;
+  hi = Math.ceil(hi / step) * step;
+  const digits = Math.max(0, -Math.floor(Math.log10(step)));
+
+  const X = t => m.l + Math.min(Math.max(t / xMax, 0), 1) * pw;
+  const Y = v => m.t + (hi - v) / (hi - lo) * ph;
+  const parts = [];
+  const ySteps = Math.round((hi - lo) / step);
+  for (let i = 0; i <= ySteps; i++) {
+    const v = lo + i * step;
+    const y = Y(v).toFixed(1);
+    parts.push(`<line x1="${m.l}" x2="${width - m.r}" y1="${y}" y2="${y}" style="stroke:var(--grid)"/>`);
+    parts.push(`<text x="${m.l - 6}" y="${y}" dy="0.32em" text-anchor="end">${v.toFixed(digits)}</text>`);
+  }
+  const tStep = timeStep(xMax);
+  for (let t = 0; t <= xMax; t += tStep) {
+    parts.push(`<text x="${X(t).toFixed(1)}" y="${height - 6}" text-anchor="middle">${clock(t)}</text>`);
+  }
+  for (const line of LINES) {
+    const x = X(line.t).toFixed(1);
+    parts.push(`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${m.t + ph}" style="stroke:${line.color};stroke-dasharray:3 3;stroke-width:1.5"><title>${escape(line.label)}</title></line>`);
+  }
+  for (const s of chart.series) {
+    let d = "";
+    let pen = false;
+    for (const w of roleWindows[s.role]) {
+      const v = s.value(w);
+      if (v === null) { pen = false; continue; }
+      d += `${pen ? "L" : "M"}${X(w.t).toFixed(1)} ${Y(v).toFixed(1)}`;
+      pen = true;
+    }
+    parts.push(`<path d="${d}" style="fill:none;stroke:${s.color};stroke-width:2;stroke-linejoin:round"/>`);
+  }
+  parts.push(`<line class="crosshair" y1="${m.t}" y2="${m.t + ph}" style="stroke:var(--text);stroke-width:1;visibility:hidden"/>`);
+  chart.plot.innerHTML = `<svg width="${width}" height="${height}" role="img" aria-label="${chart.title} over time, ${chart.unit}">${parts.join("")}</svg>`;
+  chart.X = X;
+  const svg = chart.plot.firstChild;
+  svg.addEventListener("pointermove", ev => {
+    const rect = svg.getBoundingClientRect();
+    showTime((ev.clientX - rect.left - m.l) / pw * xMax);
+  });
+  svg.addEventListener("pointerleave", () => showTime(null));
+}
+
+function nearest(list, t) {
+  let best = null;
+  for (const w of list) if (best === null || Math.abs(w.t - t) < Math.abs(best.t - t)) best = w;
+  // a window more than one window away is a gap, not a reading
+  return best !== null && Math.abs(best.t - t) <= 5 ? best : null;
+}
+
+let hoveredT = null;
+
+function showTime(t) {
+  hoveredT = t;
+  const readout = document.getElementById("readout");
+  for (const chart of CHARTS) {
+    const line = chart.plot.querySelector(".crosshair");
+    if (!line) continue;
+    line.style.visibility = t === null ? "hidden" : "visible";
+    if (t !== null) { line.setAttribute("x1", chart.X(t).toFixed(1)); line.setAttribute("x2", chart.X(t).toFixed(1)); }
+  }
+  if (t === null) { readout.textContent = "Hover a chart to read the 5 s windows at that time."; return; }
+  const text = [clock(t)];
+  for (const role of ["ap", "sta"]) {
+    const w = nearest(roleWindows[role], t);
+    if (w === null) continue;
+    text.push(`${role} [${w.segment}] tx ${fmt(w.tx_kbps / 1000, 2, "")} rx ${fmt(w.rx_kbps / 1000, 2, "")} Mbps ` +
+      `loss ${fmt(w.loss_pct, 1, "%")} ping ${w.ping_recv}/${w.ping_total} ${fmt(w.rtt_ms, 0, " ms")}` +
+      (role === "sta" ? ` rssi ${fmt(w.rssi_dbm, 0, " dBm")} mcs ${w.mcs ?? "n/a"}` : ""));
+  }
+  readout.textContent = text.join("  ");
+}
+
+function fillTable(id, headers, rows) {
+  const table = document.getElementById(id);
+  const head = el("tr");
+  for (const [text, cls] of headers) head.appendChild(el("th", cls ? { class: cls } : {}, text));
+  table.appendChild(head);
+  if (!rows.length) {
+    const row = el("tr");
+    row.appendChild(el("td", { class: "text", colspan: String(headers.length) }, "none"));
+    table.appendChild(row);
+  }
+  for (const cells of rows) {
+    const row = el("tr");
+    cells.forEach((cell, i) => row.appendChild(el("td", headers[i][1] ? { class: headers[i][1] } : {}, cell)));
+    table.appendChild(row);
+  }
+}
+
+renderHeader();
+buildCharts();
+const redraw = () => { CHARTS.forEach(draw); showTime(hoveredT); };
+redraw();
+let pending = false;
+window.addEventListener("resize", () => {
+  if (pending) return;
+  pending = true;
+  requestAnimationFrame(() => { pending = false; redraw(); });
+});
+
+fillTable("segments",
+  [["stop", "text"], ["board", "text"], ["start"], ["length"], ["windows"], ["tx Mbps"], ["rx Mbps"], ["loss"], ["ping"], ["rtt ms"], ["rssi dBm"], ["mcs"]],
+  run.segments.map(s => [s.label, s.role.toUpperCase(), clock(s.start_t), `${(s.end_t - s.start_t).toFixed(0)} s`, String(s.windows),
+    fmt(s.tx_mbps, 2, ""), fmt(s.rx_mbps, 2, ""), fmt(s.loss_pct, 1, "%"), `${s.ping_recv}/${s.ping_total}`,
+    fmt(s.rtt_ms, 0, ""), fmt(s.rssi_dbm, 0, ""), s.top_mcs === null ? "n/a" : String(s.top_mcs)]));
+fillTable("events", [["time"], ["board", "text"], ["event", "text"], ["line", "text"]],
+  [...run.events, ...run.marks].sort((a, b) => a.t - b.t).map(e => [clock(e.t), e.board.toUpperCase(), e.kind, e.text]));
+fillTable("windows",
+  [["time"], ["board", "text"], ["stop", "text"], ["uptime"], ["tx kbps"], ["rx kbps"], ["pkts"], ["lost"], ["ooo"], ["ping"], ["rtt ms"], ["rssi dBm"], ["mcs"], ["att"], ["ok"], ["stall"], ["err"]],
+  windows.map(w => [clock(w.t), w.role.toUpperCase(), w.segment, `${w.uptime_s}s`, String(w.tx_kbps), String(w.rx_kbps), String(w.pkts),
+    String(w.lost), String(w.ooo), `${w.ping_recv}/${w.ping_total}`, w.rtt_ms === null ? "" : String(w.rtt_ms),
+    w.rssi_dbm === null ? "" : String(w.rssi_dbm), w.mcs === null ? "" : String(w.mcs), String(w.attempts), String(w.acked),
+    String(w.stalls), String(w.errors)]));
+</script>
+</body>
+</html>

@@ -158,7 +158,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 # The radio stack runs at -Os like Morse's production builds, since -O3 grows it past the 1 MB bank
-set_source_files_properties(${MORSELIB_SRCS} PROPERTIES COMPILE_OPTIONS "-Os")
+set(MORSELIB_OPT "-Os" CACHE STRING "Optimization level for morselib alone, which changes link throughput")
+set_source_files_properties(${MORSELIB_SRCS} PROPERTIES COMPILE_OPTIONS "${MORSELIB_OPT}")
 set(HOSTAP_COMPILE_OPTIONS
     -Os
     -Wno-unused-but-set-variable
